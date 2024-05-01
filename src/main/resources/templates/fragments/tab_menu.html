@@ -1,0 +1,10 @@
+<div class="flex gap-[13px] pr-[18px]" th:fragment="menu">
+  <div class="flex gap-[7px] font-normal text-[12px] leading-[130%]">
+    <img alt="logo" class="w-[2px] h-[9px] mt-[3px]" th:src="@{/images/top_icon_01.gif}">
+    <a th:replace="fragments/link :: linkB('/modplus/history', 'History', false)"></a>
+  </div>
+  <div class="flex gap-[7px] font-normal text-[12px] leading-[130%]">
+    <img alt="logo" class="w-[2px] h-[9px] mt-[3px]" th:src="@{/images/top_icon_01.gif}">
+    <a th:replace="fragments/link :: linkB('/login?action=logout', 'Logout', false)"></a>
+  </div>
+</div>

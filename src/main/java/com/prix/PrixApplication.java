@@ -1,4 +1,4 @@
-package com.example.prix;
+package com.prix;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/metadata :: metadata">
+<body>
+<header th:replace="fragments/header :: header('publications', false)"></header>
+
+
+<div class="w-[990px] flex flex-col text-[#4e4d4d] pl-[25px]">
+  <div
+    class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+    <div class="h-[34px] leading-[2.1]">PUBLICATIONS</div>
+    <!--    <div th:replace="fragments/tab_menu :: menu"></div>-->
+  </div>
+  <div class="w-full mx-auto leading-[130%] flex flex-col gap-[10px] p-[2px]">
+    <div class="flex flex-col gap-[18px] w-[646px] h-[916px]">
+
+
+      <div class="w-full p-[1px]">
+        <div>
+          <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+          <span class="font-bold">
+        MutCombinator&nbsp;&nbsp;
+        </span>
+          (&nbsp;<a class="font-bold underline text-[#0080b3]" href="/download/mutcombinator">Software download</a>&nbsp;)
+          <hr class="border-[1px] my-[6px] leading-[130%]" style="border-style: inset">
+        </div>
+        <div>
+          <div class="font-bold">
+            MutCombinator: identification of mutated peptides allowing combinatorial mutations using nucleotide-based
+            graph search.
+          </div>
+          <div class="italic">
+            Seunghyuk Choi and Eunok Paek.
+          </div>
+          <div>
+            Bioinformatics, 2020, 7, i203-i209.
+            <a
+              th:replace="fragments/link :: linkA('https://pubmed.ncbi.nlm.nih.gov/32657416/', '[ PMID: 32657416 ]', true)"></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="w-full p-[1px]">
+        <div>
+          <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+          <span class="font-bold">
+        MODplus&nbsp;&nbsp;
+        </span>
+          (&nbsp;<a class="font-bold underline text-[#0080b3]" href="/download/modplus">Software download</a>&nbsp;)
+          <hr class="border-[1px] my-[6px] leading-[130%]" style="border-style: inset">
+        </div>
+        <div>
+          <div class="font-bold">
+            MODplus: Robust and Unrestrictive Identification of Post-Translational Modifications Using Mass
+            Spectrometry.
+          </div>
+          <div class="italic">
+            Seunjin Na, Jihyung Kim and Eunok Paek.
+          </div>
+          <div>
+            Analytical Chemistry, 2019, 91, 17, 11324-11333.
+            <a
+              th:replace="fragments/link :: linkA('https://pubmed.ncbi.nlm.nih.gov/31365238/', '[ PMID: 31365238 ]', true)"></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="w-full p-[1px]">
+        <div>
+          <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+          <span class="font-bold">
+        deMix&nbsp;&nbsp;
+        </span>
+          (&nbsp;<a class="font-bold underline text-[#0080b3]" href="/download/demix">Software download</a>&nbsp;)
+          <hr class="border-[1px] my-[6px] leading-[130%]" style="border-style: inset">
+        </div>
+        <div>
+          <div class="font-bold">
+            deMix: Decoding Deuterated Distributions from Heterogeneous Protein States vis HDX-MS
+          </div>
+          <div class="italic">
+            Seungjin Na, Jae-Jin Lee, Jong Wha J. Joo, Kong-Joo Lee and Eunok Paek.
+          </div>
+          <div>
+            Scientific Reports, 2019, 9, 3176.
+            <a
+              th:replace="fragments/link :: linkA('https://pubmed.ncbi.nlm.nih.gov/30816214/', '[ PMID: 30816214 ]', true)"></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="w-full p-[1px]">
+        <div>
+          <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+          <span class="font-bold">
+        ACTG&nbsp;&nbsp;
+        </span>
+          (&nbsp;<a class="font-bold underline text-[#0080b3]" href="/download/ACTG">Software download</a>&nbsp;)
+          <hr class="border-[1px] my-[6px] leading-[130%]" style="border-style: inset">
+        </div>
+        <div>
+          <div class="font-bold">
+            ACTG: novel peptide mapping onto gene models.
+          </div>
+          <div class="italic">
+            Seunghyuk Choi, Hyunwoo Kim, and Eunok Paek.
+          </div>
+          <div>
+            Bioinformatics, 2017, 33(8), 1218-1220.
+            <a
+              th:replace="fragments/link :: linkA('https://www.ncbi.nlm.nih.gov/pubmed/28031186', '[ PMID: 28031186 ]', true)"></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="w-full p-[1px]">
+        <div>
+          <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+          <span class="font-bold">
+        NextSearch&nbsp;&nbsp;
+        </span>
+          (&nbsp;<a class="font-bold underline text-[#0080b3]" href="/download/nextsearch">Software download</a>&nbsp;)
+          <hr class="border-[1px] my-[6px] leading-[130%]" style="border-style: inset">
+        </div>
+        <div>
+          <div class="font-bold">
+            NextSearch: A Search Engine for Mass Spectrometry Data against a Compact Nucleotide Exon Graph.
+          </div>
+          <div class="italic">
+            Hyunwoo Kim, Heejin Park, and Eunok Paek.
+          </div>
+          <div>
+            Journal of Proteome Research, 2015, 14(7), 2784-2791.
+            <a
+              th:replace="fragments/link :: linkA('http://www.ncbi.nlm.nih.gov/pubmed/26004133', '[ PMID: 26004133 ]', true)"></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="w-full p-[1px]">
+        <div>
+          <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+          <span class="font-bold">
+        MODa&nbsp;&nbsp;
+        </span>
+          (&nbsp;<a class="font-bold underline text-[#0080b3]" href="/download/moda">Software download</a>&nbsp;)
+          <hr class="border-[1px] my-[6px] leading-[130%]" style="border-style: inset">
+        </div>
+        <div>
+          <div class="font-bold">
+            Fast multi-blind modification search through tandem mass spectrometry.
+          </div>
+          <div class="italic">
+            Seungjin Na, Nuno Bandeira, and Eunok Paek.
+          </div>
+          <div>
+            Molecular and Cellular Proteomics, 2012, 11, M111.010199.
+            <a
+              th:replace="fragments/link :: linkA('http://www.ncbi.nlm.nih.gov/pubmed/22186716', '[ PMID: 22186716 ]', true)"></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="w-full p-[1px]">
+        <div>
+          <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+          <span class="font-bold">
+        DBond&nbsp;&nbsp;
+        </span>
+          (&nbsp;<a class="font-bold underline text-[#0080b3]" href="/download/dbond">Software download</a>&nbsp;)
+          <hr class="border-[1px] my-[6px] leading-[130%]" style="border-style: inset">
+        </div>
+        <div>
+          <div class="font-bold">
+            New algorithm for the identification of intact disulfide linkages based on fragmentation characteristics in
+            tandem mass spectra.
+          </div>
+          <div class="italic">
+            Seonhwa Choi, Jaeho Jeong, Seungjin Na, Hyo Sun Lee, Hwa-Young Kim, Kong-Joo Lee, and Eunok Paek.
+          </div>
+          <div>
+            Journal of Proteome Research, 2010, 9, 626-635.
+            <a
+              th:replace="fragments/link :: linkA('http://www.ncbi.nlm.nih.gov/pubmed/19902913', '[ PMID: 19902913 ]', true)"></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="w-full p-[1px]">
+        <div>
+          <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+          <span class="font-bold">
+        MODmap&nbsp;&nbsp;
+        </span>
+          <hr class="border-[1px] my-[6px] leading-[130%]" style="border-style: inset">
+        </div>
+        <div>
+          <div class="font-bold">
+            Prediction of novel modifications by unrestrictive search of tandem mass spectra.
+          </div>
+          <div class="italic">
+            Seungjin Na and Eunok Paek.
+          </div>
+          <div>
+            Journal of Proteome Research, 2009, 8, 4418-4427.
+            <a
+              th:replace="fragments/link :: linkA('http://www.ncbi.nlm.nih.gov/pubmed/19658439', '[ PMID: 19658439 ]', true)"></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="w-full p-[1px]">
+        <div>
+          <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+          <span class="font-bold">
+            MOD<sup class="font-[10px]">i</sup>&nbsp;&nbsp;
+          </span>
+          <hr class="border-[1px] my-[6px] leading-[130%]" style="border-style: inset">
+        </div>
+        <div>
+          <div class="font-bold">
+            Unrestrictive identification of multiple post-translational modifications from tandem mass spectrometry
+            using an error-tolerant algorithm based on an extended sequence tag approach.
+          </div>
+          <div class="italic">
+            Seungjin Na, Jaeho Jeong, Heejin Park, Kong-Joo Lee, and Eunok Paek.
+          </div>
+          <div>
+            Molecular and Cellular Proteomics, 2008, 7, 2452-2463.
+            <a
+              th:replace="fragments/link :: linkA('http://www.ncbi.nlm.nih.gov/pubmed/18701446', '[ PMID: 18701446 ]', true)"></a>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

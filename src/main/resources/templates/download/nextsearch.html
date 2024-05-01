@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/metadata :: metadata">
+<body>
+<header th:replace="fragments/header :: header('download', false)"></header>
+
+<div class="flex gap-[15px] text-[#5d5d5d]">
+  <aside th:replace="download/fragments/aside :: aside"></aside>
+  <div class="w-[885px]">
+    <div
+      class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+      <div class="h-[34px] leading-[2]">
+        <span class="text-[#4e4d4d]">NextSearch</span>
+        <span class="font-normal text-[12px] pl-[6px]">- Exon Graph Search</span>
+      </div>
+      <!--      <div th:replace="fragments/tab_menu :: menu"></div>-->
+    </div>
+    <div class="w-[650px] p-[2px]">
+      <div class="leading-[130%] p-[1px]">
+        NextSearch includes modules (1) that constructs a compact nucleotide exon graph while incorporating novel splice
+        variations (2) that identifies peptides by searching tandem mass spectra against the nucleotide exon graph built
+        during the previous module.
+      </div>
+      <div class="mt-[20px]">
+        <div th:replace="download/fragments/article :: articleHeader('Software')"></div>
+        <ul class="list-disc pl-[40px] m-[2px]">
+          <li>
+            Requirement
+            <div class="pt-[15px] text-[#4189cf] leading-[130%]">
+              NextSearch requires Java Running Environment (JRE) 1.7.0_45 or later. JRE can be installed by visiting
+              <a
+                th:replace="fragments/link :: linkA('http://www.oracle.com/technetwork/java/index.html', 'http://www.oracle.com/technetwork/java/index.html.', true)"></a>
+              If you want to use the Hadoop version of NextSearch,
+              Hadoop version 1.2.1 or later is necessary. Please visit
+              <a
+                th:replace="fragments/link :: linkA('http://hadoop.apache.org/', 'http://hadoop.apache.org/.', true)"></a>
+            </div>
+          </li>
+          <li class="pt-[14px]">
+            Release Note
+            <div class="pt-[15px] leading-[130%]">
+              - <a
+              th:replace="fragments/link :: linkA('release_note_nextsearch.txt', 'Feb 20, 2017: version 1.2', false)"></a>
+              (<a
+              th:replace="fragments/link :: linkA('/request?software=NextSearch', 'Software download', false)"></a> )
+              <br>
+              - Apr 22, 2016: version 1.11
+              <br>
+              - Dec 15, 2015: version 1.1
+              <br>
+              - June 10, 2015: version 1.00
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="mt-[13px]">
+        <div th:replace="download/fragments/article :: articleHeader('Publication')"></div>
+        <div class="w-full flex flex-col p-[3px] ml-[7px] leading-[130%]">
+          <span class="font-bold text-[#4e4d4d]">
+            NextSearch: A Search Engine for Mass Spectrometry Data against a Compact Nucleotide Exon Graph.
+          </span>
+          <span class="italic">
+            Hyunwoo Kim, Heejin Park, and Eunok Paek.
+          </span>
+          <span>
+            Journal of Proteome Research, 2015, 14(7), 2784-2791.
+            <a
+              th:replace="fragments/link :: linkA('http://www.ncbi.nlm.nih.gov/pubmed/26004133', '[ PMID: 26004133 ]', true)"></a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

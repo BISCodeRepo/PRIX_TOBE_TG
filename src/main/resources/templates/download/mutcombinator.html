@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/metadata :: metadata">
+<body>
+<header th:replace="fragments/header :: header('download', false)"></header>
+
+<div class="flex gap-[15px] text-[#5d5d5d]">
+  <aside th:replace="download/fragments/aside :: aside"></aside>
+  <div class="w-[885px]">
+    <div
+      class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+      <div class="h-[34px] leading-[2]">
+        <span class="text-[#4e4d4d]">MutCombinator</span>
+        <span class="font-normal text-[12px] pl-[6px]">- Combinatorial mutation search</span>
+      </div>
+      <!--      <div th:replace="fragments/tab_menu :: menu"></div>-->
+    </div>
+    <div class="w-[650px] p-[2px]">
+      <div class="leading-[130%] p-[1px]">
+        MutCombinator enables us to practically identify mutated peptides from tandem mass spectra allowing
+        combinatorial mutations during the database search. It uses an upgraded version of a variant graph, keeping
+        track of frame information. The variant graph is indexed by nine nucleotides for fast access. Combinations of
+        point mutations are considered, and also it can be practically applied together with a large mutation database
+        such as COSMIC. Furthermore, MutCombinator supports in-frame search for coding regions and three-frame search
+        for noncoding regions.
+      </div>
+      <div class="mt-[20px]">
+        <div th:replace="download/fragments/article :: articleHeader('Software')"></div>
+        <ul class="list-disc pl-[40px] m-[2px]">
+          <li>
+            Requirement
+            <div class="pt-[15px] text-[#4189cf] leading-[130%]">
+              MutCombinator was implemented using JAVA programming language, and requires Java Running Environment
+              (JRE).
+              <br>
+              If JRE is not installed, please visit
+              <a
+                th:replace="fragments/link :: linkA('http://www.oracle.com/technetwork/java/index.html', 'http://www.oracle.com/technetwork/java/index.html.', true)"></a>
+            </div>
+          </li>
+          <li class="pt-[14px]">
+            Release Note
+            <div class="pt-[15px] leading-[130%]">
+              - <a
+              th:replace="fragments/link :: linkA('MutCombinator_ReleaseNote.txt', 'Mar 26, 2020: version 1.11', false)"></a>
+              (<a
+              th:replace="fragments/link :: linkA('/request?software=MutCombinator', 'Software download', false)"></a> )
+              <br>
+              - <span class="text-[#4189cf]">
+                Jan 22, 2020: version 1.10
+              </span>
+              <br>
+              <br>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="mt-[13px]">
+        <div th:replace="download/fragments/article :: articleHeader('Publication')"></div>
+        <div class="w-full flex flex-col p-[3px] ml-[7px] leading-[130%]">
+          <span class="font-bold text-[#4e4d4d]">
+            MutCombinator: identification of mutated peptides allowing combinatorial mutations using nucleotide-based graph search.
+          </span>
+          <span class="italic">
+            Seunghyuk Choi and Eunok Paek.
+          </span>
+          <span>
+            Bioinformatics, 2020, 7, i203-i209.
+            <a
+              th:replace="fragments/link :: linkA('https://pubmed.ncbi.nlm.nih.gov/32657416/', '[ PMID: 32657416 ]', true)"></a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

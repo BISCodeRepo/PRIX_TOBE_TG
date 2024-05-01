@@ -1,0 +1,17 @@
+body {
+    font: 12px/16px Arial, Helvetica, sans-serif;
+    min-width: 990px;
+}
+
+#fileQueue {
+    width: 380px;
+    height: 230px;
+    overflow: auto;
+    border: 1px solid #E5E5E5;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+img {
+    border: none;
+}

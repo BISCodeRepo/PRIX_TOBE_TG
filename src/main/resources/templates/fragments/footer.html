@@ -1,0 +1,13 @@
+<footer
+  class="flex flex-col items-center justify-center mt-[30px] pt-[10px] border-t-[1px] border-[#dbdbdb] text-[11px] leading-[120%] bg-[#f2f2f2] text-[#a1a4a6]"
+  th:fragment="footer">
+  <div class="w-full flex flex-col items-center justify-center py-[10px] border-t-[1px] border-[#dbdbdb] h-[50px]">
+    <div>Copyright &copy; 2012 <a
+      th:replace="fragments/link :: linkA('http://bislab.hanyang.ac.kr/', 'Bioinformatics & Intelligent Systems Lab', true)"></a>,
+      <a
+        th:replace="fragments/link :: linkA('http://www.hanyang.ac.kr/english/', 'Hanyang University', true)"></a>,
+      Korea. All rights reserved.<br>
+    </div>
+    <a th:replace="fragments/link :: linkA('/inc/policy', 'Personal Information Policy', true)"></a>
+  </div>
+</footer>
