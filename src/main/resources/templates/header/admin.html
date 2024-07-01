@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/metadata :: metadata">
+<body>
+<header th:replace="fragments/header :: header('header', false)"></header>
+
+<div class="w-[1200px] flex flex-col text-[#4e4d4d] pl-[25px]">
+    <div
+            class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+        <div class="h-[34px] leading-[2.1]">ADMINISTRATOR LOGIN</div>
+        <!--      <div th:replace="fragments/tab_menu :: menu"></div>-->
+    </div>
+    <div class="login-box">
+        <form>
+            <table>
+                <tr>
+                    <td style="background-color: #f2f2f2"><label for="email">E-mail</label></td>
+                    <td><input type="email" id="email" name="email"></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #f2f2f2"><label for="password">Password</label></td>
+                    <td><input type="password" id="password" name="password"></td>
+                </tr>
+            </table>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <style>
+        .login-box {
+            width: 300px;
+            padding: 10px;
+            background-color: #ffffff;
+            margin: 0 auto;
+            border: 1px solid #cfd3cf;
+            border-radius: 5px;
+        }
+        .login-box table {
+            text-align: center;
+            border-top: 3px solid #DADDDC;
+            border-bottom: 3px solid #DADDDC;
+            margin-bottom: 15px;
+        }
+        .login-box form {
+            display: flex;
+            flex-direction: column;
+        }
+        .login-box label {
+            margin-bottom: 10px;
+        }
+        .login-box input[type="email"], .login-box input[type="password"] {
+            padding: 3px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            width: 95%;
+            border: 1px solid #AAAAAA;
+        }
+        .login-box input[type="submit"] {
+            width: fit-content;
+            margin: 0 auto;
+            padding: 6px;
+            background-color: #E9E9E9;
+            font-weight: bold;
+            color: #6D6D6D;
+            border: 1px solid #AAAAAA;
+            cursor: pointer;
+        }
+    </style>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/metadata :: metadata">
+<body>
+<header th:replace="fragments/header :: header('download', false)"></header>
+
+<div class="flex gap-[15px] text-[#5d5d5d]">
+  <aside th:replace="download/fragments/aside :: aside"></aside>
+  <div class="w-[885px]">
+    <div
+            class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+      <div class="h-[34px] leading-[2]">
+        <span class="text-[#4e4d4d]">MODplus</span>
+        <span class="font-normal text-[12px] pl-[6px]">- Robust and Unrestrictive Identification of Post-Translational Modifications Using Mass Spectrometry</span>
+      </div>
+      <!--      <div th:replace="fragments/tab_menu :: menu"></div>-->
+    </div>
+    <div class="w-[650px] p-[2px]">
+      <div class="leading-[130%] p-[1px]">
+        Post-translational modifications regulate various cellular processes and are of great biological interest.
+        Unrestrictive searches of mass spectrometry data enable the detection of any type of modification. MODplus makes
+        practical unrestrictive searches possible by allowing (1) hundreds of modifications, (2) multiple modifications
+        per peptide, (3) the whole proteome database, and (4) any tolerant values in search parameters.
+      </div>
+      <div class="mt-[20px]">
+        <div th:replace="download/fragments/article :: articleHeader('Software')"></div>
+        <ul class="list-disc pl-[40px] m-[2px]">
+          <li>
+            Requirement
+            <div class="pt-[15px] text-[#4189cf] leading-[130%]">
+              MODplus was implemented using JAVA programming language, and requires Java Running Environment (JRE). If
+              JRE
+              is not installed, please visit
+              <a
+                      th:replace="fragments/link :: linkA('http://www.oracle.com/technetwork/java/index.html', 'http://www.oracle.com/technetwork/java/index.html', true)"></a>
+            </div>
+          </li>
+          <li class="pt-[14px]">
+            Release Note
+            <div class="pt-[15px] leading-[130%]">
+              - <a
+                    th:replace="fragments/link :: linkA('MODplus_ReleaseNote.txt', 'Jan 15, 2023: version 2.01', false)"></a>
+              (
+              <a
+                      th:replace="fragments/link :: linkA('/request?software=MODplus', 'Software download', false)"></a> )
+            </div>
+            <div class="leading-[130%]">
+              - <span class="text-[#4189cf]">Jan 18, 2021: version 1.02</span>
+            </div>
+            <div class="leading-[130%]">
+              - <span class="text-[#4189cf]">Sep 29, 2020: version 1.01</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="mt-[13px]">
+        <div th:replace="download/fragments/article :: articleHeader('Publication')"></div>
+        <div class="w-[500px] flex flex-col p-[3px] ml-[7px] leading-[130%]">
+          <span class="font-bold text-[#4e4d4d]">
+            MODplus: Robust and Unrestrictive Identification of Post-Translational Modifications
+            Using Mass Spectrometry
+          </span>
+          <span class="italic">
+            Seungjin Na, Jihyung Kim and Eunok Paek.
+          </span>
+          <span>
+            Analytical Chemistry, 2019, 91, 17, 11324-11333.
+            <a
+                    th:replace="fragments/link :: linkA('https://pubmed.ncbi.nlm.nih.gov/31365238/', '[ PMID: 31365238 ]', true)"></a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

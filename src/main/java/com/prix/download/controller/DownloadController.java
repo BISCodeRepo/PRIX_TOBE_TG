@@ -7,27 +7,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DownloadController {
     @GetMapping("/download")
     public String download() {
-        return "redirect:/download/modplus";
+        return "/download/modplus";
     }
 
     @GetMapping("/download/actg")
     public String actg() {
-        return "redirect:/download/actg";
+        return "/download/actg";
     }
 
     @GetMapping("/download/cifter")
     public String cifter() {
-        return "redirect:/download/cifter";
+        return "/download/cifter";
     }
 
     @GetMapping("/download/dbond")
     public String dbond() {
-        return "redirect:/download/dbond";
+        return "/download/dbond";
     }
 
     @GetMapping("/download/demix")
     public String deMix() {
-        return "redirect:/download/demix";
+        return "/download/demix";
     }
 
     @GetMapping("/download/moda")

@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/metadata :: metadata">
+<body>
+<header th:replace="fragments/header :: header('header', false)"></header>
+
+
+<div class="w-[1200px] flex flex-col text-[#4e4d4d] pl-[25px]">
+  <div
+          class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+    <div class="h-[34px] leading-[2.1]">HELP</div>
+    <!--      <div th:replace="fragments/tab_menu :: menu"></div>-->
+  </div>
+  <div class="w-full mx-auto leading-[130%] flex flex-col gap-[10px] p-[2px]">
+    <div class="flex flex-col gap-[18px] w-[750px] h-[1500px]">
+
+
+      <div class="w-full p-[1px]">
+        <div>
+          <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+          <span class="font-bold">
+        Search Parameters
+        </span>
+          <ul class="list-disc pl-[11px]  m-[2px]">
+            <br>
+            <li> <span class="font-bold" >
+              User Name
+            </span>
+              <br>
+              <div>
+                Put your name or id.
+              </div>
+            <br>
+
+            <li> <span class="font-bold">
+              Search Title
+            </span>
+              <div>
+                Put title for the search. It will be printed at the top of result page.
+                If the title is left blank, it will be named automatically.
+              </div>
+            <br>
+
+            <li> <span class="font-bold">
+              MS/MS Data
+            </span>
+              <div>
+                Select the spectra file to be searched. The size of upload file is allowed up to 500MB.
+              </div>
+            <br>
+
+            <li> <span class="font-bold">
+              Data Format
+            </span>
+              <div>
+                Supported MS/MS formats are
+              </div>
+            <br>
+
+            <li> <span class="font-bold">
+              Instrument
+            </span>
+              <div>
+                Select instrument type used for MS/MS.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Database
+            </span>
+              <div>
+                Select a protein sequence database to be searched or upload the FASTA file including the protein sequences.
+                The size of upload file is allowed up to 100MB.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Target-Dccoy Search
+            </span>
+              <div>
+                Check for target-decoy search. Then, the ms/ms search will be conducted against the normal proteins
+                (selected or uploaded) database appended with their reverse sequences. This target-decoy search assumes
+                that the distribution of incorrect peptide-spectrum matches (PSMs) from the target database is similar
+                to that of PSMs from the decoy database. With this assumption, an optimized score cut-off for the corresponding
+                false discovery rate (FDR) is calculated. FDR was calculated as FDR = D/T, where D and T are the numbers of the
+                decoy hits and the target hits above the given score threshold, respectively. T is reported to search summary.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Enzyme
+            </span>
+              <div>
+                Select enzyme used for protein digestion. Users can also add new enzyme rules to their own list,
+                and can use them (Login required).
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Max No. of Missed Cleavages
+            </span>
+              <div>
+                Select the maximum number of missed cleavages permitted in a peptide. If this is set to 2,
+                a peptide can have zero, one or two cleavage residues at other positions than the last position
+                of the peptide in case that cleavage Term of used enzyme is Cterm.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Min No. of Enzyme Termini
+            </span>
+              <div>
+                Select minimum number of termini fragmented by the selected enzyme rule. When Trypsin is selected,
+                set 2 to only consider fully tryptic peptides and set 1 to include partially tryptic peptides.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Peptide Tolerance
+            </span>
+              <div>
+                Specify the error tolerance on experimental peptide mass values. Peptides would be found within the
+                specified tolerance range to either side of the theoretical mass. The peptide mass tolerance is
+                specified in dalton or in ppm.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              #13C (Isotope error)
+            </span>
+              <div>
+                Specify the isotope error of precursors. Sometimes, the 13C peak is selected for fragmentation
+                rather than the 12C even though you are using a high accuracy-instrument. In extreme cases,
+                the 13C2 peak may be selected. This option is effective if you are using a high-accuracy instrument
+                (that is you're using ppm-tolerance for Peptide Tolerance). If you're using a low-accuracy instrument,
+                use quite wide dalton-tolerance (e.g. 3 Da) for Peptide Tolerance
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Fragment Ion Tolarance
+            </span>
+              <div>
+                Specify the error tolerance on experimental fragment ion mass values. Experimental fragment ions
+                would be found within the specified tolerance range to either side of the theoretical position.
+                The fragment ion mass tolerance is specified in dalton.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Modified Mass
+            </span>
+              <div>
+                Specify minimum and maximum masses of peptides to be modified.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Fixed Modifications
+            </span>
+              <div>
+                Fixed modifications are applied to every amino acid specified. For example, if Carbamidomethyl
+                (+57 Da) is fixed to 'Cys', the mass of all the 'Cys' in a peptide is changed to 160 Da.
+                In a result page, fixed modified amino acids are not explicitly labeled as modified.
+                Fixed modifications are restricted to amino acids, and single fixed modification per amino acid is allowed.
+                Variable modifications are not allowed on fixed modified amino acids. PRIX ms/ms search provides
+                the modification list from Unimod (www.unimod.org). Additionally, users can add new modifications
+                to their own list, and use them (Login required).
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Variable Modifications
+            </span>
+              <div>
+                Variable modifications may or may not be present in a peptide, and thus, would enlarge search space
+                exponentially by enumeration of all possible modifications. MODPlus has no limitation on the number
+                of modifications to be selected, and hundreds of modifications can be taken as input. DBond allows
+                up to 20 variable modifications to be selected. PRIX ms/ms search provides the modification list from
+                Unimod (www.unimod.org). Default list consists of modifications from Post-, Co-, and Pre-translational,
+                Chemical derivative, Artefact, Multiple, and Other classifications (All: default list + modifications
+                from N-linked, O-linked, and Other glycosylation, Synth. pep. protect. gp., Isotopic label, Non-standard
+                residue, and AA substitution classifications). Additionally, users can add new modifications to their
+                own list, and can use them (Login required).
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              MODmap
+            </span>
+              <div>
+                Blind search predicts new delta masses, from MS/MS spectra, other than modifications in your search list.
+                Predicted delta masses could be modifications present in the sample. User can re-submit ms/ms search with
+                abundant ones of predicted delta masses. Notably, if you used all the modifications in search, they may be
+                novel modification candidates.
+              </div>
+              <br>
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
