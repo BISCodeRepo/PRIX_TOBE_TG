@@ -103,10 +103,16 @@
                                                                                     th:src="@{/images/menu04_04.gif}"
                                                                                     width="157"></a>
 
-        <a class="flex" href="/header" th:if="${menu eq 'header'}">
+        <a class="flex" href="/" th:if="${menu eq 'header'}">
           <img alt="menu" height="29" th:src="@{/images/menu04_01.gif}" width="142">
+        </a>
+        <a class="flex" href="/livesearch" th:if="${menu eq 'header'}">
           <img alt="menu" height="29" th:src="@{/images/menu04_02.gif}" width="135">
+        </a>
+        <a class="flex" href="/download" th:if="${menu eq 'header'}">
           <img alt="menu" height="29" th:src="@{/images/menu01_03.gif}" width="133">
+        </a>
+        <a class="flex" href="/publications" th:if="${menu eq 'header'}">
           <img alt="menu" height="29" th:src="@{/images/menu01_04.gif}" width="157">
         </a>
 
