@@ -35,7 +35,12 @@ public class SecurityConfig {
                         .loginPage("/user/login")
                         .failureHandler(new CustomAuthenticationFailureHandler())
                         .permitAll())
-                .logout(logout -> logout.permitAll())
+                // 로그아웃 페이지: "/user/logout"
+                // 로그아웃 성공 시 "/"로 이동
+                .logout((logout) -> logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true))
                 ;
         return http.build();
     }

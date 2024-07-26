@@ -61,10 +61,11 @@ public class UserController {
     }
 
     // 로그아웃 서비스 호출
-    //@GetMapping("/logout")
-    //public String logout() {
-    //    return "redirect:/"; // 로그아웃 성공 후 리다이렉트할 페이지
-    //}
+//    @PostMapping("/withdrawl")
+//    public String withdrawl() {
+//        userService.withdrawl();
+//        return "redirect:/header/login";
+//    }
 
     // 관리자 페이지를 보여주는 뷰를 반환
 //    @GetMapping("/admin")

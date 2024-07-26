@@ -1,12 +1,11 @@
-<div class="flex gap-[13px] pr-[18px]" th:fragment="menu" xmlns:sec="http://www.w3.org/1999/xhtml">
+<!--    로그인 시 표시-->
+<div class="flex gap-[13px] pr-[18px]" th:fragment="menu" xmlns:sec="http://www.w3.org/1999/xhtml" sec:authorize="isAuthenticated()">
   <div class="flex gap-[7px] font-normal text-[12px] leading-[130%]">
     <img alt="logo" class="w-[2px] h-[9px] mt-[3px]" th:src="@{/images/top_icon_01.gif}">
-<!--    로그인 시 표시-->
-    <a sec:authorize="isAnonymous()" th:replace="~{fragments/link :: linkB('/modplus/history', 'History', false)}"></a>
+    <a th:replace="~{fragments/link :: linkB('/livesearch/history', 'History', false)}"></a>
   </div>
   <div class="flex gap-[7px] font-normal text-[12px] leading-[130%]">
     <img alt="logo" class="w-[2px] h-[9px] mt-[3px]" th:src="@{/images/top_icon_01.gif}">
-<!--    로그인 시 표시-->
-    <a sec:authorize="isAnonymous()" th:replace="~{fragments/link :: linkB('/login?action=logout', 'Logout', false)}"></a>
+    <a th:replace="~{fragments/link :: linkB('/user/logout', 'Logout', false)}"></a>
   </div>
 </div>
