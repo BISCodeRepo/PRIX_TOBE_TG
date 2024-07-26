@@ -42,7 +42,10 @@ public class UserServiceImpl implements UserService{
         return userRepository.save(user);
     }
 
-    public void logout(UserEntity user) {
-        // 로그아웃 로직 구현
+    @Override
+    public boolean withdrawl (String userID) {
+        Optional<UserEntity> userEntity = userRepository.findByUserID(userID);
+        userEntity.ifPresent(userRepository::delete);
+        return true;
     }
 }

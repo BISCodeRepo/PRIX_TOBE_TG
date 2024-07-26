@@ -2,9 +2,12 @@ package com.prix.user.controller;
 
 import com.prix.user.UserDTO;
 import com.prix.user.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,11 +64,18 @@ public class UserController {
     }
 
     // 로그아웃 서비스 호출
-//    @PostMapping("/withdrawl")
-//    public String withdrawl() {
-//        userService.withdrawl();
-//        return "redirect:/header/login";
-//    }
+    @PostMapping("/withdrawl")
+    public String userWithdrawl(Model model, Authentication authentication, HttpServletRequest request) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        userService.withdrawl(userDetails.getUsername());
+        try {
+            request.logout();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 로그아웃 처리 중 오류가 발생한 경우 처리 로직
+        }
+        return "redirect:/";
+    }
 
     // 관리자 페이지를 보여주는 뷰를 반환
 //    @GetMapping("/admin")
