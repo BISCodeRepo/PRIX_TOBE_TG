@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/metadata :: metadata">
+<head th:replace="~{fragments/metadata :: metadata}">
 <body>
-<header th:replace="fragments/header :: header('livesearch', false)"></header>
+<header th:replace="~{fragments/header :: header('livesearch', false)}"></header>
 
 <div class="flex gap-[15px] text-[#5d5d5d]">
-  <aside th:replace="livesearch/fragments/asidesearch :: asidesearch"></aside>
+  <aside th:replace="~{livesearch/fragments/asidesearch :: asidesearch}"></aside>
   <div class="w-[885px]">
     <div
             class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
@@ -55,6 +55,6 @@
   </div>
 </div>
 
-<footer th:replace="fragments/footer :: footer"></footer>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>

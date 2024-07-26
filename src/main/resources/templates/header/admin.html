@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/metadata :: metadata">
+<head th:replace="~{fragments/metadata :: metadata}">
 <body>
-<header th:replace="fragments/header :: header('header', false)"></header>
+<header th:replace="~{fragments/header :: header('header', false)}"></header>
 
 <div class="w-[1200px] flex flex-col text-[#4e4d4d] pl-[25px]">
     <div
@@ -68,6 +68,6 @@
     </style>
 </div>
 
-<footer th:replace="fragments/footer :: footer"></footer>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>

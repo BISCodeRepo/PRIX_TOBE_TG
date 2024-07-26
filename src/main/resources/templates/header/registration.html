@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/metadata :: metadata">
+<head th:replace="~{fragments/metadata :: metadata}">
 <body>
-<header th:replace="fragments/header :: header('header', false)"></header>
+<header th:replace="~{fragments/header :: header('header', false)}"></header>
 
 <div class="w-[1200px] flex flex-col text-[#4e4d4d] pl-[25px]">
   <div
@@ -12,27 +12,28 @@
   </div>
   <img src="/images/tit_join.gif" alt="Login" style="display: block; margin: auto;">
   <div class="login-box">
-    <form>
-      <div style="font-weight: bold; float: left; font-size: 20px"> Personal Information Policy </div>
-      <br>
-      <div style="font-weight: bold; float: left; font-size: 14px">In accordance with the Personal Information
-        Protection Act, we will inform you of the purpose of collecting and using the following personal information. </div>
-      <br>
-      <div style="font-weight: bold; float: left"> 1. Purpose of collecting personal information </div>
-      The PRIX service is provided through the account and we collect ID and password to create these accounts.
-      <br> <br>
-      <div style="font-weight: bold; float: left"> 2. Personal information items to collect </div>
-      ID and Password
-      <br> <br>
-      <div style="font-weight: bold; float: left"> 3. Personal Information Retention and Use Period </div>
-      We will permanently retain your ID and password unless you opt out of PRIX.
-      <br> <br>
-      <div style="font-weight: bold; float: left"> 4. You may refuse to consent to the collection, use, or provision
-        of personal information, but you may be restricted from using the website.</div>
-      <br>
+    <form th:action="@{/user/registration}" th:object="${userDTO}" method="post">
+      <table>
+        <tr>
+          <td style="background-color: #f2f2f2"><label for="userID">ID</label></td>
+          <!-- <td><input type="id" id="id"></td> -->
+          <td><input type="text" id="userID" th:field="*{userID}"/></td>
+        </tr>
+        <tr>
+          <td style="background-color: #f2f2f2"><label for="password">Password</label></td>
+          <!-- <td><input type="password" id="password"></td> -->
+          <td><input type="password" id="password" th:field="*{password}"/></td>
+        </tr>
+        <tr>
+          <td style="background-color: #f2f2f2"><label for="passwordConfirm">Password<br>(confirm)</label></td>
+          <!-- <td><input type="password" id="password(confirm)"></td> -->
+          <td><input type="password" id="passwordConfirm" th:field="*{passwordConfirm}"/></td>
+        </tr>
+      </table>
       <div style="margin: auto">
-        <a href="/header/login" class="button">Decline</a>
-        <a href="/header/newaccount" class="button">Accept</a>
+        <a href="/user/login" class="button">Cancel</a>
+        <!-- <a href="/header/login" class="button">Regist</a>  TODO: 새 계정 만들기. 입력하지 않았을 때 메세지 띄우기 -->
+        <button type="submit" class="button">Regist</button>
 
         <style>
           .button {
@@ -53,12 +54,18 @@
 
   <style>
     .login-box {
-      width: 1000px;
+      width: 300px;
       padding: 10px;
       background-color: #ffffff;
       margin: 0 auto;
       border: 1px solid #cfd3cf;
       border-radius: 5px;
+    }
+    .login-box table {
+      text-align: center;
+      border-top: 3px solid #DADDDC;
+      border-bottom: 3px solid #DADDDC;
+      margin-bottom: 15px;
     }
     .login-box form {
       display: flex;
@@ -67,7 +74,7 @@
     .login-box label {
       margin-bottom: 10px;
     }
-    .login-box input[type="id"], .login-box input[type="password"], .login-box input[type="password(confirm)"] {
+    .login-box input[id="userID"], .login-box input[type="password"] {
       padding: 3px;
       margin-top: 5px;
       margin-bottom: 5px;
@@ -76,10 +83,11 @@
     }
     .login-box form div {
       display: flex;
+      justify-content: center;
     }
   </style>
 </div>
 
-<footer th:replace="fragments/footer :: footer"></footer>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>

@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/metadata :: metadata"></head>
+<head th:replace="~{fragments/metadata :: metadata}"></head>
 <meta content="5; url=modplus" http-equiv="refresh">
 <body>
 
-<header th:replace="fragments/header :: header('download', false)"></header>
+<header th:replace="~{fragments/header :: header('download', false)}"></header>
 
 <div class="flex gap-[15px] text-[#5d5d5d]">
-  <aside th:replace="download/fragments/asidetools :: asidetools"></aside>
+  <aside th:replace="~{download/fragments/asidetools :: asidetools}"></aside>
   <div class="w-[885px]">
     <div
       class="flex items-end justify-between w-full h-[49px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[12px] leading-[130%]">
@@ -32,7 +32,7 @@
         featuring over an order of magnitude speedup in relation to existing approaches.
       </div>
       <div class="mt-[20px]">
-        <div th:replace="download/fragments/article :: articleHeader('Software')"></div>
+        <div th:replace="~{download/fragments/article :: articleHeader('Software')}"></div>
         <ul class="list-disc pl-[40px] m-[2px]">
           <li>
             Requirement
@@ -41,7 +41,7 @@
               <br>
               If JRE is not installed, please visit
               <a
-                th:replace="fragments/link :: linkA('http://www.oracle.com/technetwork/java/index.html', 'http://www.oracle.com/technetwork/java/index.html', true)"></a>
+                th:replace="~{fragments/link :: linkA('http://www.oracle.com/technetwork/java/index.html', 'http://www.oracle.com/technetwork/java/index.html', true)}"></a>
             </div>
           </li>
           <li class="pt-[14px] leading-[130%]">
@@ -59,7 +59,7 @@
         </ul>
       </div>
       <div class="mt-[13px]">
-        <div th:replace="download/fragments/article :: articleHeader('Publication')"></div>
+        <div th:replace="~{download/fragments/article :: articleHeader('Publication')}"></div>
         <div class="w-[500px] flex flex-col p-[3px] ml-[7px] leading-[130%]">
           <span class="font-bold text-[#4e4d4d]">
             Fast multi-blind modification search through tandem mass spectrometry.
@@ -70,7 +70,7 @@
           <span>
             Molecular and Cellular Proteomics, 2012, 11, M111.010199.
             <a
-              th:replace="fragments/link :: linkA('https://pubmed.ncbi.nlm.nih.gov/22186716/', '[ PMID: 22186716 ]', true)"></a>
+              th:replace="~{fragments/link :: linkA('https://pubmed.ncbi.nlm.nih.gov/22186716/', '[ PMID: 22186716 ]', true)}"></a>
           </span>
         </div>
       </div>
@@ -81,7 +81,7 @@
   </div>
 </div>
 
-<footer th:replace="fragments/footer :: footer"></footer>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 
 </html>

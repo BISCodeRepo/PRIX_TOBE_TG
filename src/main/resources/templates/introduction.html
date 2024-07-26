@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/metadata :: metadata">
+<head th:replace="~{fragments/metadata :: metadata}">
 <body>
-<header th:replace="fragments/header :: header('introduction', false)"></header>
+<header th:replace="~{fragments/header :: header('introduction', false)}"></header>
 
 <div class="flex gap-[15px] h-[332px]">
   <div class="flex w-[190px] justify-end">
@@ -17,7 +17,7 @@
     <div class="w-[95%] mx-auto leading-[130%] flex flex-col gap-[10px]">
       <div class="p-[3px] pt-[7px] ">
         <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
-        This site features <a th:replace="fragments/link :: linkA('/modplus/search', 'MODPlus', false)"></a>
+        This site features <a th:replace="~{fragments/link :: linkA('/livesearch', 'MODPlus', false)}"></a>
         <span
           class="font-bold pr-[7px]">(advanced version of MOD<sup class="text-[10px]">i</sup>),</span> a powerful
         modification search engine that uses mass spectrometry data to identify protein modifications. MODPlus
@@ -28,7 +28,7 @@
       <div class="p-[3px] pt-[7px]">
         <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
         <span class="font-bold">Special search engine for disulfide linkage analysis,
-          <a th:replace="fragments/link :: linkA('/dbond/dbond_search', 'DBond', false)"></a>.</span>
+          <a th:replace="~{fragments/link :: linkA('/livesearch', 'DBond', false)}"></a>.</span>
         <div class="pt-[3px]">&nbsp;&nbsp;Certain post-translational modifications involve more than one peptide and
           thus cannot be easily searched by conventional modification search algorithms. We provide specialized
           software, DBond that can analyze intact disulfide linkage between two peptides. Disulfide linkages not only
@@ -40,7 +40,7 @@
       <div class="p-[3px] pt-[7px]">
         <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
         <span class="font-bold">Multi-blind unrestrictive modification search,
-          <a th:replace="fragments/link :: linkA('/download/moda', 'MODa', false)"></a>.
+          <a th:replace="~{fragments/link :: linkA('/download/moda', 'MODa', false)}"></a>.
         </span>
         <div class="pt-[3px]">&nbsp;&nbsp;We provide specialized software, MODa that can search spectra for all possible
           modifications at once, in unrestrictive mode. MODa is the first practical multi-blind unrestrictive approach
@@ -51,6 +51,6 @@
   </div>
 </div>
 
-<footer th:replace="fragments/footer :: footer"></footer>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>

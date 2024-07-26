@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/metadata :: metadata">
+<head th:replace="~{fragments/metadata :: metadata}">
 <body>
-<header th:replace="fragments/header :: header('header', false)"></header>
+<header th:replace="~{fragments/header :: header('header', false)}"></header>
 
 <div class="w-[1200px] flex flex-col text-[#4e4d4d] pl-[25px]">
   <div
@@ -13,23 +13,26 @@
   <img src="/images/tit_join.gif" alt="Login" style="display: block; margin: auto;">
   <div class="login-box">
     <form>
-      <table>
-        <tr>
-          <td style="background-color: #f2f2f2"><label for="id">ID</label></td>
-          <td><input type="id" id="id" name="id"></td>
-        </tr>
-        <tr>
-          <td style="background-color: #f2f2f2"><label for="password">Password</label></td>
-          <td><input type="password" id="password" name="password"></td>
-        </tr>
-        <tr>
-          <td style="background-color: #f2f2f2"><label for="password(confirm)">Password<br>(confirm)</label></td>
-          <td><input type="password(confirm)" id="password(confirm)" name="password(confirm)"></td>
-        </tr>
-      </table>
+      <div style="font-weight: bold; float: left; font-size: 20px"> Personal Information Policy </div>
+      <br>
+      <div style="font-weight: bold; float: left; font-size: 14px">In accordance with the Personal Information
+        Protection Act, we will inform you of the purpose of collecting and using the following personal information. </div>
+      <br>
+      <div style="font-weight: bold; float: left"> 1. Purpose of collecting personal information </div>
+      The PRIX service is provided through the account and we collect ID and password to create these accounts.
+      <br> <br>
+      <div style="font-weight: bold; float: left"> 2. Personal information items to collect </div>
+      ID and Password
+      <br> <br>
+      <div style="font-weight: bold; float: left"> 3. Personal Information Retention and Use Period </div>
+      We will permanently retain your ID and password unless you opt out of PRIX.
+      <br> <br>
+      <div style="font-weight: bold; float: left"> 4. You may refuse to consent to the collection, use, or provision
+        of personal information, but you may be restricted from using the website.</div>
+      <br>
       <div style="margin: auto">
-        <a href="/header/login" class="button">Cancel</a>
-        <a href="/header/login" class="button">Regist</a> <!-- TODO: 새 계정 만들기. 입력하지 않았을 때 메세지 띄우기 -->
+        <a href="/user/login" class="button">Decline</a>
+        <a href="/user/registration" class="button">Accept</a>
 
         <style>
           .button {
@@ -50,18 +53,12 @@
 
   <style>
     .login-box {
-      width: 300px;
+      width: 1000px;
       padding: 10px;
       background-color: #ffffff;
       margin: 0 auto;
       border: 1px solid #cfd3cf;
       border-radius: 5px;
-    }
-    .login-box table {
-      text-align: center;
-      border-top: 3px solid #DADDDC;
-      border-bottom: 3px solid #DADDDC;
-      margin-bottom: 15px;
     }
     .login-box form {
       display: flex;
@@ -75,15 +72,14 @@
       margin-top: 5px;
       margin-bottom: 5px;
       width: 95%;
-      border: 1px solid #AAAAAA;{
+      border: 1px solid #AAAAAA;
     }
     .login-box form div {
       display: flex;
-      justify-content: center;
     }
   </style>
 </div>
 
-<footer th:replace="fragments/footer :: footer"></footer>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>

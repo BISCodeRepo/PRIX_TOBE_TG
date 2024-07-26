@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/metadata :: metadata">
+<head th:replace="~{fragments/metadata :: metadata}">
 <body>
-<header th:replace="fragments/header :: header('download', false)"></header>
+<header th:replace="~{fragments/header :: header('download', false)}"></header>
 
 <div class="flex gap-[15px] text-[#5d5d5d]">
-  <aside th:replace="download/fragments/asidetools :: asidetools"></aside>
+  <aside th:replace="~{download/fragments/asidetools :: asidetools}"></aside>
   <div class="w-[885px]">
     <div
             class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
@@ -24,7 +24,7 @@
         facilitate validation and representation of the analysis results.
       </div>
       <div class="mt-[20px]">
-        <div th:replace="download/fragments/article :: articleHeader('Software')"></div>
+        <div th:replace="~{download/fragments/article :: articleHeader('Software')}"></div>
         <ul class="list-disc pl-[40px] m-[2px]">
           <li>
             Requirement
@@ -33,7 +33,7 @@
               <br>
               If JRE is not installed, please visit
               <a
-                      th:replace="fragments/link :: linkA('http://www.oracle.com/technetwork/java/index.html', 'http://www.oracle.com/technetwork/java/index.html', true)"></a>
+                      th:replace="~{fragments/link :: linkA('http://www.oracle.com/technetwork/java/index.html', 'http://www.oracle.com/technetwork/java/index.html', true)}"></a>
               <br>
             </div>
           </li>
@@ -41,15 +41,15 @@
             Release Note
             <div class="pt-[15px] leading-[130%]">
               - <a
-                    th:replace="fragments/link :: linkA('deMix_ReleaseNote.txt', 'Apr 7, 2019: version 1.01', false)"></a> (
+                    th:replace="~{fragments/link :: linkA('deMix_ReleaseNote.txt', 'Apr 7, 2019: version 1.01', false)}"></a> (
               <a
-                      th:replace="fragments/link :: linkA('/request?software=deMix', 'Software download', false)"></a> )
+                      th:replace="~{fragments/link :: linkA('/request?software=deMix', 'Software download', false)}"></a> )
             </div>
           </li>
         </ul>
       </div>
       <div class="mt-[13px]">
-        <div th:replace="download/fragments/article :: articleHeader('Publication')"></div>
+        <div th:replace="~{download/fragments/article :: articleHeader('Publication')}"></div>
         <div class="w-full flex flex-col p-[3px] ml-[7px] leading-[130%]">
           <span class="font-bold text-[#4e4d4d]">
             deMix: Decoding Deuterated Distributions from Heterogeneous Protein States via HDX-MS.
@@ -60,7 +60,7 @@
           <span>
             Scientific Reports, 2019, 9(1):3176.
             <a
-                    th:replace="fragments/link :: linkA('https://pubmed.ncbi.nlm.nih.gov/30816214/', ' [ PMID: 30816214 ]', true)"></a>
+                    th:replace="~{fragments/link :: linkA('https://pubmed.ncbi.nlm.nih.gov/30816214/', ' [ PMID: 30816214 ]', true)}"></a>
           </span>
         </div>
       </div>
@@ -68,6 +68,6 @@
   </div>
 </div>
 
-<footer th:replace="fragments/footer :: footer"></footer>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>

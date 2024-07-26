@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/metadata :: metadata">
+<head th:replace="~{fragments/metadata :: metadata}">
 <body>
-<header th:replace="fragments/header :: header('livesearch', false)"></header>
+<header th:replace="~{fragments/header :: header('livesearch', false)}"></header>
 
 <div class="flex gap-[15px] text-[#5d5d5d]">
-    <aside th:replace="livesearch/fragments/asidesearch :: asidesearch"></aside>
+    <aside th:replace="~{livesearch/fragments/asidesearch :: asidesearch}"></aside>
     <div>
         <iframe src="https://prix.hanyang.ac.kr/use/" width="1300" height="1000">
         </iframe>
     </div>
 </div>
 
-<footer th:replace="fragments/footer :: footer"></footer>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>
