@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/metadata :: metadata}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
 <body>
 <header th:replace="~{fragments/header :: header('livesearch', false)}"></header>
 
@@ -16,24 +18,30 @@
             <div th:replace="~{fragments/tab_menu :: menu}"></div>
         </div>
         <div style="width: 90%">
-            <form>
+            <form action="actgprocess" method="get">
                 <table class="actgtable">
                     <tr>
-                        <td class="tableleft" style="font-weight: bold"> User Name</td>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#userName"> User Name</a>
+                        </td>
                         <td class="tableright"><input value="anonymous" type="username" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
                     </tr>
                     <tr>
-                        <td class="tableleft" style="font-weight: bold"> Mapping Title</td>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#mappingTitle"> Mapping Title </a>
+                        </td>
                         <td class="tableright"><input type="mappingtitle" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
                     </tr>
                     <tr>
                         <td class="tableleft" style="font-weight: bold; text-align: center" colspan="2"> Mapping Environment</td>
                     </tr>
                     <tr>
-                        <td class="tableleft" style="font-weight: bold"> Peptide List</td>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#peptideList"> Peptide List</a>
+                        </td>
                         <td class="tableright"><input type="file" id="peptidelist" style="border: 1px solid; margin-right: 6px;"> File size limit : 100KB</td>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                         <script>
-                            //TODO: Peptide list 파일 사이즈 제한
                             $(function(){
                                 $("#peptidelist").on("change", function(){
                                     var maxSize = 100 * 1024; //100KB
@@ -47,10 +55,12 @@
                                 });
                             });
                         </script>
+
                     </tr>
                     <tr>
                         <td class="tableleft" style="font-weight: bold">
-                            Mapping Method <br>
+                            <a href="/actghelp#mappingMethod">
+                            Mapping Method <br> </a>
                             <div style="font-weight: normal">
                                 PV: Protein DB filtering / Variant splice graph mapping <br>
                                 PS: Protein DB filtering / Six-frame translation mapping <br>
@@ -68,7 +78,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="tableleft" style="font-weight: bold"> Isoleucine is equivalent to leucine</td>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#isoleucine"> Isoleucine is equivalent to leucine</a>
+                        </td>
                         <td class="tableright">
                             <div style="pointer-events: none; float: left">
                                 <input type="checkbox" style="pointer-events: auto; margin: 2px 3px">
@@ -79,7 +91,9 @@
                         <td class="tableleft" style="font-weight: bold; text-align: center" colspan="2"> Protein DB Filtering</td>
                     </tr>
                     <tr>
-                        <td class="tableleft" style="font-weight: bold"> Protein DB</td>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#proteinDB">Protein DB </a>
+                        </td>
                         <td class="tableright">
                             <select style="border: 1px solid">
                                 <option>Swissprot 2016-07</option>
@@ -88,7 +102,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="tableleft" style="font-weight: bold"> Filter out single AA variations</td>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#aaVariations">Filter out single AA variations </a>
+                        </td>
                         <td class="tableright">
                             <div style="pointer-events: none; float: left">
                                 <input type="checkbox" style="pointer-events: auto; margin: 2px 3px">
@@ -96,10 +112,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="tableleft" style="font-weight: bold; text-align: center" colspan="2"> Variant Splice Graph Mapping</td>
+                        <td class="tableleft" style="font-weight: bold; text-align: center" colspan="2">Variant Splice Graph Mapping</td>
                     </tr>
                     <tr>
-                        <td class="tableleft" style="font-weight: bold"> Variant Splice Graph</td>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#spliceGraph"> Variant Splice Graph </a>
+                        </td>
                         <td class="tableright">
                             <select style="border: 1px solid">
                                 <option>GRCh38, Ensembl Release 83</option>
@@ -110,7 +128,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="tableleft" style="font-weight: bold"> Mutations (VCF)</td>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#mutations"> Mutations (VCF) </a>
+                        </td>
                         <td class="tableright">
                             <div style="pointer-events: none; float: left">
                                 <input type="checkbox" id="VCFcheckbox" style="pointer-events: auto; margin: 2px 3px">
@@ -118,7 +138,9 @@
                             <div id="VCFfileInputContainer"></div>
                         </td>
 
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
                         <script>
+                            //VCF 파일 체크박스를 체크했을 때 VCF 파일 업로드 input을 생성
                             document.getElementById('VCFcheckbox').addEventListener('change', function() {
                                 var fileInputContainer = document.getElementById('VCFfileInputContainer');
                                 if (this.checked) {
@@ -141,23 +163,23 @@
                                 }
                             });
 
-                            //TODO: VCF 파일 사이즈 제한
-                            $(function(){
-                                $("#VCFfile").on("change", function(){
-                                    var maxSize = 20 * 1024 * 1024; //20MB
-                                    var fileSize = this.files[0].size; //업로드한 파일용량
+                            //VCF 파일을 선택했을 때 파일용량 체크
+                            $(document).on("change", "#VCFfile", function(){
+                                var maxSize = 20 * 1024 * 1024; //20MB
+                                var fileSize = this.files[0].size; //업로드한 파일용량
 
-                                    if(fileSize > maxSize){
-                                        alert("VCF file is limited by 20 MB");
-                                        $(this).val(''); //업로드한 파일 제거
-                                        return;
-                                    }
-                                });
+                                if(fileSize > maxSize){
+                                    alert("VCF file is limited by 20 MB");
+                                    $(this).val(''); //업로드한 파일 제거
+                                    return;
+                                }
                             });
                         </script>
                     </tr>
                     <tr>
-                        <td class="tableleft" style="font-weight: bold"> Exon Skipping</td>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#exonSkipping"> Exon Skipping </a>
+                        </td>
                         <td class="tableright">
                             <div style="pointer-events: none; float: left">
                                 <input type="checkbox" style="pointer-events: auto; margin: 2px 3px">
@@ -165,7 +187,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="tableleft" style="font-weight: bold"> Alternative Acceptor & Donor</td>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#acceptorDonor"> Alternative Acceptor & Donor </a>
+                        </td>
                         <td class="tableright">
                             <div style="pointer-events: none; float: left">
                                 <input type="checkbox" style="pointer-events: auto; margin: 2px 3px">
@@ -173,7 +197,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="tableleft" style="font-weight: bold"> Intron retention</td>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#intronRetention"> Intron retention </a>
+                        </td>
                         <td class="tableright">
                             <div style="pointer-events: none; float: left">
                                 <input type="checkbox" style="pointer-events: auto; margin: 2px 3px">

@@ -48,4 +48,16 @@ public class UserServiceImpl implements UserService{
         userEntity.ifPresent(userRepository::delete);
         return true;
     }
+
+    @Override
+    public boolean checkAdminLogin(String email, String password) {
+        Optional<UserEntity> userEntity = userRepository.findByEmail(email);
+        if (userEntity.isPresent()) {
+            UserEntity user = userEntity.get();
+            if (passwordEncoder.matches(password, user.getPassword()) && user.getRole().equals("ADMIN")) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

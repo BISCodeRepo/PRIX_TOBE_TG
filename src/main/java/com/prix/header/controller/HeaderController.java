@@ -1,15 +1,10 @@
 package com.prix.header.controller;
 
-import com.prix.user.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
@@ -41,9 +36,9 @@ public class HeaderController {
         return "header/contact";
     }
 
-    @GetMapping("/header/admin")
+    @GetMapping("/header/adminLogin")
     public String admin() {
-        return "header/admin";
+        return "header/adminLogin";
     }
 
     @GetMapping("/header/registration")

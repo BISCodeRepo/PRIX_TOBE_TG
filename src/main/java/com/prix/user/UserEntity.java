@@ -26,9 +26,9 @@ public class UserEntity {
         return "UserEntity{id=" + this.getId() + ", userID=" + this.getUserID() + '\'' + "}";
     }
 
-    //@Column(unique = true)
-    //private String email;
+    @Column(unique = true)
+    private String email;
 
-    //private String role; // 사용자 권한 정보
+    private String role; // 사용자 권한 정보
 
 }

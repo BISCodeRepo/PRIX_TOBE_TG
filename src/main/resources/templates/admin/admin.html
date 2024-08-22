@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metadata :: metadata}">
+<body>
+<header th:replace="~{fragments/header :: header('header', false)}"></header>
+
+<div class="w-[1200px] flex flex-col text-[#4e4d4d] pl-[25px]">
+  <div
+          class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+    <div class="h-[34px] leading-[2.1]">CONTACT INFORMATION</div>
+    <div th:replace="~{fragments/tab_menu :: menu}"></div>
+  </div>
+  <div class="w-full mx-auto leading-[130%] flex flex-col gap-[10px] p-[2px]">
+    <div class="flex flex-col gap-[18px] w-[750px] h-[1500px]">
+
+      <div class="w-full p-[1px]">
+        <div>
+          <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+          <span class="font-bold">
+        Director&nbsp;&nbsp;
+                    </span>
+          <div>
+            Eunok Paek, Ph.D.
+          </div>
+          <div>
+            Division of Cumputer Science and Engineering, Hanyang University
+          </div>
+          <div>
+            (address) 222 Wangsimni-ro, Seongdong-gu, Seoul 133-791 KOREA
+          </div>
+          <div>
+            (phone) +82-2-2220-2377
+          </div>
+          <div>
+            (fax) +82-2-2299-2377
+          </div>
+          <div>
+            (email) prixhanyang.ac.kr
+          </div>
+          <br>
+          <br>
+        </div>
+        <img class="pb-[3px]" height="85px" th:src="@{/images/logo_hanyang.gif}" width="85px">
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

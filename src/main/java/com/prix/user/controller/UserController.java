@@ -2,10 +2,12 @@ package com.prix.user.controller;
 
 import com.prix.user.UserDTO;
 import com.prix.user.UserService;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/user")
@@ -77,9 +79,28 @@ public class UserController {
         return "redirect:/";
     }
 
-    // 관리자 페이지를 보여주는 뷰를 반환
-//    @GetMapping("/admin")
-//    public String admin() {
-//        return "header/admin";
-//    }
+    // 관리자 로그인 페이지를 보여주는 뷰를 반환
+    @GetMapping("/adminLogin")
+    public String adminLogin() {
+        return "header/adminLogin";
+    }
+
+    // 로그인 처리
+    @PostMapping("/adminLogin")
+    public String adminLoginProcess(@RequestParam("email") String email,
+                                    @RequestParam("password") String password,
+                                    HttpServletRequest request) {
+        try {
+            request.login(email, password);
+            return "redirect:/admin/configuration";
+        } catch (ServletException e) {
+            // 로그인 실패 처리
+            e.printStackTrace();
+            return "header/adminLogin";
+
+        }
+    }
+
+
+
 }

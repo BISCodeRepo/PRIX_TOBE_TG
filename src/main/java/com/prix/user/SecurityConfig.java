@@ -27,9 +27,12 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                // TODO: 일부 URL에 대한 접근 권한 설정
-                .authorizeRequests(authorizeRequests ->
-                        authorizeRequests.anyRequest().permitAll())
+                // admin으로 시작하는 페이지는 ADMIN만 접근 가능
+                .authorizeHttpRequests( (authorizeRequest) ->
+                        authorizeRequest
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .anyRequest().permitAll()
+                )
                 // 로그인 페이지: "/user/login"
                 .formLogin((formLogin) -> formLogin
                         .loginPage("/user/login")
@@ -44,6 +47,7 @@ public class SecurityConfig {
                 ;
         return http.build();
     }
+
 
     // spring security 인증 처리
     @Bean

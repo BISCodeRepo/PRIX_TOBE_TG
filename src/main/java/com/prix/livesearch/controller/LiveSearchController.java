@@ -11,9 +11,9 @@ public class LiveSearchController {
         return "/livesearch/livesearchmain";
     }
 
-    @GetMapping("/livesearch/actg")
+    @GetMapping("/livesearch/ACTG/actg")
     public String actg() {
-        return "/livesearch/actg";
+        return "/livesearch/ACTG/actg";
     }
 
     @GetMapping("/livesearch/use")

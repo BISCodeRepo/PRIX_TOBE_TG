@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metadata :: metadata}">
+<body>
+<header th:replace="~{fragments/header :: header('header', false)}"></header>
+
+
+<div class="w-[990px] h-[1800px] flex flex-col text-[#4e4d4d] pl-[25px]">
+    <div class="flex flex-col flex-start w-full h-[52px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+        <div style="display: flex; flex-direction: row; align-items: flex-start">
+            <div class="h-[34px] leading-[2.1]">ADMINISTRATION</div>
+            <div style="font-size: 11px; font-weight: normal; display: flex; width: 400px; margin-top: 10px">
+                <div class="container">
+                    <img src="/images/top_icon_01.gif" class="image"><span class="underline">Configuration</span>
+                </div>
+                <div class="container">
+                    <img src="/images/top_icon_01.gif" class="image"><a href="/admin/searchlog">Search Log</a>
+                </div>
+                <div class="container">
+                    <img src="/images/top_icon_01.gif" class="image">Users
+                </div>
+                <div class="container">
+                    <img src="/images/top_icon_01.gif" class="image">Request Log
+                </div>
+            </div>
+        </div>
+        <div style="color: #0000FF; font-weight: normal; font-size: 11px">> Configuration</div>
+    </div>
+    <div class="w-full mx-auto leading-[130%] flex flex-col gap-[10px] p-[2px]">
+        <div class="flex flex-col gap-[18px] w-[750px] h-[916px]">
+            <div class="w-full p-[1px]">
+                <div style="margin-bottom: 3px;">
+                    <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+                    <span class="font-bold">Database</span>
+                </div>
+                <form>
+                    <table class="database">
+                        <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
+                            <td style="padding-left: 7px;" class="tableleft">Name</td>
+                            <td style="padding-left: 7px;">File</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="databaseTable1"><input value="exampleDB1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td>file1.txt</td>
+                            <td>
+                                <button class="button">edit</button>
+                                <button class="button">unlink</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="databaseTable1"><input value="exampleDB2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td>file2.txt</td>
+                            <td>
+                                <button class="button">edit</button>
+                                <button class="button">unlink</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="databaseTable1"><input value="testfile3" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td>tictactoe.txt</td>
+                            <td>
+                                <button class="button">edit</button>
+                                <button class="button">unlink</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="databaseTable1"><input value="testfile3" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td>manage.jsp</td>
+                            <td>
+                                <button class="button">edit</button>
+                                <button class="button">unlink</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="databaseTable1"><input value="testfile3" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td>file1.txt</td>
+                            <td>
+                                <button class="button">edit</button>
+                                <button class="button">unlink</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="databaseTable1"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td><input type="file" style="border: 1px solid; margin-right: 6px;"></td>
+                            <td>
+                                <button class="button">upload</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <div class="w-full p-[1px]">
+                <div style="margin-bottom: 3px;">
+                    <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+                    <span class="font-bold">Enzymes</span>
+                </div>
+                <form>
+                    <table class="database">
+                        <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
+                            <td style="padding-left: 7px;" class="tableleft">Name</td>
+                            <td style="padding-left: 7px;">At Nterm</td>
+                            <td style="padding-left: 7px;">At Cterm</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="0 uploaded test" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td>
+                                <button class="button">edit</button>
+                                <button class="button">delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="0 uploaded 2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="nt2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="ct2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td>
+                                <button class="button">edit</button>
+                                <button class="button">delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="Trypsin+Lys-N" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="K" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="KR" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td>
+                                <button class="button">edit</button>
+                                <button class="button">delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td>
+                                <button class="button">add</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <div class="w-full p-[1px]">
+                <div style="margin-bottom: 3px;">
+                    <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+                    <span class="font-bold">Modifications</span>
+                </div>
+                <form>
+                    <table class="database">
+                        <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
+                            <td style="padding-left: 7px;" class="tableleft">Date</td>
+                            <td style="padding-left: 7px;">Version</td>
+                            <td style="padding-left: 7px;">File</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="version1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="version2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="example file 2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="version3" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="example file 3" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="version4" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="version5" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="version6" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="version7" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input type="date" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input type="file" style="border: 1px solid; margin-right: 6px;"></td>
+                            <td><button class="button">update</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <div class="w-full p-[1px]">
+                <div style="margin-bottom: 3px;">
+                    <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+                    <span class="font-bold">Software</span>
+                </div>
+                <form>
+                    <table class="database">
+                        <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
+                            <td style="padding-left: 7px;" class="tableleft">Name</td>
+                            <td style="padding-left: 7px;">Release Date</td>
+                            <td style="padding-left: 7px;">Version</td>
+                            <td style="padding-left: 7px;">File</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="version1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="version2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="example file 2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="version3" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="example file 3" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="version4" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="version5" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="version6" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="version7" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="tableleft"><input type="date" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td class="tableleft"><input type="file" style="border: 1px solid; margin-right: 6px;"></td>
+                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                            <td><button class="button">update</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <div class="w-full p-[1px]">
+                <form>
+                    <table class="database">
+                        <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
+                            <td width="10%" style="text-align: center;">
+                                <button style="background-color: coral; color: white; padding: 2px 6px">update</button>
+                            </td>
+                            <td>Email message to a recipient</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; vertical-align: top">MODa</td>
+                            <td><textarea cols="100" rows="6">
+                            </textarea></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; vertical-align: top">DBond</td>
+                            <td><textarea cols="100" rows="6">dbond description + dbond download link
+                            </textarea></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; vertical-align: top">NextSearch</td>
+                            <td><textarea cols="100" rows="6">nextsearch description + nextsearch download link
+                            </textarea></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; vertical-align: top">Signature</td>
+                            <td><textarea cols="100" rows="6">Prix Hanyang (Bioinformatics & Intelligent Systems Lab, Hanyang University)
+                            </textarea></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+    }
+    .image {
+        margin-right: 6px;
+        width: 2px;
+        height: 9px;
+    }
+    .database {
+        width: 100%;
+        border-top: 2px solid #DADDDC;
+        border-bottom: 2px solid #DADDDC;
+    }
+    td {
+        padding: 4px;
+    }
+    tr {
+        border-bottom: 1px solid #DADDDC;
+    }
+    .button {
+        display: inline-block;
+        padding: 3px 8px;
+        background-color: #E9E9E9;
+        color: #6D6D6D;
+        border: 1px solid #AAAAAA;
+        text-decoration: none;
+        cursor: pointer;
+     }
+    .databaseTable1 {
+        width: 45%;
+    }
+    table {
+        margin-bottom: 20px;
+    }
+    textarea {
+        border: 1px solid #DADDDC;
+        padding: 2px;
+    }
+</style>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

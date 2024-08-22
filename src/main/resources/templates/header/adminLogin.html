@@ -11,11 +11,11 @@
         <div th:replace="~{fragments/tab_menu :: menu}"></div>
     </div>
     <div class="login-box">
-        <form>
+        <form th:action="@{/user/adminLogin}" method="post">
             <table>
                 <tr>
                     <td style="background-color: #f2f2f2"><label for="email">E-mail</label></td>
-                    <td><input type="email" id="email" name="email"></td>
+                    <td><input type="text" id="email" name="email"></td>
                 </tr>
                 <tr>
                     <td style="background-color: #f2f2f2"><label for="password">Password</label></td>
@@ -48,7 +48,7 @@
         .login-box label {
             margin-bottom: 10px;
         }
-        .login-box input[type="email"], .login-box input[type="password"] {
+        .login-box input[id="email"], .login-box input[id="password"] {
             padding: 3px;
             margin-top: 5px;
             margin-bottom: 5px;
