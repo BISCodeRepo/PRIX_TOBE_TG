@@ -1,11 +1,11 @@
 package com.prix.user.service;
 
+import com.prix.user.Entity.SearchlogEntity;
 import com.prix.user.DTO.SearchlogDTO;
-import com.prix.user.SearchlogEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.prix.user.SearchlogRepository;
+import com.prix.user.Repository.SearchlogRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,6 @@
-package com.prix.user;
+package com.prix.user.Repository;
 
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
+import com.prix.user.Entity.SearchlogEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SearchlogRepository extends JpaRepository<SearchlogEntity, Long> {

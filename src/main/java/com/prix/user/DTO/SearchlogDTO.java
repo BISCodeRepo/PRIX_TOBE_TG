@@ -1,8 +1,7 @@
 package com.prix.user.DTO;
 
 
-import com.prix.user.SearchlogEntity;
-import lombok.AllArgsConstructor;
+import com.prix.user.Entity.SearchlogEntity;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;

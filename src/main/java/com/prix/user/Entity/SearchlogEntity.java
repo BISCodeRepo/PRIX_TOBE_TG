@@ -1,4 +1,4 @@
-package com.prix.user;
+package com.prix.user.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;

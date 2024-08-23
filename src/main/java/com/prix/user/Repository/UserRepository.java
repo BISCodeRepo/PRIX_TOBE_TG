@@ -1,5 +1,6 @@
-package com.prix.user;
+package com.prix.user.Repository;
 
+import com.prix.user.Entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
