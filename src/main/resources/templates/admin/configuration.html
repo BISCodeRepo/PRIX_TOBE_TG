@@ -48,44 +48,36 @@
                                 <button class="button">unlink</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="databaseTable1"><input value="exampleDB2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td>file2.txt</td>
-                            <td>
-                                <button class="button">edit</button>
-                                <button class="button">unlink</button>
-                            </td>
+                        <tbody th:if="${listDatabaseResponseDto != null}">
+                        <tr th:each="item : ${listDatabaseResponseDto}">
+                            <form method="post" th:action="@{/admin/manage}">
+                                <input type="hidden" name="DBIndex" th:value="${item.id}">
+                                <td>
+                                    <input type="text" name="DBName" size="40" th:value="${item.name}">
+                                </td>
+                                <td th:text="${item.file}"></td>
+                                <td>
+                                    <div>
+                                        <input type="submit" name="EditDB" class="button" value="edit">
+                                        <input type="submit" name="DeleteDB" class="button" value="unlink">
+                                    </div>
+                                </td>
+                            </form>
                         </tr>
-                        <tr>
-                            <td class="databaseTable1"><input value="testfile3" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td>tictactoe.txt</td>
-                            <td>
-                                <button class="button">edit</button>
-                                <button class="button">unlink</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="databaseTable1"><input value="testfile3" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td>manage.jsp</td>
-                            <td>
-                                <button class="button">edit</button>
-                                <button class="button">unlink</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="databaseTable1"><input value="testfile3" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td>file1.txt</td>
-                            <td>
-                                <button class="button">edit</button>
-                                <button class="button">unlink</button>
-                            </td>
-                        </tr>
+                        </tbody>
                         <tr>
                             <td class="databaseTable1"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
                             <td><input type="file" style="border: 1px solid; margin-right: 6px;"></td>
                             <td>
                                 <button class="button">upload</button>
                             </td>
+                        </tr>
+                        <tr>
+                            <form method="post" th:action="@{/admin/upload}" enctype="multipart/form-data">
+                                <td><input name="DBName" type="text" size="40" /></td>
+                                <td><input name="DBFile" type="file" size="40" /></td>
+                                <td><div><input name="DBUpload" type="submit" class="button" value="upload"></div></td>
+                            </form>
                         </tr>
                     </table>
                 </form>
@@ -105,33 +97,6 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td class="tableleft"><input value="0 uploaded test" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td>
-                                <button class="button">edit</button>
-                                <button class="button">delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tableleft"><input value="0 uploaded 2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="nt2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="ct2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td>
-                                <button class="button">edit</button>
-                                <button class="button">delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tableleft"><input value="Trypsin+Lys-N" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="K" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="KR" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td>
-                                <button class="button">edit</button>
-                                <button class="button">delete</button>
-                            </td>
-                        </tr>
-                        <tr>
                             <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
                             <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
                             <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
@@ -139,6 +104,37 @@
                                 <button class="button">add</button>
                             </td>
                         </tr>
+                        <tr>
+                            <form method="post" th:action="@{/admin/manage}" onsubmit="return validateEnzymeForm(event)">
+                                <td><input name="NenzymeName" type="text" size="40"/></td>
+                                <td><input name="NenzymeAN" type="text" size="25"/></td>
+                                <td><input name="nenzymeAC" type="text" size="25"/></td>
+                                <td><di align="right"><input name="EnzymeAdd" type="submit" class="button" value="add"></di></td>
+                            </form>
+                        </tr>
+                        <script>
+                            function validateEnzymeForm(event) {
+                                const enzymeName = document.getElementsByName('NenzymeName')[0].value;
+                                const enzymeAN = document.getElementsByName('NenzymeAN')[0].value;
+                                const enzymeAC = document.getElementsByName('nenzymeAC')[0].value;
+                                if (enzymeName === '') {
+                                    alert('Please enter enzyme name');
+                                    event.preventDefault();
+                                    return false;
+                                }
+                                if (enzymeAN === '') {
+                                    alert('Please enter enzyme at Nterm');
+                                    event.preventDefault();
+                                    return false;
+                                }
+                                if (enzymeAC === '') {
+                                    alert('Please enter enzyme at Cterm');
+                                    event.preventDefault();
+                                    return false;
+                                }
+                                return true;
+                            }
+                        </script>
                     </table>
                 </form>
             </div>
@@ -156,53 +152,30 @@
                             <td style="padding-left: 7px;">File</td>
                             <td></td>
                         </tr>
-                        <tr>
-                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="version1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td></td>
+                        <tbody th:if="${listDatabaseResponseDto != null}">
+                        <tr th:each="item : ${listDatabaseResponseDto}">
+                            <form method="post" th:action="@{/admin/manage}">
+                                <input type="hidden" name="db_index" th:value="${item.id}">
+                                <td>
+                                    <input type="text" name="db_name" size="40" th:value="${item.name}">
+                                </td>
+                                <td th:text="${item.file}"></td>
+                                <td>
+                                    <div>
+                                        <input type="submit" name="EditDB" class="btnSmall" value="edit">
+                                        <input type="submit" name="DeleteDB" class="btnSmall" value="unlink">
+                                    </div>
+                                </td>
+                            </form>
                         </tr>
+                        </tbody>
                         <tr>
-                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="version2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="example file 2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="version3" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="example file 3" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="version4" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="version5" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="version6" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="version7" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="tableleft"><input type="date" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input type="file" style="border: 1px solid; margin-right: 6px;"></td>
-                            <td><button class="button">update</button></td>
+                            <form method="post" th:action="@{/admin/upload}" enctype="multipart/form-data">
+                                <td><input id="modificationDate" type="date" size="20" /></td>
+                                <td><input id="modificationVersion" type="text" size="20" /></td>
+                                <td><input id="modificationFile" type="file" size="50" /></td>
+                                <td><div style="align-items: flex-end"><input type="submit" class="button" value="update"></div></td>
+                            </form>
                         </tr>
                     </table>
                 </form>
@@ -229,55 +202,100 @@
                             <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
                             <td></td>
                         </tr>
-                        <tr>
-                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="version2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="example file 2" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td></td>
+                        <tbody th:if="${listEnzymeResponseDto != null}">
+                        <tr th:each="item : ${listEnzymeResponseDto}">
+                            <form method="post" th:action="@{/admin/manage}" onsubmit="return validateEnzymeForm(event)">
+                                <input type="hidden" name="enzyme_id" th:value="${item.id}" />
+                                <td>
+                                    <input type="text" name="enzyme_name" size="40" th:value="${item.name}">
+                                </td>
+                                <td>
+                                    <input type="text" name="enzyme_nt_cut" size="25" th:value="${item.ntCleave}">
+                                </td>
+                                <td>
+                                    <input type="text" name="enzyme_ct_cut" size="25" th:value="${item.ctCleave}">
+                                </td>
+                                <td>
+                                    <div>
+                                        <input type="submit" name="modify_enzyme" class="button" value="edit">
+                                        &nbsp;
+                                        <input type="submit" name="delete_enzyme" class="button" value="delete">
+                                    </div>
+                                </td>
+                                <script>
+                                    function validateEnzymeForm(event) {
+                                        const enzymeName = document.getElementsByName('enzyme_name')[0].value;
+                                        const enzymeAN = document.getElementsByName('enzyme_nt_cut')[0].value;
+                                        const enzymeAC = document.getElementsByName('enzyme_ct_cut')[0].value;
+                                        if (enzymeName === '') {
+                                            alert('Please enter enzyme name');
+                                            event.preventDefault();
+                                            return false;
+                                        }
+                                        if (enzymeAN === '') {
+                                            alert('Please enter enzyme at Nterm');
+                                            event.preventDefault();
+                                            return false;
+                                        }
+                                        if (enzymeAC === '') {
+                                            alert('Please enter enzyme at Cterm');
+                                            event.preventDefault();
+                                            return false;
+                                        }
+                                        return true;
+                                    }
+                                </script>
+                            </form>
                         </tr>
+                        </tbody>
                         <tr>
-                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="version3" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="example file 3" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td></td>
+                            <form method="post" th:action="@{/admin/upload}" enctype="multipart/form-data" onsubmit="return doSoftware(event)">
+                                <td><select id="softwareName">
+                                    <option value="">Select --</option>
+                                    <option value="MODa">MODa</option>
+                                    <option value="DBond">DBond</option>
+                                    <option value="NextSearch">NextSearch</option>
+                                </select></td>
+                                <td><div><input id="softwareDate" type="date" size="15" /></div></td>
+                                <td><div><input id="softwareVersion" type="text" size="10" /></div></td>
+                                <td><div><input id="softwareFile" type="file" size="50"/></div></td>
+                                <td><div><input name="softwareUpdate" type="submit" class="button" value="update"/></div></td>
+                            </form>
                         </tr>
-                        <tr>
-                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="version4" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="version5" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="version6" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="version7" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="ptms.xml" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="tableleft"><input type="date" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input type="file" style="border: 1px solid; margin-right: 6px;"></td>
-                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td><button class="button">update</button></td>
-                        </tr>
+                        <script>
+                            function doSoftware(event) {
+                                const softwareName = document.getElementById('softwareName').value;
+                                const softwareDate = document.getElementById('softwareDate').value;
+                                const softwareVersion = document.getElementById('softwareVersion').value;
+                                const softwareFile = document.getElementById('softwareFile').value;
+                                if (softwareName === '') {
+                                    alert('Please select software name');
+                                    event.preventDefault();
+                                    return false;
+                                }
+                                if (softwareDate === '') {
+                                    alert('Please enter software release date');
+                                    event.preventDefault();
+                                    return false;
+                                }
+                                if (softwareVersion === '') {
+                                    alert('Please enter software version');
+                                    event.preventDefault();
+                                    return false;
+                                }
+                                if (softwareFile === '') {
+                                    alert('Please select software file');
+                                    event.preventDefault();
+                                    return false;
+                                }
+                                if(softwareFile.toLowerCase().endsWith(".zip") === false){
+                                    alert('Please select a zip file');
+                                    event.preventDefault();
+                                    return false;
+                                }
+                                return true;
+                            }
+                        </script>
                     </table>
                 </form>
             </div>

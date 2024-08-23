@@ -21,18 +21,15 @@
         </tr>
         <tr>
           <td style="background-color: #f2f2f2"><label for="password">Password</label></td>
-          <!-- <td><input type="password" id="password"></td> -->
           <td><input type="password" id="password" th:field="*{password}"/></td>
         </tr>
         <tr>
           <td style="background-color: #f2f2f2"><label for="passwordConfirm">Password<br>(confirm)</label></td>
-          <!-- <td><input type="password" id="password(confirm)"></td> -->
           <td><input type="password" id="passwordConfirm" th:field="*{passwordConfirm}"/></td>
         </tr>
       </table>
       <div style="margin: auto">
         <a href="/user/login" class="button">Cancel</a>
-        <!-- <a href="/header/login" class="button">Regist</a>  TODO: 새 계정 만들기. 입력하지 않았을 때 메세지 띄우기 -->
         <button type="submit" class="button">Regist</button>
 
         <style>

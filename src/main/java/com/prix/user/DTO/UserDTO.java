@@ -1,4 +1,4 @@
-package com.prix.user;
+package com.prix.user.DTO;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;

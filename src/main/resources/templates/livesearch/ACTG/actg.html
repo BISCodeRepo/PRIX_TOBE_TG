@@ -18,19 +18,23 @@
             <div th:replace="~{fragments/tab_menu :: menu}"></div>
         </div>
         <div style="width: 90%">
-            <form action="actgprocess" method="get">
+            <form name="form" action="/actgprocess" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="engine" value="ACTG">
+                <input type="hidden" name="msdata" value="0">
+                <input type="hidden" name="database" value="0">
+                <input type="hidden" name="result" value="0">
                 <table class="actgtable">
                     <tr>
                         <td class="tableleft" style="font-weight: bold">
                             <a href="/actghelp#userName"> User Name</a>
                         </td>
-                        <td class="tableright"><input value="anonymous" type="username" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                        <td class="tableright"><input name="userID" value="anonymous" type="username" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
                     </tr>
                     <tr>
                         <td class="tableleft" style="font-weight: bold">
                             <a href="/actghelp#mappingTitle"> Mapping Title </a>
                         </td>
-                        <td class="tableright"><input type="mappingtitle" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                        <td class="tableright"><input name="title" type="mappingtitle" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
                     </tr>
                     <tr>
                         <td class="tableleft" style="font-weight: bold; text-align: center" colspan="2"> Mapping Environment</td>
@@ -212,7 +216,7 @@
                     <a href="/sampledata/ACTG_test_data.zip" download="ACTG_test_data.zip" style="color: brown">Download sample data</a>
                     <div style="float: right">
                         <input type="reset" value="Reset" class="button">
-                        <input type="submit" value="Submit" class="button">
+                        <input type="submit" value="Submit" class="button" onclick="submitForm()">
                         <script>
                             //reset 버튼을 눌렀을 때 VCF 파일 업로드 input을 초기화
                             document.querySelector('input[type="reset"]').addEventListener('click', function() {
@@ -227,6 +231,18 @@
                                     fileInputContainer.removeChild(fileInputContainer.firstChild);
                                 }
                             });
+
+                            //Submit 버튼을 눌렀을 때
+                            function submitForm() {
+                                var form = document.form;
+
+                                var peptideList = document.getElementById('peptidelist');
+                                if (peptideList.files.length === 0) {
+                                    alert('Please upload a peptide list.');
+                                    return false;
+                                }
+                                form.submit();
+                            }
                         </script>
 
 

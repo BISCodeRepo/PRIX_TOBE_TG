@@ -1,5 +1,8 @@
-package com.prix.user;
+package com.prix.user.service;
 
+import com.prix.user.UserEntity;
+import com.prix.user.UserRepository;
+import com.prix.user.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

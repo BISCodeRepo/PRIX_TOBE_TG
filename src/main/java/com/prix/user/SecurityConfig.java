@@ -27,6 +27,8 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                //csrf 해제
+                .csrf(csrf->csrf.disable())
                 // admin으로 시작하는 페이지는 ADMIN만 접근 가능
                 .authorizeHttpRequests( (authorizeRequest) ->
                         authorizeRequest

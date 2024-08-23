@@ -1,13 +1,12 @@
 package com.prix.user.controller;
 
-import com.prix.user.UserDTO;
-import com.prix.user.UserService;
+import com.prix.user.DTO.UserDTO;
+import com.prix.user.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;

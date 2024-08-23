@@ -1,7 +1,7 @@
-package com.prix.user;
+package com.prix.user.service;
 
-import com.prix.user.UserDTO;
-import jakarta.transaction.Transactional;
+import com.prix.user.DTO.UserDTO;
+import com.prix.user.UserEntity;
 
 public interface UserService {
 

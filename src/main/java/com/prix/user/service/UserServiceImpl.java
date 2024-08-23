@@ -1,5 +1,8 @@
-package com.prix.user;
+package com.prix.user.service;
 
+import com.prix.user.DTO.UserDTO;
+import com.prix.user.UserEntity;
+import com.prix.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

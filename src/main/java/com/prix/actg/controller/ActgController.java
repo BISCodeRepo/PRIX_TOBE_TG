@@ -27,40 +27,4 @@ public class ActgController {
         return "livesearch/ACTG/actgprocess";
     }
 
-    @Autowired
-    private DataSource dataSource; // 데이터소스는 Spring에서 자동으로 주입
-
-//    @GetMapping("/actgresult")
-//    public String actgresult(Model model, HttpSession session, @RequestParam String index) {
-//        try (Connection conn = dataSource.getConnection()) {
-//            if (conn == null) {
-//                return "redirect:/login.jsp?url=ACTG/result.jsp";
-//            }
-//
-//            String id = (String) session.getAttribute("id");
-//            if (id == null) {
-//                session.setAttribute("id", "4");
-//                id = (String) session.getAttribute("id");
-//            }
-//
-//            Statement state = conn.createStatement();
-//            ResultSet rs = null;
-//
-//            String userName = null;
-//            String title = null;
-//
-//            // 데이터베이스에서 데이터를 가져오는 로직...
-//            // ...
-//
-//            // 모델에 데이터를 추가
-//            model.addAttribute("userName", userName);
-//            model.addAttribute("title", title);
-//            // ...
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return "actgresult"; // 뷰 이름 반환
-//    }
 }
