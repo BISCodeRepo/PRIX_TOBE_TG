@@ -40,7 +40,14 @@
             <a class="pl-[7px] text-[#919090] hover:text-[#4e4d4d] no-underline" href="/header/contact">CONTACT</a>
           </div>
         </div>
-        <div class="flex flex-col h-[32px] w-[50px]">
+        <div sec:authorize="hasRole('ADMIN')" class="flex flex-col h-[32px] w-[50px]">
+          <div class="h-[15px] bg-[url('../../images/top_dot_01.gif')] bg-no-repeat"></div>
+          <div class="flex font-normal text-[11px]">
+            <img alt="logo" class="w-[2px] h-[9px] mt-[3px]" th:src="@{/images/top_icon_01.gif}">
+            <a class="pl-[7px] text-[#919090] hover:text-[#4e4d4d] no-underline" href="/admin/configuration">ADMIN</a>
+          </div>
+        </div>
+        <div sec:authorize="!hasRole('ADMIN')" class="flex flex-col h-[32px] w-[50px]">
           <div class="h-[15px] bg-[url('../../images/top_dot_01.gif')] bg-no-repeat"></div>
           <div class="flex font-normal text-[11px]">
             <img alt="logo" class="w-[2px] h-[9px] mt-[3px]" th:src="@{/images/top_icon_01.gif}">

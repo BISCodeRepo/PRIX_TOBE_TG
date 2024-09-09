@@ -28,7 +28,12 @@
                         <td class="tableleft" style="font-weight: bold">
                             <a href="/actghelp#userName"> User Name</a>
                         </td>
-                        <td class="tableright"><input name="userID" value="anonymous" type="username" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                        <td class="tableright">
+                            <input name="userID"
+                                   th:value="${username != null} ? ${username} : 'anonymous'"
+                                   type="username"
+                                   style="border: 1px solid; width: 90%; padding: 1px 3px">
+                        </td>
                     </tr>
                     <tr>
                         <td class="tableleft" style="font-weight: bold">

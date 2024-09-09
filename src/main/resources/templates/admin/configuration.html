@@ -33,39 +33,40 @@
                     <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
                     <span class="font-bold">Database</span>
                 </div>
-                <form>
-                    <table class="database">
-                        <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
-                            <td style="padding-left: 7px;" class="tableleft">Name</td>
-                            <td style="padding-left: 7px;">File</td>
-                            <td></td>
-                        </tr>
-                        <tbody th:if="${listDatabaseResponseDto != null}">
-                        <tr th:each="item : ${listDatabaseResponseDto}">
-                            <form method="post" th:action="@{/admin/manage}">
-                                <input style="border: 1px solid" type="hidden" name="DBIndex" th:value="${item.id}">
-                                <td>
-                                    <input type="text" name="DBName" size="40" th:value="${item.name}">
-                                </td>
-                                <td th:text="${item.file}"></td>
-                                <td>
-                                    <div>
-                                        <input type="submit" name="EditDB" class="button" value="edit">
-                                        <input type="submit" name="DeleteDB" class="button" value="unlink">
-                                    </div>
-                                </td>
-                            </form>
-                        </tr>
-                        </tbody>
-                        <tr>
-                            <form method="post" th:action="@{/admin/upload}" enctype="multipart/form-data">
-                                <td><input name="DBName" type="text" size="40" /></td>
-                                <td><input name="DBFile" type="file" size="40" /></td>
-                                <td><div><input name="DBUpload" type="submit" class="button" value="upload"></div></td>
-                            </form>
-                        </tr>
-                    </table>
-                </form>
+                <table class="database">
+                    <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
+                        <td style="padding-left: 7px; width: 40%;" class="tableleft">Name</td>
+                        <td style="padding-left: 7px;">File</td>
+                        <td></td>
+                    </tr>
+                    <tbody th:if="${databaseList != null}">
+                    <tr th:each="database : ${databaseList}">
+                        <form method="post" th:action="@{'/admin/configuration/' + ${database.id}}">
+                            <input type="hidden" name="_method" value="delete">
+                            <input type="hidden" name="id" th:value="${database.id}">
+                            <td>
+                                <input type="text" name="name" size="40" th:value="${database.name}">
+                            </td>
+                            <td th:text="${database.file}"></td>
+                            <td>
+                                <div>
+                                    <input type="submit" name="EditDB" class="button" value="edit">
+                                    <input type="submit" name="deleteDB" class="deleteDB" value="unlink">
+                                </div>
+                            </td>
+                        </form>
+                    </tr>
+                    </tbody>
+                    <tr>
+                        <!-- <form method="post" th:action="@{/configuration/post}" enctype="multipart/form-data">-->
+                        <form method="post" action="/configuration/post" enctype="multipart/form-data">
+                            <input type="hidden" name="data_id" value="-1">
+                            <td><input style="border: 1px solid" name="name" type="text" size="40" /></td>
+                            <td><input style="border: 1px solid" name="file" type="file" size="40" /></td>
+                            <td><div><input name="DBUpload" type="submit" class="button" value="upload"></div></td>
+                        </form>
+                    </tr>
+                </table>
             </div>
 
             <div class="w-full p-[1px]">
@@ -82,18 +83,10 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td>
-                                <button class="button">add</button>
-                            </td>
-                        </tr>
-                        <tr>
                             <form method="post" th:action="@{/admin/manage}" onsubmit="return validateEnzymeForm(event)">
-                                <td><input name="NenzymeName" type="text" size="40"/></td>
-                                <td><input name="NenzymeAN" type="text" size="25"/></td>
-                                <td><input name="nenzymeAC" type="text" size="25"/></td>
+                                <td><input style="border: 1px solid" name="NenzymeName" type="text" size="40"/></td>
+                                <td><input style="border: 1px solid" name="NenzymeAN" type="text" size="25"/></td>
+                                <td><input style="border: 1px solid" name="nenzymeAC" type="text" size="25"/></td>
                                 <td><di align="right"><input name="EnzymeAdd" type="submit" class="button" value="add"></di></td>
                             </form>
                         </tr>
@@ -150,15 +143,16 @@
                                         <input type="submit" name="EditDB" class="btnSmall" value="edit">
                                         <input type="submit" name="DeleteDB" class="btnSmall" value="unlink">
                                     </div>
+
                                 </td>
                             </form>
                         </tr>
                         </tbody>
                         <tr>
                             <form method="post" th:action="@{/admin/upload}" enctype="multipart/form-data">
-                                <td><input id="modificationDate" type="date" size="20" /></td>
-                                <td><input id="modificationVersion" type="text" size="20" /></td>
-                                <td><input id="modificationFile" type="file" size="50" /></td>
+                                <td><input style="border: 1px solid" id="modificationDate" type="date" size="20" /></td>
+                                <td><input style="border: 1px solid" id="modificationVersion" type="text" size="20" /></td>
+                                <td><input style="border: 1px solid" id="modificationFile" type="file" size="50" /></td>
                                 <td><div style="align-items: flex-end"><input type="submit" class="button" value="update"></div></td>
                             </form>
                         </tr>
@@ -178,13 +172,6 @@
                             <td style="padding-left: 7px;">Release Date</td>
                             <td style="padding-left: 7px;">Version</td>
                             <td style="padding-left: 7px;">File</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="tableleft"><input value="null" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="version1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
-                            <td class="tableleft"><input value="example file 1" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
                             <td></td>
                         </tr>
                         <tbody th:if="${listEnzymeResponseDto != null}">
@@ -235,16 +222,16 @@
                         </tbody>
                         <tr>
                             <form method="post" th:action="@{/admin/upload}" enctype="multipart/form-data" onsubmit="return doSoftware(event)">
-                                <td><select id="softwareName">
+                                <td><select style="border: 1px solid" id="softwareName">
                                     <option value="">Select --</option>
                                     <option value="MODa">MODa</option>
                                     <option value="DBond">DBond</option>
                                     <option value="NextSearch">NextSearch</option>
                                 </select></td>
-                                <td><div><input id="softwareDate" type="date" size="15" /></div></td>
-                                <td><div><input id="softwareVersion" type="text" size="10" /></div></td>
-                                <td><div><input id="softwareFile" type="file" size="50"/></div></td>
-                                <td><div><input name="softwareUpdate" type="submit" class="button" value="update"/></div></td>
+                                <td><div><input style="border: 1px solid" id="softwareDate" type="date" size="15" /></div></td>
+                                <td><div><input style="border: 1px solid" id="softwareVersion" type="text" size="10" /></div></td>
+                                <td><div><input style="border: 1px solid" id="softwareFile" type="file" size="50"/></div></td>
+                                <td><div><input style="border: 1px solid" name="softwareUpdate" type="submit" class="button" value="update"/></div></td>
                             </form>
                         </tr>
                         <script>
@@ -288,6 +275,7 @@
             <div class="w-full p-[1px]">
                 <form>
                     <table class="database">
+<!--                        TODO: px_software_msg 테이블이랑 연결해서 update 버튼 누르면 default 값에서 입력한 값으로 변경되어야 함.-->
                         <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
                             <td width="10%" style="text-align: center;">
                                 <button style="background-color: coral; color: white; padding: 2px 6px">update</button>
@@ -296,23 +284,19 @@
                         </tr>
                         <tr>
                             <td style="text-align: right; vertical-align: top">MODa</td>
-                            <td><textarea cols="100" rows="6">
-                            </textarea></td>
+                            <td><textarea cols="100" rows="6"></textarea></td>
                         </tr>
                         <tr>
                             <td style="text-align: right; vertical-align: top">DBond</td>
-                            <td><textarea cols="100" rows="6">dbond description + dbond download link
-                            </textarea></td>
+                            <td><textarea cols="100" rows="6">dbond description + dbond download link</textarea></td>
                         </tr>
                         <tr>
                             <td style="text-align: right; vertical-align: top">NextSearch</td>
-                            <td><textarea cols="100" rows="6">nextsearch description + nextsearch download link
-                            </textarea></td>
+                            <td><textarea cols="100" rows="6">nextsearch description + nextsearch download link</textarea></td>
                         </tr>
                         <tr>
                             <td style="text-align: right; vertical-align: top">Signature</td>
-                            <td><textarea cols="100" rows="6">Prix Hanyang (Bioinformatics & Intelligent Systems Lab, Hanyang University)
-                            </textarea></td>
+                            <td><textarea cols="100" rows="6">Prix Hanyang (Bioinformatics & Intelligent Systems Lab, Hanyang University)</textarea></td>
                         </tr>
                     </table>
                 </form>
@@ -353,6 +337,15 @@
         text-decoration: none;
         cursor: pointer;
      }
+    .deleteDB {
+        display: inline-block;
+        padding: 3px 8px;
+        background-color: #E9E9E9;
+        color: #6D6D6D;
+        border: 1px solid #AAAAAA;
+        text-decoration: none;
+        cursor: pointer;
+    }
     .databaseTable1 {
         width: 45%;
     }
@@ -364,6 +357,42 @@
         padding: 2px;
     }
 </style>
+
+<script>
+    //edit 버튼 누르면 해당 row 삭제
+    // document.querySelectorAll('.deleteDB').forEach(function(button) {
+    //     button.addEventListener('click', function(event) {
+    //         event.preventDefault();
+    //         var id = this.parentNode.parentNode.querySelector('input[name="id"]').value;
+    //
+    //         fetch('/admin/configuration/' + id, {
+    //             method: 'DELETE',
+    //         })
+    //             .then(response => {
+    //                 if (!response.ok) {
+    //                     throw new Error('Network response was not ok');
+    //                 }
+    //                 return response.json();
+    //             })
+    //             .then(data => {
+    //                 console.log(data);
+    //                 // 서버에서 데이터를 성공적으로 삭제했다면 페이지 새로 고침
+    //                 window.location.href = "/admin/configuration";
+    //             })
+    //             .catch(error => {
+    //                 console.error('Error:', error);
+    //                 alert('Failed to delete data');
+    //             });
+    //     });
+    // });
+
+    // document.querySelectorAll('.deleteDB').forEach(function(button) {
+    //     button.addEventListener('click', function(event) {
+    //         event.preventDefault();
+    //         window.location.href = "/admin/configuration";
+    //     });
+    // });
+</script>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>

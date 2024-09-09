@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metadata :: metadata}">
+<body>
+<header th:replace="~{fragments/header :: header('livesearch', false)}"></header>
+
+<div class="flex gap-[15px] text-[#5d5d5d]">
+    <aside th:replace="~{livesearch/fragments/asidesearch :: asidesearch}"></aside>
+    <div class="w-[885px]">
+        <div
+                class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+            <div class="h-[34px] leading-[2]">
+                <span class="text-[#4e4d4d]">History</span>
+            </div>
+            <div th:replace="~{fragments/tab_menu :: menu}"></div>
+        </div>
+        <div class="w-[650px] p-[2px]">
+            <form>
+                <table class="database" id="historyTable" style="text-align: center" width="885px">
+                    <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
+                        <td>Index</td>
+                        <td>Date</td>
+                        <td>Title</td>
+                        <td>MS/MS data</td>
+                        <td>Database</td>
+                        <td>Engine</td>
+                    </tr>
+                    <tbody th:if="${searchlogList != null}">
+                    <tr th:each="searchlog, id : ${searchlogList}">
+                        <td><div style="align-items: center; color: #0000FF; font-weight: bold" class="underline">
+                            <a th:href="@{${'/' + searchlog.engine + '/result'}(file=${searchlog.result})}" target="_blank" th:text="${id.index + 1}"></a>
+                        </div></td>
+                        <td><div style="align-items: center" th:text="${searchlog.date}"></div></td>
+                        <td><div style="align-items: center" th:text="${searchlog.title}"></div></td>
+                        <td><div style="align-items: center" th:text="${searchlog.msdata}"></div></td>
+                        <td><div style="align-items: center" th:text="${searchlog.db}"></div></td>
+                        <td><div style="align-items: center" th:text="${searchlog.engine}"></div></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+        <script>
+            // 테이블 업데이트
+            function updateValue(value) {
+                // AJAX 요청 보내기
+                $.ajax({
+                    url: '/searchlog',  // 서버의 업데이트 URL
+                    type: 'POST',
+                    data: { value: value },
+                    success: function(data) {
+                        // 응답을 받아 테이블에 새로운 행 추가
+                        var table = document.getElementById('searchlogTable');
+                        var row = table.insertRow(-1);
+                        var cell1 = row.insertCell(0);
+                        cell1.innerHTML = data.newRowValue;
+                    }
+                });
+            }
+        </script>
+    </div>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

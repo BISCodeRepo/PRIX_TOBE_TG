@@ -12,4 +12,6 @@ public interface SearchlogService {
     SearchlogEntity findById(Long id);
 
     List<SearchlogDTO> getSearchlogList();
+
+    List<SearchlogDTO> findByUserID(String userID);
 }

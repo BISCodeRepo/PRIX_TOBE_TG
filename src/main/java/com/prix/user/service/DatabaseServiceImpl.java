@@ -19,6 +19,7 @@ public class DatabaseServiceImpl implements DatabaseService{
         return databaseRepository.save(databaseEntity).getId();
     }
 
+    //TODO: 파일 업로드 시스템 만들기
     @Override
     @Transactional
     public List<DatabaseDTO> getDatabaseList() {
@@ -27,12 +28,17 @@ public class DatabaseServiceImpl implements DatabaseService{
 
         for(DatabaseEntity databaseEntity : databaseList) {
             DatabaseDTO databaseDTO = DatabaseDTO.builder()
+                    .id(databaseEntity.getId())
                     .data_id(databaseEntity.getData_id())
-                    .file(databaseEntity.getFile())
+                    //.file(databaseEntity.getFile())
                     .name(databaseEntity.getName())
                     .build();
             databaseDtoList.add(databaseDTO);
         }
         return databaseDtoList;
+    }
+
+    public void deleteDatabase(int id) {
+        databaseRepository.deleteById(id);
     }
 }

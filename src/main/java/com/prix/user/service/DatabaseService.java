@@ -10,4 +10,6 @@ public interface DatabaseService {
     int saveDatabase(DatabaseEntity databaseEntity);
 
     List<DatabaseDTO> getDatabaseList();
+
+    void deleteDatabase(int id);
 }

@@ -49,4 +49,25 @@ public class SearchlogServiceImpl implements SearchlogService{
         }
         return searchlogDtoList;
     }
+
+    @Override
+    @Transactional
+    public List<SearchlogDTO> findByUserID(String userID) {
+        List<SearchlogEntity> searchlogList = searchlogRepository.findByUserID(userID);
+        List<SearchlogDTO> searchlogDtoList = new ArrayList<>();
+
+        for(SearchlogEntity searchlogEntity : searchlogList) {
+            SearchlogDTO searchlogDTO = SearchlogDTO.builder()
+                    .userID(searchlogEntity.getUserID())
+                    .title(searchlogEntity.getTitle())
+                    .date(searchlogEntity.getDate())
+                    .msdata(searchlogEntity.getMsdata())
+                    .db(searchlogEntity.getDb())
+                    .result(searchlogEntity.getResult())
+                    .engine(searchlogEntity.getEngine())
+                    .build();
+            searchlogDtoList.add(searchlogDTO);
+        }
+        return searchlogDtoList;
+    }
 }
