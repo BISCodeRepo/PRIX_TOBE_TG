@@ -12,4 +12,6 @@ public interface DatabaseService {
     List<DatabaseDTO> getDatabaseList();
 
     void deleteDatabase(int id);
+
+    void updateDatabase(int id, String name);
 }

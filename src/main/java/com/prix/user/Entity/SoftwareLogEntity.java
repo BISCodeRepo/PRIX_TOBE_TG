@@ -1,10 +1,9 @@
 package com.prix.user.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.Date;
 
 @Getter
 @Setter
@@ -12,12 +11,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "px_software_log")
-public class SoftwareEntity {
+public class SoftwareLogEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String date;
+    private Date date;
 
     @Column(length = 255, nullable = false)
     private String file;
@@ -27,4 +26,13 @@ public class SoftwareEntity {
 
     @Column(length = 16, nullable = false)
     private String version;
+
+    @Builder
+    public SoftwareLogEntity(int id, String name, Date date, String version, String file){
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.version = version;
+        this.file = file;
+    }
 }

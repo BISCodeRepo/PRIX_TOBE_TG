@@ -41,4 +41,12 @@ public class DatabaseServiceImpl implements DatabaseService{
     public void deleteDatabase(int id) {
         databaseRepository.deleteById(id);
     }
+
+    @Override
+    public void updateDatabase(int id, String name) {
+        DatabaseEntity databaseEntity = databaseRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid database Id:" + id));
+        databaseEntity.setName(name);
+        databaseRepository.save(databaseEntity);
+    }
 }

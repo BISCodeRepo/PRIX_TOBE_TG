@@ -1,10 +1,9 @@
 package com.prix.user.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.Date;
 
 @Getter
 @Setter
@@ -17,11 +16,19 @@ public class ModificationLogEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String date;
+    private Date date;
+
+    @Column(length = 8)
+    private String version;
 
     @Column(length = 128)
     private String file;
 
-    @Column(length = 8)
-    private String version;
+    @Builder
+    public ModificationLogEntity(int id, Date date, String version, String file){
+        this.id = id;
+        this.date = date;
+        this.version = version;
+        this.file = file;
+    }
 }

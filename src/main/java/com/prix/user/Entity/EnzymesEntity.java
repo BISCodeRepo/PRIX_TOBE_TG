@@ -1,10 +1,7 @@
 package com.prix.user.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -28,4 +25,13 @@ public class EnzymesEntity {
 
     @Column(length = 8)
     private String nt_cleave;
+
+    @Builder
+    public EnzymesEntity(int id, int userID, String name, String ct_cleave, String nt_cleave){
+        this.id = id;
+        this.userID = userID;
+        this.name = name;
+        this.ct_cleave = ct_cleave;
+        this.nt_cleave = nt_cleave;
+    }
 }
