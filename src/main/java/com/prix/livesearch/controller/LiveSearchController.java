@@ -1,8 +1,5 @@
 package com.prix.livesearch.controller;
 
-import com.prix.user.Entity.UserEntity;
-import com.prix.user.service.UserService;
-import com.prix.user.service.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
