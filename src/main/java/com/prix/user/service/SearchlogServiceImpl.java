@@ -5,6 +5,8 @@ import com.prix.user.DTO.SearchlogDTO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import com.prix.user.Repository.SearchlogRepository;
 
 import jakarta.persistence.EntityNotFoundException;

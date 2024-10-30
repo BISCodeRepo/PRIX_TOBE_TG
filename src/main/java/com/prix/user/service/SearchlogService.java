@@ -14,4 +14,5 @@ public interface SearchlogService {
     List<SearchlogDTO> getSearchlogList();
 
     List<SearchlogDTO> findByUserID(String userID);
+
 }
