@@ -12,7 +12,7 @@
         <div th:replace="~{fragments/tab_menu :: menu}"></div>
     </div>
     <div class="w-full mx-auto leading-[130%] flex flex-col gap-[10px] p-[2px]">
-        <div class="flex flex-col gap-[18px] w-[750px] h-[1500px]">
+        <div class="flex flex-col gap-[18px] w-[750px] h-[1300px]">
 
 
             <div class="w-full p-[1px]">
@@ -37,13 +37,15 @@
                         </li>
                     </ul>
 
+                    <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
                     <span class="font-bold">Mapping Environment (this option is applied all kinds of mapping)</span>
                     <ul class="list-disc pl-[11px]  m-[2px]">
                         <br>
                         <li> <span class="font-bold" id="peptideList">Peptide List</span>
                             <div>
-                                Put a peptide list file. This format is followed below. <br>
+                                Put a peptide list file. This format is followed below.
                             </div>
+                            <br>
                         </li>
                             <div>
                                 DFKLSDEETATILSFNR <br>
@@ -56,6 +58,7 @@
                                 KDEGEGAAGAGDHQDPSLGAGEAASK <br>
                                 AAECSDFPVPSTEGTPIQGSK <br>
                             </div>
+                            <br>
 
                         <li> <span class="font-bold" id="mappingMethods">Supported mapping methods</span>
                             <div>
@@ -77,8 +80,9 @@
                         </li>
                     </ul>
 
+                    <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
                     <span class="font-bold">Protein Database Mapping</span>
-                    <ul class="list-disc pl-[11px]  m-[2px]">
+                    <ul class="list-disc pl-[11px]  m-[2px]"> <br>
                         <li> <span class="font-bold" id="proteinDB">Supported protein database</span>
                             <div>
                                 To filter out known peptides, reference protein database mapping is useful. <br>
@@ -96,8 +100,9 @@
                         </li>
                     </ul>
 
+                    <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
                     <span class="font-bold">Variant Splice Graph Mapping</span>
-                    <ul class="list-disc pl-[11px]  m-[2px]">
+                    <ul class="list-disc pl-[11px]  m-[2px]"> <br>
                         <li> <span class="font-bold" id="spliceGraph">Variant Splice Graph</span>
                             <div>
                                 ACTG supports variants such as single exon skipping, splice junction variation,
@@ -110,7 +115,7 @@
 
                         <li> <span class="font-bold" id="mutations">Mutations</span>
                             <div>
-                                If a user want to map mutations, the user must provide mutation information formatted VCF. The format is followed below. <br>
+                                If a user want to map mutations, the user must provide mutation information formatted VCF. The format is followed below. <br> <br>
                                 1 32670862 . G A . PASS SOMATIC;VT=SNP GT:AD:BQ:DP:FA:SS 0:48,0:.:48:0.00:0 41 36 5 51 46 5 Somatic <br>
                                 1 52553790 . C T . PASS SOMATIC;VT=SNP GT:AD:BQ:DP:FA:SS 0:22,0:.:22:0.00:0 90 90 0 11 8 3 Somatic <br>
                                 1 75039014 . C A . DP NT=ref;QSS=160;QSS_NT=160;SGT=CC->AC;SOMATIC;TQSS=2;TQSS_NT=2 <br>
@@ -142,8 +147,9 @@
                         </li>
                     </ul>
 
+                    <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
                     <span class="font-bold">Six-frame Translation Mapping</span>
-                    <ul class="list-disc pl-[11px]  m-[2px]">
+                    <ul class="list-disc pl-[11px]  m-[2px]"> <br>
                         <li> <span class="font-bold" id="referenceGenome">Reference genome</span>
                             <div>
                                 Support two reference human genome: GRCh37, GRCh38.
