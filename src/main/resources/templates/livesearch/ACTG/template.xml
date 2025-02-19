@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Params>
+	<Mapping>
+		<Environment>
+			<MappingMethod>[METHOD]</MappingMethod><!--@[METHOD]@-->
+			<ILSame>[IL]</ILSame><!--@[IL]@-->
+			<Input format="list" type="peptideList">[PEPTIDE_FILE]</Input>
+			<Output type="outputPath">[OUTPUT]</Output>
+		</Environment>
+		<ProteinDB>
+			<Input format="FASTA" type="proteinDB">[PROTEIN_DB]</Input><!--@[PROTEIN_DB]@-->
+			<SAVs>[SAV]</SAVs><!--@[SAV]@-->
+		</ProteinDB>
+		<VariantSpliceGraph>
+			<Input format="graph" type="graphFile">[VARIANT_SPLICE_GRAPH_DB]</Input><!--@[VARIANT_SPLICE_GRAPH_DB]@-->
+			<JunctionVariation>[ALT_AD]</JunctionVariation><!--@[ALT_AD]@-->
+			<ExonSkipping>[EXON_SKIPPING]</ExonSkipping><!--@[EXON_SKIPPING]@-->
+			<IntronMapping>[INTRON]</IntronMapping><!--@[INTRON]@-->
+			<Mutation>[MUTATION]</Mutation><!--@[MUTATION]@-->
+			<Input format="VCF" type="mutation">[MUTATION_FILE]</Input>
+		</VariantSpliceGraph>
+		<SixFrameTranslation>
+			<Input format="FASTA" type="referenceGenome">[REFERENCE_GENOME]</Input><!--@[REFERENCE_GENOME]@-->
+		</SixFrameTranslation>
+	</Mapping>
+	<Systems>
+		<TheNumberOfThreads>6</TheNumberOfThreads>
+	</Systems>
+</Params>

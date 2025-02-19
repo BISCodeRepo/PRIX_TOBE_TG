@@ -19,24 +19,26 @@ public class SoftwareLogDTO {
     private Date date;
     private String version;
     private MultipartFile file;
+    private String fileName;
 
-    public SoftwareLogEntity toEntity(){
+    public SoftwareLogEntity toEntity(String fileName){
         SoftwareLogEntity build = SoftwareLogEntity.builder()
                 .id(id)
                 .name(name)
                 .date(date)
                 .version(version)
-                .file(file.getOriginalFilename())
+                .file(fileName)
                 .build();
         return build;
     }
 
     @Builder
-    public SoftwareLogDTO(int id, String name, Date  date, String version, MultipartFile file){
+    public SoftwareLogDTO(int id, String name, Date  date, String version, MultipartFile file, String fileName){
         this.id = id;
         this.name = name;
         this.date = date;
         this.version = version;
         this.file = file;
+        this.fileName = fileName;
     }
 }

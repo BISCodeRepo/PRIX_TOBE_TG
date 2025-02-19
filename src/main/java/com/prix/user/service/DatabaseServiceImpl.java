@@ -6,6 +6,7 @@ import com.prix.user.Repository.DatabaseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,6 @@ public class DatabaseServiceImpl implements DatabaseService{
         return databaseRepository.save(databaseEntity).getId();
     }
 
-    //TODO: 파일 업로드 시스템 만들기
     @Override
     @Transactional
     public List<DatabaseDTO> getDatabaseList() {
@@ -30,7 +30,8 @@ public class DatabaseServiceImpl implements DatabaseService{
             DatabaseDTO databaseDTO = DatabaseDTO.builder()
                     .id(databaseEntity.getId())
                     .data_id(databaseEntity.getData_id())
-                    //.file(databaseEntity.getFile())
+                    .file(null) // file대신 fileName으로 데이터베이스에 저장함. MultipartFile이랑 String 차이 때문
+                    .fileName(databaseEntity.getFile())
                     .name(databaseEntity.getName())
                     .build();
             databaseDtoList.add(databaseDTO);

@@ -49,7 +49,7 @@
                             <td>
                                 <input style="border: 1px solid;" type="text" id="DBnameInput" name="name" size="40" th:value="${database.name}">
                             </td>
-                            <td th:text="${database.file}"></td>
+                            <td th:text="${database.fileName}"></td>
                             <td>
                                 <div style="display: flex; justify-content: flex-end;">
                                     <input type="submit" name="databaseControl" class="button" value="edit" />
@@ -169,7 +169,7 @@
                         <td>
                             <div type="text" name="version" size="40" th:text="${modificationLog.version}"></div>
                         </td>
-                        <td th:text="${modificationLog.file}"></td>
+                        <td th:text="${modificationLog.fileName}"></td>
                         <td></td>
                     </tr>
                     </tbody>
@@ -217,7 +217,7 @@
                             <div type="text" name="version" size="25" th:text="${softwareLog.version}"></div>
                         </td>
                         <td>
-                            <div type="text" name="file" size="25" th:text="${softwareLog.file}"></div>
+                            <div type="text" name="file" size="25" th:text="${softwareLog.fileName}"></div>
                         </td>
                         <td></td>
                     </tr>

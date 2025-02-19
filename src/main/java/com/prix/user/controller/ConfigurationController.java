@@ -26,13 +26,16 @@ public class ConfigurationController {
                                     DatabaseDTO databaseDTO, EnzymeDTO enzymeDTO, ModificationLogDTO modificationLogDTO,
                                     SoftwareLogDTO softwareLogDTO, SoftwareMsgDTO softwareMsgDTO) {
         if ("database".equals(table)) {
-            databaseService.saveDatabase(databaseDTO.toEntity());
+            String fileName = databaseDTO.getFile().getOriginalFilename();
+            databaseService.saveDatabase(databaseDTO.toEntity(fileName));
         } else if ("enzyme".equals(table)) {
             enzymeService.saveEnzyme(enzymeDTO.toEntity());
         } else if ("modification".equals(table)) {
-            modificationLogService.saveModificationLog(modificationLogDTO.toEntity());
+            String fileName = modificationLogDTO.getFile().getOriginalFilename();
+            modificationLogService.saveModificationLog(modificationLogDTO.toEntity(fileName));
         } else if ("software_log".equals(table)) {
-            softwareLogService.saveSoftwareLog(softwareLogDTO.toEntity());
+            String fileName = softwareLogDTO.getFile().getOriginalFilename();
+            softwareLogService.saveSoftwareLog(softwareLogDTO.toEntity(fileName));
         } else if ("software_msg".equals(table)) {
             softwareMsgService.saveSoftwareMsg(softwareMsgDTO.toEntity());
         }
@@ -70,9 +73,9 @@ public class ConfigurationController {
     @PostMapping("/admin/configuration/databaseControl")
     public String databaseControl(@ModelAttribute("Database") DatabaseEntity databaseEntity,
                                   @RequestParam("databaseControl") String databaseControl) {
-        if ("edit".equals(databaseControl)) {
+        if ("edit".equals(databaseControl)) { // edit 버튼을 눌렀을 때 name이랑 id만 업데이트
             databaseService.updateDatabase(databaseEntity.getId(), databaseEntity.getName());
-        } else if ("unlink".equals(databaseControl)) {
+        } else if ("unlink".equals(databaseControl)) { // unlink 버튼을 눌렀을 때 행 삭제
             databaseService.deleteDatabase(databaseEntity.getId());
         }
         return "redirect:/admin/configuration";

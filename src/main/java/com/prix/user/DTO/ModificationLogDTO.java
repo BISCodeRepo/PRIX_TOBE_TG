@@ -19,23 +19,25 @@ public class ModificationLogDTO {
     private Date date;
     private String version;
     private MultipartFile file;
+    private String fileName;
 
-    public ModificationLogEntity toEntity(){
+    public ModificationLogEntity toEntity(String fileName){
         ModificationLogEntity build = ModificationLogEntity.builder()
                 .id(id)
                 .date(date)
                 .version(version)
-                .file(file.getOriginalFilename())
+                .file(fileName)
                 .build();
         return build;
     }
 
     @Builder
-    public ModificationLogDTO(int id, Date  date, String version, MultipartFile file){
+    public ModificationLogDTO(int id, Date  date, String version, MultipartFile file, String fileName){
         this.id = id;
         this.date = date;
         this.version = version;
         this.file = file;
+        this.fileName = fileName;
     }
 }
 

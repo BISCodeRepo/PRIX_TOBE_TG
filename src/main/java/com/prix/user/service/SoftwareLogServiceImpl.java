@@ -31,7 +31,8 @@ public class SoftwareLogServiceImpl implements SoftwareLogService{
                     .name(softwareLogEntity.getName())
                     .date(softwareLogEntity.getDate())
                     .version(softwareLogEntity.getVersion())
-//                    .file(softwareLogEntity.getFile())
+                    .file(null)
+                    .fileName(softwareLogEntity.getFile())
                     .build();
             SoftwareLogDTOList.add(softwareLogDTO);
         }

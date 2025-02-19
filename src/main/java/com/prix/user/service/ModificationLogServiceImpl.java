@@ -31,7 +31,8 @@ public class ModificationLogServiceImpl implements ModificationLogService{
                     .id(modificationLogEntity.getId())
                     .date(modificationLogEntity.getDate())
                     .version(modificationLogEntity.getVersion())
-//                    .file(modificationLogEntity.getFile())
+                    .file(null)
+                    .fileName(modificationLogEntity.getFile())
                     .build();
             modificationLogDTOList.add(modificationLogDTO);
         }
