@@ -30,7 +30,7 @@
                         </td>
                         <td class="tableright">
                             <input name="userID"
-                                   th:value="${username != null} ? ${username} : 'anonymous'"
+                                   th:value="${userID}"
                                    type="username"
                                    style="border: 1px solid; width: 90%; padding: 1px 3px">
                         </td>
@@ -78,13 +78,52 @@
                             </div>
                         </td>
                         <td class="tableright">
-                            <select style="border: 1px solid">
-                                <option>PV</option>
-                                <option>PS</option>
-                                <option>VO</option>
-                                <option>SO</option>
+                            <select style="border: 1px solid" id="mappingMethod" onchange="changeMethod()">
+                                <option value="PV">PV</option>
+                                <option value="PS">PS</option>
+                                <option value="VO">VO</option>
+                                <option value="SO">SO</option>
                             </select>
                         </td>
+
+                        <script>
+                            // mappingMethod 달라질 때마다 테이블 구성 변경
+                            function changeMethod(){
+                                var method = document.getElementById('mappingMethod').value;
+
+                                switch (method)	{
+                                    case "PV":
+                                        showID("methodProteinDatabase");
+                                        showID("methodVariantSpliceGraph");
+                                        hideID("methodSixFrameTranslation");
+                                        break;
+                                    case "PS":
+                                        showID("methodProteinDatabase");
+                                        showID("methodSixFrameTranslation");
+                                        hideID("methodVariantSpliceGraph");
+                                        break;
+                                    case "VO":
+                                        showID("methodVariantSpliceGraph");
+                                        hideID("methodProteinDatabase");
+                                        hideID("methodSixFrameTranslation");
+                                        break;
+                                    case "SO":
+                                        showID("methodSixFrameTranslation");
+                                        hideID("methodProteinDatabase");
+                                        hideID("methodVariantSpliceGraph");
+                                        break;
+                                }
+                            }
+
+                            function showID(ID){
+                                document.getElementById(ID).style.display = "table-row-group";
+                            }
+
+                            function hideID(ID){
+                                document.getElementById(ID).style.display = "none";
+                            }
+                        </script>
+
                     </tr>
                     <tr>
                         <td class="tableleft" style="font-weight: bold">
@@ -96,6 +135,8 @@
                             </div>
                         </td>
                     </tr>
+
+                    <tbody id="methodProteinDatabase">
                     <tr>
                         <td class="tableleft" style="font-weight: bold; text-align: center" colspan="2"> Protein DB Filtering</td>
                     </tr>
@@ -120,6 +161,9 @@
                             </div>
                         </td>
                     </tr>
+                    </tbody>
+
+                    <tbody id="methodVariantSpliceGraph">
                     <tr>
                         <td class="tableleft" style="font-weight: bold; text-align: center" colspan="2">Variant Splice Graph Mapping</td>
                     </tr>
@@ -216,6 +260,25 @@
                             </div>
                         </td>
                     </tr>
+                    </tbody>
+
+                    <tbody id="methodSixFrameTranslation">
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold; text-align: center" colspan="2">Six-frame Translation Mapping</td>
+                    </tr>
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#referenceGenome">Reference genome</a>
+                        </td>
+                        <td class="tableright">
+                            <select style="border: 1px solid">
+                                <option>GRCh38</option>
+                                <option>GRCh37</option>
+                            </select>
+                        </td>
+                    </tr>
+                    </tbody>
+
                 </table>
                 <div>
                     <a href="/sampledata/ACTG_test_data.zip" download="ACTG_test_data.zip" style="color: brown">Download sample data</a>

@@ -22,6 +22,7 @@ public class SearchlogController {
         return "redirect:/";
     }
 
+    // admin의 searchlog 리스트 출력
     @GetMapping("/admin/searchlog")
     public String searchlogList(Model model) {
         List<SearchlogDTO> searchlogDTOList = searchlogService.getSearchlogList();
@@ -29,6 +30,7 @@ public class SearchlogController {
         return "admin/searchlog";
     }
 
+    // 로그인 시 개인 history에 searchlog 리스트 출력
     @GetMapping("/livesearch/history")
     public String history(Principal principal, Model model) {
         String userID = (principal != null) ? principal.getName() : "anonymous";

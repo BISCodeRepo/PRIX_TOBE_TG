@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Map;
 
 @Controller
@@ -69,6 +71,7 @@ public class LiveSearchController {
         }
     }
 
+    // sample data 다운로드
     @GetMapping("/actg/download")
     public ResponseEntity<InputStreamResource> downloadResult(@RequestParam String fileName) {
         try {
@@ -105,16 +108,19 @@ public class LiveSearchController {
 
     @GetMapping("/livesearch/use")
     public String use() {
-        return "livesearch/use"; // 이 반환 값은 템플릿 파일 이름을 가리킬 수 있습니다.
+        return "livesearch/use";
     }
 
     @GetMapping("/livesearch")
     public String livesearch() {
-        return "livesearch/livesearchmain"; // 이 반환 값은 템플릿 파일 이름을 가리킬 수 있습니다.
+        return "livesearch/livesearchmain";
     }
 
+    // 로그인 한 경우 ACTG 테이블에서 UserName에 userID 나오도록 함
     @GetMapping("/livesearch/ACTG/actg")
-    public String actg() {
+    public String actgUserID(Principal principal, Model model) {
+        String userID = (principal != null) ? principal.getName() : "anonymous";
+        model.addAttribute("userID", userID);
         return "livesearch/ACTG/actg";
     }
 }
