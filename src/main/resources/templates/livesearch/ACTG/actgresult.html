@@ -6,7 +6,7 @@
 
 <div class="flex gap-[15px] text-[#5d5d5d]">
   <aside th:replace="~{livesearch/fragments/asidesearch :: asidesearch}"></aside>
-  <table style="border: none; width: 100%">
+  <div style="border: none; width: 885px">
     <tr>
       <td style="width: 5px">&nbsp;</td>
       <td></td>
@@ -14,7 +14,7 @@
     <tr>
       <td>&nbsp;</td>
     </tr>
-    <p style="font-size: 5px"><h2>PRIX Search Results</h2></p>
+    <div style="font-size: 22px"><h2>PRIX Search Results</h2></div>
 
 
     <br>
@@ -25,71 +25,61 @@
       </tr>
       <tr>
         <td><b>Date</b></td>
-        <td>: <%=date.toString()%></td>
+        <td>: <span th:text="${#temporals.format(actgResultDTO.date, 'yyyy-MM-dd')}"></span></td>
       </tr>
       <tr>
         <td><b>User</b></td>
-        <td>: <%=userName%></td>
+        <td>: <span th:text="${actgResultDTO.userName}"></span></td>
       </tr>
       <tr>
         <td><b>Search title</b></td>
-        <td>: <%=title%></td>
+        <td>: <span th:text="${actgResultDTO.title}"></span></td>
       </tr>
     </table>
     <br>
     <br>
 
-    <div style="font-size: 3px"><b>Environment (for all mapping phases)</b></div>
+    <div style="font-size: 16px"><b>Environment (for all mapping phases)</b></div>
     <table style="border: none">
       <tr>
         <td><b>Mapping method</b></td>
-        <td>: <%=method%></td>
+        <td>: <span th:text="${actgResultDTO.method}"></span></td>
       </tr>
-      <%if(IL.length() != 0){%>
-      <tr>
+      <tr th:if="${actgResultDTO.IL != null and !#strings.isEmpty(actgResultDTO.IL)}">
         <td><b>Mapping options</b></td>
-        <td>: <%=IL%></td>
+        <td>: <span th:text="${actgResultDTO.IL}"></span></td>
       </tr>
-      <%} %>
     </table>
 
-    <%if(method.contains("P")){ %>
-    <br>
-    <div style="font-size: 3px"><b>Protein database mapping</b></div>
-    <table style="border: none">
-      <tr>
-        <td><b>Protein database</b></td>
-        <td>: <%=proteinDB%></td>
-      </tr>
-      <%if(proteinOption.length() !=0){%>
-      <tr>
-        <td><b>Mapping options</b></td>
-        <td>: <%=proteinOption%></td>
-      </tr>
-      <%} %>
+    <div th:if="${actgResultDTO.method != null and actgResultDTO.method.contains('P')}">
+      <br>
+      <div style="font-size: 16px"><b>Protein database mapping</b></div>
+      <table style="border: none">
+        <tr>
+          <td><b>Protein database</b></td>
+          <td>: <span th:text="${actgResultDTO.proteinDB}"></span></td>
+        </tr>
+        <tr th:if="${actgResultDTO.proteinOption != null and !#strings.isEmpty(actgResultDTO.proteinOption)}">
+          <td><b>Mapping options</b></td>
+          <td>: <span th:text="${actgResultDTO.proteinOption}"></span></td>
+        </tr>
+      </table>
+    </div>
 
-    </table>
-    <%} %>
-
-    <%if(method.contains("V")){ %>
-    <br>
-    <div style="font-size: 3px"><b>Variant splice graph mapping</b></div>
-    <table style="border: none">
-      <tr>
-        <td><b>Graph database</b></td>
-        <td>: <%=variantSpliceGraphDB%></td>
-      </tr>
-
-
-      <%if(VSGOption.length() != 0){%>
-
-      <tr>
-        <td><b>Mapping options</b></td>
-        <td>: <%=VSGOption%></td>
-      </tr>
-      <%} %>
-    </table>
-    <%} %>
+    <div th:if="${actgResultDTO.method != null and actgResultDTO.method.contains('V')}">
+      <br>
+      <div style="font-size: 16px"><b>Variant splice graph mapping</b></div>
+      <table style="border: none">
+        <tr>
+          <td><b>Graph database</b></td>
+          <td>: <span th:text="${actgResultDTO.variantSpliceGraphDB}"></span></td>
+        </tr>
+        <tr th:if="${actgResultDTO.VSGOption != null and !#strings.isEmpty(actgResultDTO.VSGOption)}">
+          <td><b>Mapping options</b></td>
+          <td>: <span th:text="${actgResultDTO.VSGOption}"></span></td>
+        </tr>
+      </table>
+    </div>
 
     <br>
     <br>
@@ -97,11 +87,11 @@
     <hr>
 
     <br>
-    <p style="font-size: 4px"><b>Search Summary</b></p>
-    <a href="download.jsp?index=<%=index%>" target="_blank">Download the result (zip file)</a>
-    <p style="font-size: 4px"><b>Notice</b></p>
+    <p style="font-size: 15px"><b>Search Summary</b></p>
+    <a th:href="@{${resultFileDownloadPath}}" target="_blank" style="color:#0000FF; text-decoration-line: underline">Download the result (zip file)</a>
+    <p style="font-size: 15px"><b>Notice</b></p>
     Please open the results using an Excel because basic text application cannot decord well.
-  </table>
+  </div>
 </div>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>

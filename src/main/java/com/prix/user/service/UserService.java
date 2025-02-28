@@ -1,7 +1,10 @@
 package com.prix.user.service;
 
+import com.prix.user.DTO.SearchlogDTO;
 import com.prix.user.DTO.UserDTO;
 import com.prix.user.Entity.UserEntity;
+
+import java.util.List;
 
 public interface UserService {
 

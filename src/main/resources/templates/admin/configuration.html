@@ -118,30 +118,30 @@
                                 </div>
                             </td>
                         </form>
-                        <script>
-                            //TODO: 함수 작동하게 만들기
-                            function validateEnzymeForm(event) {
-                                const enzymeName = document.getElementsByName('name')[0].value;
-                                const enzymeAN = document.getElementsByName('atNterm')[0].value;
-                                const enzymeAC = document.getElementsByName('atCterm')[0].value;
-                                if (enzymeName === '') {
-                                    alert('Please enter enzyme name');
-                                    event.preventDefault();
-                                    return false;
-                                }
-                                if (enzymeAN === '') {
-                                    alert('Please enter enzyme at Nterm');
-                                    event.preventDefault();
-                                    return false;
-                                }
-                                if (enzymeAC === '') {
-                                    alert('Please enter enzyme at Cterm');
-                                    event.preventDefault();
-                                    return false;
-                                }
-                                return true;
-                            }
-                        </script>
+<!--                        <script>-->
+<!--                            //TODO: 함수 작동하게 만들기-->
+<!--                            function validateEnzymeForm(event) {-->
+<!--                                const enzymeName = document.getElementsByName('name')[0].value;-->
+<!--                                const enzymeAN = document.getElementsByName('atNterm')[0].value;-->
+<!--                                const enzymeAC = document.getElementsByName('atCterm')[0].value;-->
+<!--                                if (enzymeName === '') {-->
+<!--                                    alert('Please enter enzyme name');-->
+<!--                                    event.preventDefault();-->
+<!--                                    return false;-->
+<!--                                }-->
+<!--                                if (enzymeAN === '') {-->
+<!--                                    alert('Please enter enzyme at Nterm');-->
+<!--                                    event.preventDefault();-->
+<!--                                    return false;-->
+<!--                                }-->
+<!--                                if (enzymeAC === '') {-->
+<!--                                    alert('Please enter enzyme at Cterm');-->
+<!--                                    event.preventDefault();-->
+<!--                                    return false;-->
+<!--                                }-->
+<!--                                return true;-->
+<!--                            }-->
+<!--                        </script>-->
                     </tr>
                 </table>
             </div>

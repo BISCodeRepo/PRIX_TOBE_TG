@@ -13,15 +13,15 @@ import java.time.LocalDate;
 @Builder
 public class SearchlogDTO {
 
-    private String userID;
+    private Integer userID;
 
     private LocalDate date;
 
     private String title;
 
-    private String msdata;
+    private Integer msdata;
 
-    private String db;
+    private Integer db;
 
     private String engine;
 
@@ -40,8 +40,8 @@ public class SearchlogDTO {
     }
 
     @Builder
-    public SearchlogDTO(String userID, LocalDate date, String title,
-                        String msdata, String db, String engine, String result){
+    public SearchlogDTO(Integer userID, LocalDate date, String title,
+                        Integer msdata, Integer db, String engine, String result){
         this.userID = userID;
         this.date = date;
         this.title = title;

@@ -16,7 +16,7 @@
         </div>
         <div class="w-[650px] p-[2px]">
             <form>
-                <table class="database" id="historyTable" style="text-align: center" width="885px">
+                <table class="database" id="historyTable" style="text-align: center; width: 885px">
                     <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
                         <td>Index</td>
                         <td>Date</td>
@@ -28,7 +28,7 @@
                     <tbody th:if="${searchlogList != null}">
                     <tr th:each="searchlog, id : ${searchlogList}">
                         <td><div style="align-items: center; color: #0000FF; font-weight: bold" class="underline">
-                            <a th:href="@{${'/' + searchlog.engine + '/result'}(file=${searchlog.result})}" target="_blank" th:text="${id.index + 1}"></a>
+                            <a th:href="@{${'/actg/result'}(index=${searchlog.result})}" target="_blank" th:text="${id.index + 1}"></a>
                         </div></td>
                         <td><div style="align-items: center" th:text="${searchlog.date}"></div></td>
                         <td><div style="align-items: center" th:text="${searchlog.title}"></div></td>

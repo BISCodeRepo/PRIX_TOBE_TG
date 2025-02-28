@@ -5,7 +5,7 @@
 <header th:replace="~{fragments/header :: header('header', false)}"></header>
 
 
-<div class="w-[990px] h-[1800px] flex flex-col text-[#4e4d4d] pl-[25px]">
+<div class="w-[990px] h-auto flex flex-col text-[#4e4d4d] pl-[25px]">
     <div class="flex flex-col flex-start w-full h-[52px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
         <div style="display: flex; flex-direction: row; align-items: flex-start">
             <div class="h-[34px] leading-[2.1]">ADMINISTRATION</div>
@@ -28,14 +28,14 @@
     </div>
 
     <div class="w-full mx-auto leading-[130%] flex flex-col gap-[10px] p-[2px]">
-        <div class="flex flex-col gap-[18px] w-[750px] h-[916px]">
+        <div class="flex flex-col gap-[18px] w-[1000px] h-[916px]">
             <div class="w-full p-[1px]">
                 <div style="margin-bottom: 3px;">
                     <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
                     <span class="font-bold">Database</span>
                 </div>
                 <form>
-                    <table class="database" id="searchlogTable" style="text-align: center">
+                    <table class="database" id="searchlogTable" style="text-align: center; width: 100%">
                         <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
                             <td>Index</td>
                             <td>User</td>
@@ -48,7 +48,7 @@
                         <tbody th:if="${searchlogList != null}">
                         <tr th:each="searchlog, id : ${searchlogList}">
                             <td><div style="align-items: center; color: #0000FF; font-weight: bold" class="underline">
-                                <a th:href="@{${'/' + searchlog.engine + '/result'}(file=${searchlog.result})}" target="_blank" th:text="${id.index + 1}"></a>
+                                <a th:href="@{${'/actg/adminResult'}(index=${searchlog.result})}" target="_blank" th:text="${id.index + 1}"></a>
                             </div></td>
                             <td><div style="align-items: center" th:text="${searchlog.userID}"></div></td>
                             <td><div style="align-items: center" th:text="${searchlog.date}"></div></td>
@@ -97,7 +97,6 @@
         height: 9px;
     }
     .database {
-        width: 100%;
         border-top: 2px solid #DADDDC;
         border-bottom: 2px solid #DADDDC;
     }
