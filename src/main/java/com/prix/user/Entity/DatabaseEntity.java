@@ -2,7 +2,6 @@ package com.prix.user.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter

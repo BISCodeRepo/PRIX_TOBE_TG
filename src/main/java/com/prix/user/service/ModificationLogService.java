@@ -9,6 +9,5 @@ import java.util.List;
 public interface ModificationLogService {
     int saveModificationLog(ModificationLogEntity modificationLogEntity);
 
-
     List<ModificationLogDTO> getModificationLogList();
 }

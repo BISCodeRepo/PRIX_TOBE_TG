@@ -33,7 +33,6 @@ public class UserSecurityService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         // 사용자 권한 설정
-//        if ("2".equals(userEntity.getLevel())) {
         if(userEntity.getLevel() == 2){
             authorities.add(new SimpleGrantedAuthority(UserRole.ADMIN.getValue()));
         } else {

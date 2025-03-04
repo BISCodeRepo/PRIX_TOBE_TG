@@ -2,10 +2,7 @@ package com.prix.livesearch.service;
 
 import com.prix.livesearch.DTO.ActgResultDTO;
 import com.prix.user.Entity.SearchlogEntity;
-import com.prix.user.Entity.UserEntity;
 import com.prix.user.Repository.SearchlogRepository;
-import com.prix.user.Repository.UserRepository;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -30,9 +27,8 @@ public class ActgResultService {
 
     private static final String PATH_ACTG_LOG = "C:/ACTG_db/ACTG_db/log/";
     private static final String PATH_ACTG_DB = "C:/ACTG_db/ACTG_db/";
-    private final UserRepository userRepository;
 
-    public ActgResultDTO processResult(Integer id, Principal principal, HttpServletRequest request, HttpSession session) {
+    public ActgResultDTO processResult(Integer id, Principal principal, HttpServletRequest request) {
 
         String userName = null;
         String title = null;
@@ -48,6 +44,7 @@ public class ActgResultService {
         String SFTFlatOutput = "SFT_peptide_" + key + ".flat";
         String SFTGFFOutput = "SFT_peptide_" + key + ".gff";
 
+        // 파일 배열 초기화
         String[] files = new String[7];
         files[0] = SAVOutput;
         files[1] = NOROutput;
@@ -57,13 +54,14 @@ public class ActgResultService {
         files[5] = SFTFlatOutput;
         files[6] = SFTGFFOutput;
 
-        //TODO: LocalDate인지 Date인지 결정
         LocalDate date = null;
 
+        // index 값을 사용하여 searchlogEntity 가져옴
         Optional<SearchlogEntity> searchlogEntity = Optional.empty();
         if(index != null){
             searchlogEntity = searchlogRepository.getSearchLog(index);
         }
+        // index 값에 따른 searchlogEntity가 존재한다면 title, userId, date 값 가져옴
         if (searchlogEntity.isPresent()) {
             title = searchlogEntity.get().getTitle();
             Integer userId = searchlogEntity.get().getUserId();
@@ -71,8 +69,6 @@ public class ActgResultService {
                 userName = "anonymous";
             }
             else {
-//                Optional<UserEntity> userEntity = userRepository.findById(userId);
-//                userName = userEntity.get().getUserID();
                 userName = principal.getName();
             }
             date = searchlogEntity.get().getDate();
@@ -92,6 +88,7 @@ public class ActgResultService {
         String VSGOption = "";
 
         try{
+            // xml 파일 읽어와서 필요한 정보 추출
             FileReader FR = new FileReader(PATH_ACTG_LOG + xmlPath);
             BufferedReader BR = new BufferedReader(FR);
             logger.info("path: {}", PATH_ACTG_LOG + xmlPath);
@@ -193,6 +190,7 @@ public class ActgResultService {
         }
 
         try{
+            // .zip 파일 생성해서 결과 파일들을 압축해서 다운로드 받을 수 있도록 함
             byte[] buf = new byte[1024];
             String zip = PATH_ACTG_LOG + index + ".zip";
 
@@ -220,6 +218,7 @@ public class ActgResultService {
             logger.error("Error occurred while creating ZIP file: {}", e.getMessage(), e);
         }
 
+        // ActgResultDTO 객체를 생성하여 반환
         return ActgResultDTO.builder().date(date).userName(userName).title(title).method(method).IL(IL).proteinDB(proteinDB)
                 .proteinOption(proteinOption).VSGOption(VSGOption).variantSpliceGraphDB(variantSpliceGraphDB).index(index)
                 .build();

@@ -1,9 +1,7 @@
 package com.prix.user.service;
 
-import com.prix.livesearch.DTO.ActgResultDTO;
 import com.prix.user.DTO.SearchlogDTO;
 import com.prix.user.Entity.SearchlogEntity;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.util.List;

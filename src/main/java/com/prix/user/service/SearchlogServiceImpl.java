@@ -1,20 +1,13 @@
 package com.prix.user.service;
 
-import com.prix.livesearch.DTO.ActgResultDTO;
-import com.prix.livesearch.mapper.ActgSearchlogRepository;
 import com.prix.user.Entity.SearchlogEntity;
 import com.prix.user.DTO.SearchlogDTO;
 
-import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import com.prix.user.Entity.UserEntity;
 import com.prix.user.Repository.SearchlogRepository;
-
-import com.prix.user.Repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,8 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class SearchlogServiceImpl implements SearchlogService{
 
     private final SearchlogRepository searchlogRepository;
-    private final UserRepository userRepository;
-    private final ActgSearchlogRepository actgSearchlogRepository;
 
     @Transactional
     public int saveSearchlog(SearchlogEntity searchlogEntity) {

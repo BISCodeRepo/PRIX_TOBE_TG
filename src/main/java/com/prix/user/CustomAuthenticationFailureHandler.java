@@ -22,8 +22,6 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
         } else {
             errorMessage = "알 수 없는 이유로 로그인에 실패했습니다.";
         }
-        // 로그인 실패 시 오류 메시지를 로그로 출력
-        //System.out.println("Login error: " + exception.getMessage());
         // 오류 메시지를 URL 인코딩
         errorMessage = URLEncoder.encode(exception.getMessage(), StandardCharsets.UTF_8.toString());
         // 로그인 페이지로 리다이렉트하고, 오류 메시지를 쿼리 파라미터로 추가

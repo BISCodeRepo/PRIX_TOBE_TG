@@ -28,7 +28,6 @@
     </div>
 
 
-
     <div class="w-full mx-auto leading-[130%] flex flex-col gap-[10px] p-[2px]">
         <div class="flex flex-col gap-[18px] w-[750px] h-auto">
             <div class="w-full p-[1px]">
@@ -76,7 +75,6 @@
             </div>
 
 
-
             <div class="w-full p-[1px]">
                 <div style="margin-bottom: 3px;">
                     <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
@@ -118,34 +116,9 @@
                                 </div>
                             </td>
                         </form>
-<!--                        <script>-->
-<!--                            //TODO: 함수 작동하게 만들기-->
-<!--                            function validateEnzymeForm(event) {-->
-<!--                                const enzymeName = document.getElementsByName('name')[0].value;-->
-<!--                                const enzymeAN = document.getElementsByName('atNterm')[0].value;-->
-<!--                                const enzymeAC = document.getElementsByName('atCterm')[0].value;-->
-<!--                                if (enzymeName === '') {-->
-<!--                                    alert('Please enter enzyme name');-->
-<!--                                    event.preventDefault();-->
-<!--                                    return false;-->
-<!--                                }-->
-<!--                                if (enzymeAN === '') {-->
-<!--                                    alert('Please enter enzyme at Nterm');-->
-<!--                                    event.preventDefault();-->
-<!--                                    return false;-->
-<!--                                }-->
-<!--                                if (enzymeAC === '') {-->
-<!--                                    alert('Please enter enzyme at Cterm');-->
-<!--                                    event.preventDefault();-->
-<!--                                    return false;-->
-<!--                                }-->
-<!--                                return true;-->
-<!--                            }-->
-<!--                        </script>-->
                     </tr>
                 </table>
             </div>
-
 
 
             <div class="w-full p-[1px]">
@@ -188,7 +161,6 @@
                     </tr>
                 </table>
             </div>
-
 
 
             <div class="w-full p-[1px]">
@@ -237,43 +209,8 @@
                             <td><div><input style="border: 1px solid" name="softwareUpdate" type="submit" class="button" value="update"/></div></td>
                         </form>
                     </tr>
-                    <script>
-                        function doSoftware(event) {
-                            const softwareName = document.getElementById('softwareName').value;
-                            const softwareDate = document.getElementById('softwareDate').value;
-                            const softwareVersion = document.getElementById('softwareVersion').value;
-                            const softwareFile = document.getElementById('softwareFile').value;
-                            if (softwareName === '') {
-                                alert('Please select software name');
-                                event.preventDefault();
-                                return false;
-                            }
-                            if (softwareDate === '') {
-                                alert('Please enter software release date');
-                                event.preventDefault();
-                                return false;
-                            }
-                            if (softwareVersion === '') {
-                                alert('Please enter software version');
-                                event.preventDefault();
-                                return false;
-                            }
-                            if (softwareFile === '') {
-                                alert('Please select software file');
-                                event.preventDefault();
-                                return false;
-                            }
-                            if(softwareFile.toLowerCase().endsWith(".zip") === false){
-                                alert('Please select a zip file');
-                                event.preventDefault();
-                                return false;
-                            }
-                            return true;
-                        }
-                    </script>
                 </table>
             </div>
-
 
 
             <div class="w-full p-[1px]">

@@ -39,7 +39,7 @@ public class LiveSearchController {
 
     // actg process 후 result 페이지 이동 시
     @GetMapping("/actg/result")
-    public String showResultPage(Principal principal, Model model, HttpServletRequest request, HttpSession session) {
+    public String showResultPage(Principal principal, Model model, HttpServletRequest request) {
         // 로그인 x -> id = 4(anonymous)
         Integer id;
         if (principal != null) {
@@ -49,7 +49,7 @@ public class LiveSearchController {
             id = 4;
         }
 
-        ActgResultDTO actgResultDTO = actgResultService.processResult(id, principal, request, session);
+        ActgResultDTO actgResultDTO = actgResultService.processResult(id, principal, request);
         String fileIndex = actgResultDTO.getIndex();
         String resultFileDownloadPath = "/actg/download?index=" + fileIndex;
 

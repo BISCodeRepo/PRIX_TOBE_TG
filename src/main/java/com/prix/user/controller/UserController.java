@@ -31,6 +31,7 @@ public class UserController {
         return "header/registration";
     }
 
+    // 회원가입
     @PostMapping("/registration")
     public String registration(@Valid UserDTO userDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -54,7 +55,6 @@ public class UserController {
             bindingResult.reject("registrationFailed", e.getMessage());
             return "header/registration";
         }
-
         return "redirect:/header/login";
     }
 
@@ -66,14 +66,13 @@ public class UserController {
 
     // 로그아웃 서비스 호출
     @PostMapping("/withdrawl")
-    public String userWithdrawl(Model model, Authentication authentication, HttpServletRequest request) {
+    public String userWithdrawl(Authentication authentication, HttpServletRequest request) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         userService.withdrawl(userDetails.getUsername());
         try {
             request.logout();
         } catch (Exception e) {
             e.printStackTrace();
-            // 로그아웃 처리 중 오류가 발생한 경우 처리 로직
         }
         return "redirect:/";
     }
@@ -96,8 +95,6 @@ public class UserController {
             // 로그인 실패 처리
             e.printStackTrace();
             return "header/adminLogin";
-
         }
     }
-
 }

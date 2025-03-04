@@ -1,7 +1,6 @@
 package com.prix.user.Repository;
 
 import com.prix.user.Entity.SearchlogEntity;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -18,6 +17,7 @@ public interface SearchlogRepository extends JpaRepository<SearchlogEntity, Inte
 
     Optional<SearchlogEntity> findByResult(String index);
 
+    // SearchlogEntity에 데이터 저장
     @Modifying
     @Query("INSERT INTO SearchlogEntity (userId, title, date, msfile, db, result, engine) VALUES (:user_id, :title, CURRENT_DATE, :msfile, :db, :result, :engine)")
     void insert(@Param("user_id") Integer user_id, @Param("title") String title, @Param("msfile") Integer msfile, @Param("db") Integer db, @Param("result") String result, @Param("engine") String engine);
@@ -30,11 +30,11 @@ public interface SearchlogRepository extends JpaRepository<SearchlogEntity, Inte
     @Query("SELECT s.userId FROM SearchlogEntity s WHERE s.result = :result")
     Integer findUserIDByResult(@Param("result") String result);
 
+    // result(index) 값을 입력받아 title 출력
     @Query("SELECT s.title FROM SearchlogEntity s WHERE s.result = :result")
     String findTitleByResult(@Param("result") String result);
 
+    // result(index) 값을 입력받아 date 출력
     @Query("SELECT s.date FROM SearchlogEntity s WHERE s.result = :result")
     LocalDate findDateByResult(@Param("result") String result);
-//    @Query("SELECT u.userID FROM UserEntity u WHERE u.id = (SELECT s.userID FROM SearchlogEntity s WHERE s.userID = :userID)")
-//    String findUserIDBySearchlogUserID(@Param("userID") Integer userID);
 }

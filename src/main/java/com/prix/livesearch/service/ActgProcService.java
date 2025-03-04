@@ -209,7 +209,7 @@ public class ActgProcService {
                             break;
                     }
                 }
-
+                // xml 파일 작성
                 try {
                     FileReader FR = new FileReader(dbDir + "template.xml");
                     BufferedReader BR = new BufferedReader(FR);
@@ -246,11 +246,13 @@ public class ActgProcService {
                 }
             }
 
+            // 실패하지 않은 경우 ACTG_Search.jar 파일 실행
             if (!failed) {
                 Runtime runtime = Runtime.getRuntime();
                 String jarPath = Path_Prix + "src/main/resources/templates/livesearch/ACTG/ACTG_ver1.10.jar";
 
-//                String[] command = {"cmd.exe", "/c", "java -Xss2M -Xmx8G -jar " + jarPath + " " + xmlPath + " " + logDir + processPath + " > " + logDir + "output.log 2> " + logDir + "error.log" };
+                // jar 파일은 logDir에 있는 xml 파일과 프로세스 파일을 인수로 받아 작업 수행
+                // -Xss2M로 각 스레드 스택 크기 2mb로 설정, -Xmx8G로 힙 메모리 최대 크기 8GB로 설정
                 String[] command = {"cmd.exe", "/c", "java -Xss2M -Xmx8G -jar " + jarPath + " " + xmlPath + " " + logDir + processPath};
                 logger.info("Executing command: {}", String.join(" ", command));
 
@@ -275,6 +277,7 @@ public class ActgProcService {
                 }
             }
         } else {
+            // 'execute' 매개변수가 있는 경우 프로세스 파일 읽기
             FileInputStream fis = new FileInputStream(processPath);
             StringWriter writer = new StringWriter();
             StringWriter allWriter = new StringWriter();
@@ -284,6 +287,7 @@ public class ActgProcService {
                 if (c == '\n') {
                     line = writer.toString();
 
+                    // 프로세스 출력에서 오류 또는 완료 확인
                     if (line.indexOf("ERROR") >= 0 || line.indexOf("Exception") >= 0) {
                         failed = true;
                         logger.info("failed = true");
@@ -291,6 +295,7 @@ public class ActgProcService {
                         finished = true;
                     }
 
+                    // 출력에서 디렉토리 경로 대체
                     if (line.contains(logDir)) {
                         line = line.replace(logDir, "");
                     }
@@ -316,6 +321,7 @@ public class ActgProcService {
             fis.close();
             output = allWriter.toString();
 
+            // 프로세스가 완료된 경우 검색 로그 업데이트 및 결과 반환
             if (finished) {
                 String prixIndex = processPath.replace("process_" + id + "_", "");
                 prixIndex = prixIndex.replace(logDir, "");

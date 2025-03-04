@@ -3,7 +3,6 @@ package com.prix.user.controller;
 import com.prix.user.DTO.*;
 import com.prix.user.Entity.DatabaseEntity;
 import com.prix.user.Entity.EnzymesEntity;
-import com.prix.user.Entity.SoftwareMsgEntity;
 import com.prix.user.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +20,7 @@ public class ConfigurationController {
     private final SoftwareLogService softwareLogService;
     private final SoftwareMsgService softwareMsgService;
 
+    // admin configuration에서 테이블 수정 시
     @PostMapping("/configuration/post")
     public String configurationPost(@RequestParam("table") String table,
                                     DatabaseDTO databaseDTO, EnzymeDTO enzymeDTO, ModificationLogDTO modificationLogDTO,
@@ -42,6 +42,7 @@ public class ConfigurationController {
         return "redirect:/admin/configuration";
     }
 
+    // admin/configuration.html로 이동 시
     @GetMapping("/admin/configuration")
     public String list(Model model) {
         List<DatabaseDTO> databaseDTOList = databaseService.getDatabaseList();
@@ -62,11 +63,6 @@ public class ConfigurationController {
         model.addAttribute("signMessage", softwareMsgService.returnSignMessage());
 
         return "admin/configuration";
-    }
-
-    @PostMapping("/admin/configurationList")
-    public String configurationList() {
-        return "redirect:/admin/configuration";
     }
 
     //database table 값 수정/삭제
@@ -93,6 +89,7 @@ public class ConfigurationController {
         return "redirect:/admin/configuration";
     }
 
+    // softwareMsg table 값 수정
     @PostMapping("/admin/configuration/softwareMsgControl")
     public String softwareMsgControl(@RequestParam("modaMessage") String modaMessage,
                                      @RequestParam("dbondMessage") String dbondMessage,
@@ -100,7 +97,6 @@ public class ConfigurationController {
                                      @RequestParam("signMessage") String signMessage) {
 
         softwareMsgService.updateSoftwareMsg(modaMessage, dbondMessage, searchMessage, signMessage);
-
         return "redirect:/admin/configuration";
     }
 
