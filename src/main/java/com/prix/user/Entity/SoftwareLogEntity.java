@@ -21,7 +21,7 @@ public class SoftwareLogEntity {
     @Column(length = 255, nullable = false)
     private String file;
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 16, nullable = false)
     private String name;
 
     @Column(length = 16, nullable = false)

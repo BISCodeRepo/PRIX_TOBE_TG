@@ -16,7 +16,7 @@ public interface SearchlogService {
 
     List<SearchlogDTO> getSearchlogList();
 
-    List<SearchlogDTO> findByUserID(Integer userID);
+    List<SearchlogDTO> findByUserID(Integer userId);
 
     Integer getUserIDByResult(String result);
 

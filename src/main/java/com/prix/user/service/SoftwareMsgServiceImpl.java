@@ -46,7 +46,7 @@ public class SoftwareMsgServiceImpl implements SoftwareMsgService{
     }
 
     public String returnModaMessage(){
-        String sql = "SELECT message FROM px_software_msg WHERE id = 'moda'";
+        String sql = "SELECT message FROM px_software_msg WHERE id = 'mode'";
         return jdbcTemplate.queryForObject(sql, String.class);
     }
 

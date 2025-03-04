@@ -14,7 +14,7 @@ public class EnzymesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "user_id")
     private Integer userID;
 
     @Column(length = 32, nullable = false)

@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
-    @NotEmpty(message = "Please input user id.")
-    @Size(min = 2, max = 16, message = "User ID must be between 2 and 16 characters.")
-    private String userID;
+    @NotEmpty(message = "Please input user name.")
+    @Size(min = 2, max = 16, message = "User name must be between 2 and 16 characters.")
+    private String name;
 
     @NotEmpty(message = "Please input password.")
     private String password;

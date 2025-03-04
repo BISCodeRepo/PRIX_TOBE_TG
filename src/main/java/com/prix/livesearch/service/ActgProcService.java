@@ -1,7 +1,6 @@
 package com.prix.livesearch.service;
 
 import com.prix.livesearch.DTO.ActgProcessDTO;
-import com.prix.livesearch.mapper.ActgSearchlogRepository;
 import com.prix.user.Repository.SearchlogRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,16 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
 import java.time.Instant;
 import java.util.*;
-
 
 
 @Service
@@ -33,11 +26,9 @@ public class ActgProcService {
 
     private static final String PATH_ACTG_LOG = "C:/ACTG_db/ACTG_db/log/";
     private static final String PATH_ACTG_DB = "C:/ACTG_db/ACTG_db/";
-    private static final String PATH_ACTG_SEARCH = "/path/to/actg/search/";
     private static final String Path_Prix = "C:/PRIX_TOBE_TG/";
 
     public ActgProcessDTO process(Integer id, HttpServletRequest request, Map<String, String> paramsMap, MultipartFile[] files) throws IOException {
-        ActgProcessDTO result = new ActgProcessDTO();
 
         String user = "";
         String title = request.getParameter("title");
@@ -78,11 +69,11 @@ public class ActgProcService {
 
         String processPath = logDir + processName;
 
+        // ActgProcService가 처음으로 실행되어 execute의 값이 null인 경우
         if (request.getParameter("execute") == null) {
             Instant instant = Instant.now();
             long date = instant.toEpochMilli();
             String key = id + "_" + date;
-            // TODO: processPath의 logDir 빼야 할 수도. 나중에 확인하기
             processPath = "process_" + key + ".proc";
             processName = processPath;
             String xmlPath = logDir + "param_" + key + ".xml";
@@ -94,6 +85,7 @@ public class ActgProcService {
             String mutationFilePath = "";
             String outputPath = logDir;
 
+            // paramsMap과 files를 하나의 리스트로 결합
             List<Object> combinedList = new ArrayList<>();
             for (Map.Entry<String, String> entry : paramsMap.entrySet()) {
                 combinedList.add(entry);
@@ -102,6 +94,7 @@ public class ActgProcService {
 
             for (Object obj : combinedList) {
                 String name = "";
+                // combinedList에서 obj가 paramsMap인 경우
                 if (obj instanceof Map.Entry<?, ?>) {
                     Map.Entry<?, ?> entry = (Map.Entry<?, ?>) obj;
                     name = (String) entry.getKey();
@@ -150,7 +143,8 @@ public class ActgProcService {
                         default:
                             break;
                     }
-                } else if (obj instanceof MultipartFile) {
+                } // combinedList에서 obj가 files인 경우
+                else if (obj instanceof MultipartFile) {
                     MultipartFile file = (MultipartFile) obj;
                     name = file.getName();
 
@@ -159,18 +153,21 @@ public class ActgProcService {
                             peptideFile = "peptide_" + key + ".txt";
                             peptideFilePath = logDir + peptideFile;
 
+                            // peptideFile 크기 제한
                             if (file.getSize() > 1024 * 100) {
                                 failed = true;
                                 output = "The size of peptide list should not exceed 1KB.";
                                 break;
                             }
 
-                            if (file.getOriginalFilename().length() > 0) {
+                            if (file.getOriginalFilename().length() > 0) { // 파일 이름이 존재한다면
                                 try {
                                     FileOutputStream fos = new FileOutputStream(peptideFilePath);
                                     OutputStreamWriter writer = new OutputStreamWriter(fos, "UTF-8");
                                     InputStream is = file.getInputStream();
+                                    // 현재 읽을 수 있는 버퍼가 존재한다면
                                     while (is.available() > 0)
+                                        // is를 통해서 읽은 문자를 writer의 write 함수를 통해 출력
                                         writer.write(is.read());
                                     writer.close();
                                     fos.close();
@@ -184,18 +181,21 @@ public class ActgProcService {
                             mutationFile = "mutation_" + key + ".txt";
                             mutationFilePath = logDir + mutationFile;
 
+                            // mutationFile 크기 제한
                             if (file.getSize() > 20971520) {
                                 failed = true;
                                 output = "The size of VCF should not exceed 20MB.";
                                 break;
                             }
 
-                            if (file.getOriginalFilename().length() > 0) {
+                            if (file.getOriginalFilename().length() > 0) { // 파일 이름이 존재한다면
                                 try {
                                     FileOutputStream fos = new FileOutputStream(mutationFilePath);
                                     OutputStreamWriter writer = new OutputStreamWriter(fos, "UTF-8");
                                     InputStream is = file.getInputStream();
+                                    // 현재 읽을 수 있는 버퍼가 존재한다면
                                     while (is.available() > 0)
+                                        // is를 통해서 읽은 문자를 writer의 write 함수를 통해 출력
                                         writer.write(is.read());
                                     writer.close();
                                     fos.close();

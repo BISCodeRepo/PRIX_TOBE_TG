@@ -17,8 +17,5 @@ public class ActgProcessDTO {
     private String processName;
     private String prixIndex;
     private String title;
-//    private String index;
-//    private String databaseType;
-//    private String mappingMethod;
 }
 

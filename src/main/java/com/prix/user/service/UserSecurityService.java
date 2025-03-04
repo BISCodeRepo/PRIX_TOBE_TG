@@ -22,9 +22,9 @@ public class UserSecurityService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String userID) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
         // userID로 사용자 정보를 조회
-        Optional<UserEntity> _userEntity = this.userRepository.findByUserID(userID);
+        Optional<UserEntity> _userEntity = this.userRepository.findByName(name);
         if (_userEntity.isEmpty()) {
             throw new UsernameNotFoundException("사용자를 찾을수 없습니다.");
         }
@@ -33,12 +33,12 @@ public class UserSecurityService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         // 사용자 권한 설정
-        if ("ADMIN".equals(userEntity.getRole())) {
+//        if ("2".equals(userEntity.getLevel())) {
+        if(userEntity.getLevel() == 2){
             authorities.add(new SimpleGrantedAuthority(UserRole.ADMIN.getValue()));
         } else {
             authorities.add(new SimpleGrantedAuthority(UserRole.USER.getValue()));
         }
-
-        return new User(userEntity.getUserID(), userEntity.getPassword(), authorities);
+        return new User(userEntity.getName(), userEntity.getPassword(), authorities);
     }
 }

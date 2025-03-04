@@ -47,10 +47,10 @@ public class SearchlogServiceImpl implements SearchlogService{
 
         for(SearchlogEntity searchlogEntity : searchlogList) {
             SearchlogDTO searchlogDTO = SearchlogDTO.builder()
-                    .userID(searchlogEntity.getUserID())
+                    .userId(searchlogEntity.getUserId())
                     .title(searchlogEntity.getTitle())
                     .date(searchlogEntity.getDate())
-                    .msdata(searchlogEntity.getMsdata())
+                    .msfile(searchlogEntity.getMsfile())
                     .db(searchlogEntity.getDb())
                     .result(searchlogEntity.getResult())
                     .engine(searchlogEntity.getEngine())
@@ -62,16 +62,16 @@ public class SearchlogServiceImpl implements SearchlogService{
 
     @Override
     @Transactional
-    public List<SearchlogDTO> findByUserID(Integer userID) {
-        List<SearchlogEntity> searchlogList = searchlogRepository.findByUserID(userID);
+    public List<SearchlogDTO> findByUserID(Integer userId) {
+        List<SearchlogEntity> searchlogList = searchlogRepository.findByUserId(userId);
         List<SearchlogDTO> searchlogDtoList = new ArrayList<>();
 
         for(SearchlogEntity searchlogEntity : searchlogList) {
             SearchlogDTO searchlogDTO = SearchlogDTO.builder()
-                    .userID(searchlogEntity.getUserID())
+                    .userId(searchlogEntity.getUserId())
                     .title(searchlogEntity.getTitle())
                     .date(searchlogEntity.getDate())
-                    .msdata(searchlogEntity.getMsdata())
+                    .msfile(searchlogEntity.getMsfile())
                     .db(searchlogEntity.getDb())
                     .result(searchlogEntity.getResult())
                     .engine(searchlogEntity.getEngine())

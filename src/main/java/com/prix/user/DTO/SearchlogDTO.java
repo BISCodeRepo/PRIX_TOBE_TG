@@ -13,13 +13,13 @@ import java.time.LocalDate;
 @Builder
 public class SearchlogDTO {
 
-    private Integer userID;
+    private Integer userId;
 
     private LocalDate date;
 
     private String title;
 
-    private Integer msdata;
+    private Integer msfile;
 
     private Integer db;
 
@@ -29,9 +29,9 @@ public class SearchlogDTO {
 
     public SearchlogEntity toEntity(){
         SearchlogEntity build = SearchlogEntity.builder()
-                .userID(userID)
+                .userId(userId)
                 .title(title)
-                .msdata(msdata)
+                .msfile(msfile)
                 .db(db)
                 .engine(engine)
                 .result(result)
@@ -40,12 +40,12 @@ public class SearchlogDTO {
     }
 
     @Builder
-    public SearchlogDTO(Integer userID, LocalDate date, String title,
-                        Integer msdata, Integer db, String engine, String result){
-        this.userID = userID;
+    public SearchlogDTO(Integer userId, LocalDate date, String title,
+                        Integer msfile, Integer db, String engine, String result){
+        this.userId = userId;
         this.date = date;
         this.title = title;
-        this.msdata = msdata;
+        this.msfile = msfile;
         this.db = db;
         this.engine = engine;
         this.result = result;

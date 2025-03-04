@@ -23,12 +23,16 @@ public class UserEntity {
 
     //logger.info("Saved UserEntity: {}", savedUser);를 위해 추가
     public String toString() {
-        return "UserEntity{id=" + this.getId() + ", userID=" + this.getUserID() + '\'' + "}";
+        return "UserEntity{id=" + this.getId() + ", userID=" + this.getName() + '\'' + "}";
     }
+
+    private String name;
 
     @Column(unique = true)
     private String email;
 
-    private String role; // 사용자 권한 정보
+    private String affiliation;
+
+    private Integer level; // 사용자 권한 정보
 
 }

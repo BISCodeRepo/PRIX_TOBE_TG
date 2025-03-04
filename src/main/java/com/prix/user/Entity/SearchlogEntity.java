@@ -19,8 +19,8 @@ public class SearchlogEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
-    private Integer userID;
+    @Column(nullable = false, name = "user_id")
+    private Integer userId;
 
     @Column(updatable = false)
     private LocalDate date;
@@ -28,7 +28,7 @@ public class SearchlogEntity {
     @Column(length = 100)
     private String title;
 
-    private Integer msdata;
+    private Integer msfile;
 
     private Integer db;
 
@@ -37,12 +37,12 @@ public class SearchlogEntity {
     private String result;
 
     @Builder
-    public SearchlogEntity(int id, Integer userID, String title, Integer  msdata,
+    public SearchlogEntity(int id, Integer userId, String title, Integer  msfile,
                            Integer db,String engine, String result){
         this.id = id;
-        this.userID = userID;
+        this.userId = userId;
         this.title = title;
-        this.msdata = msdata;
+        this.msfile = msfile;
         this.db = db;
         this.engine = engine;
         this.result = result;

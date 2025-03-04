@@ -19,7 +19,6 @@ public class HeaderController {
         this.passwordEncoder = passwordEncoder;
     }
 
-
     @GetMapping("/header/login")
     public String login() {
         return "header/login";

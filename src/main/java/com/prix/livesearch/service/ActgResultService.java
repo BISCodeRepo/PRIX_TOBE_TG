@@ -66,7 +66,7 @@ public class ActgResultService {
         }
         if (searchlogEntity.isPresent()) {
             title = searchlogEntity.get().getTitle();
-            Integer userId = searchlogEntity.get().getUserID();
+            Integer userId = searchlogEntity.get().getUserId();
             if (userId == 4) {
                 userName = "anonymous";
             }

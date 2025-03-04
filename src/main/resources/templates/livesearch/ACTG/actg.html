@@ -20,7 +20,7 @@
         <div style="width: 90%">
             <form name="form" action="/actg/actgprocess" method="post" enctype="multipart/form-data" onsubmit="return submitForm()">
                 <input type="hidden" name="engine" value="ACTG">
-                <input type="hidden" name="msdata" value="0">
+                <input type="hidden" name="msfile" value="0">
                 <input type="hidden" name="database" value="0">
                 <input type="hidden" name="result" value="0">
                 <table class="actgtable">
@@ -131,7 +131,7 @@
                         </td>
                         <td class="tableright">
                             <div style="pointer-events: none; float: left">
-                                <input type="checkbox" style="pointer-events: auto; margin: 2px 3px">
+                                <input type="checkbox" style="pointer-events: auto; margin: 2px 3px" value="yes" name="IL">
                             </div>
                         </td>
                     </tr>
@@ -157,7 +157,7 @@
                         </td>
                         <td class="tableright">
                             <div style="pointer-events: none; float: left">
-                                <input type="checkbox" style="pointer-events: auto; margin: 2px 3px">
+                                <input type="checkbox" style="pointer-events: auto; margin: 2px 3px" value="yes" name="SAV">
                             </div>
                         </td>
                     </tr>
@@ -186,7 +186,7 @@
                         </td>
                         <td class="tableright">
                             <div style="pointer-events: none; float: left">
-                                <input type="checkbox" id="mutationFilecheckbox" style="pointer-events: auto; margin: 2px 3px">
+                                <input type="checkbox" id="mutationFilecheckbox" name="mutation" value="yes" style="pointer-events: auto; margin: 2px 3px">
                             </div>
                             <div id="mutationFileInputContainer"></div>
                         </td>
@@ -236,7 +236,7 @@
                         </td>
                         <td class="tableright">
                             <div style="pointer-events: none; float: left">
-                                <input type="checkbox" style="pointer-events: auto; margin: 2px 3px">
+                                <input type="checkbox" name="exonSkipping" value="yes" style="pointer-events: auto; margin: 2px 3px">
                             </div>
                         </td>
                     </tr>
@@ -246,7 +246,7 @@
                         </td>
                         <td class="tableright">
                             <div style="pointer-events: none; float: left">
-                                <input type="checkbox" style="pointer-events: auto; margin: 2px 3px">
+                                <input type="checkbox" name="altAD" value="yes" style="pointer-events: auto; margin: 2px 3px">
                             </div>
                         </td>
                     </tr>
@@ -256,7 +256,7 @@
                         </td>
                         <td class="tableright">
                             <div style="pointer-events: none; float: left">
-                                <input type="checkbox" style="pointer-events: auto; margin: 2px 3px">
+                                <input type="checkbox" name="intron" value="yes" style="pointer-events: auto; margin: 2px 3px">
                                 (it takes about 10 minutes)
                             </div>
                         </td>
@@ -303,56 +303,12 @@
 
                             //Submit 버튼을 눌렀을 때
                             function submitForm() {
-                                var form = document.forms['form'];
-
                                 // peptideList는 필수 업로드 요소
                                 var peptideList = document.getElementById('peptideFile');
                                 if (peptideList.files.length === 0) {
                                     alert('Please upload a peptide list.');
                                     return false;
                                 }
-
-                                // form 제출 시 proteinDB의 value 변경
-                                // var proteinDBSelect = document.getElementById('proteinDB');
-                                // var selectedValue = proteinDBSelect.value;
-                                // console.log("proteinDB: " + selectedValue)
-                                // var modifiedValue;
-                                // switch (selectedValue) {
-                                //     case "Swissprot 2016-07":
-                                //         modifiedValue = "swissprot_2016_07.fasta";
-                                //         break;
-                                //     case "Uniprot 2016-07":
-                                //         modifiedValue = "uniprot_2016_07.fasta";
-                                //         break;
-                                //     default:
-                                //         modifiedValue = selectedValue;
-                                // }
-                                //
-                                // console.log("proteinDB: " + modifiedValue)
-                                // proteinDBSelect.value = modifiedValue;
-                                // console.log("proteinDB: " + proteinDBSelect.value)
-
-                                // form 제출 시 variantSpliceGraphDB의 value 변경
-                                // var variantSpliceGraphDBSelect = document.getElementById('variantSpliceGraphDB');
-                                // selectedValue = variantSpliceGraphDBSelect.value;
-                                // switch (selectedValue) {
-                                //     case "GRCh38, Ensembl Release 83":
-                                //         modifiedValue = "GRCh38.Ensembl.83.ser";
-                                //         break;
-                                //     case "GRCh37, Ensembl Release 78":
-                                //         modifiedValue = "GRCh37.Ensembl.78.ser";
-                                //         break;
-                                //     case "GRCh37, Ensembl Release 75":
-                                //         modifiedValue = "GRCh37.Ensembl.75.ser";
-                                //         break;
-                                //     case "GRCh37, Ensembl Release 71":
-                                //         modifiedValue = "GRCh37.Ensembl.71.ser";
-                                //         break;
-                                //     default:
-                                //         modifiedValue = selectedValue;
-                                // }
-                                // variantSpliceGraphDBSelect.value = modifiedValue;
-
                                 return true;
                             }
                         </script>

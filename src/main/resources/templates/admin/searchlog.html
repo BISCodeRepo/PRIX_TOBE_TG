@@ -28,7 +28,7 @@
     </div>
 
     <div class="w-full mx-auto leading-[130%] flex flex-col gap-[10px] p-[2px]">
-        <div class="flex flex-col gap-[18px] w-[1000px] h-[916px]">
+        <div class="flex flex-col gap-[18px] w-[1000px] h-auto">
             <div class="w-full p-[1px]">
                 <div style="margin-bottom: 3px;">
                     <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
@@ -50,10 +50,10 @@
                             <td><div style="align-items: center; color: #0000FF; font-weight: bold" class="underline">
                                 <a th:href="@{${'/actg/adminResult'}(index=${searchlog.result})}" target="_blank" th:text="${id.index + 1}"></a>
                             </div></td>
-                            <td><div style="align-items: center" th:text="${searchlog.userID}"></div></td>
+                            <td><div style="align-items: center" th:text="${searchlog.userId}"></div></td>
                             <td><div style="align-items: center" th:text="${searchlog.date}"></div></td>
                             <td><div style="align-items: center" th:text="${searchlog.title}"></div></td>
-                            <td><div style="align-items: center" th:text="${searchlog.msdata}"></div></td>
+                            <td><div style="align-items: center" th:text="${searchlog.msfile}"></div></td>
                             <td><div style="align-items: center" th:text="${searchlog.db}"></div></td>
                             <td><div style="align-items: center" th:text="${searchlog.engine}"></div></td>
                         </tr>

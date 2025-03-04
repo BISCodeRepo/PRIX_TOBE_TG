@@ -23,18 +23,20 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserEntity register(UserDTO userDTO) {
         // 사용자 이름과 비밀번호의 유효성 검사
-        if (userDTO.getUserID() == null || userDTO.getUserID().isEmpty() || userDTO.getPassword() == null || userDTO.getPassword().isEmpty()) {
-            throw new IllegalArgumentException("UserID and password must not be empty");
+        if (userDTO.getName() == null || userDTO.getName().isEmpty() || userDTO.getPassword() == null || userDTO.getPassword().isEmpty()) {
+            throw new IllegalArgumentException("UserName and password must not be empty");
         }
         // 동일한 사용자 이름을 가진 사용자가 이미 있는지 확인
-        Optional<UserEntity> existingUser = userRepository.findByUserID(userDTO.getUserID());
+        Optional<UserEntity> existingUser = userRepository.findByName(userDTO.getName());
         if (existingUser.isPresent()) {
-            throw new IllegalArgumentException("UserID already exists");
+            throw new IllegalArgumentException("UserName already exists");
         }
 
         // 사용자 정보 저장
         UserEntity user = UserEntity.builder()
-                .userID(userDTO.getUserID())
+                .name(userDTO.getName())
+                .email(userDTO.getName())
+                .level(1)
                 .password(passwordEncoder.encode(userDTO.getPassword()))
                 .build();
 
@@ -46,8 +48,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public boolean withdrawl (String userID) {
-        Optional<UserEntity> userEntity = userRepository.findByUserID(userID);
+    public boolean withdrawl (String name) {
+        Optional<UserEntity> userEntity = userRepository.findByName(name);
         userEntity.ifPresent(userRepository::delete);
         return true;
     }
@@ -57,7 +59,8 @@ public class UserServiceImpl implements UserService{
         Optional<UserEntity> userEntity = userRepository.findByEmail(email);
         if (userEntity.isPresent()) {
             UserEntity user = userEntity.get();
-            if (passwordEncoder.matches(password, user.getPassword()) && user.getRole().equals("ADMIN")) {
+//            if (passwordEncoder.matches(password, user.getPassword()) && user.getLevel().equals("ADMIN")) {
+            if (passwordEncoder.matches(password, user.getPassword()) && user.getLevel() == 2) {
                 return true;
             }
         }

@@ -42,7 +42,7 @@ public class SearchlogController {
     @GetMapping("/admin/searchlog")
     public String searchlogList(Model model, Principal principal) {
         List<SearchlogDTO> searchlogDTOList = searchlogService.getSearchlogList();
-        Optional<UserEntity> userEntity = userRepository.findByUserID(principal.getName());
+        Optional<UserEntity> userEntity = userRepository.findByName(principal.getName());
         Integer userID = (principal != null) ? userEntity.get().getId() : 4;
 //        String userIDString = searchlogRepository.findUserIDBySearchlogUserID(userID);
         model.addAttribute("searchlogList", searchlogDTOList);
@@ -52,7 +52,7 @@ public class SearchlogController {
     // 로그인 시 개인 history에 searchlog 리스트 출력
     @GetMapping("/livesearch/history")
     public String history(Principal principal, Model model) {
-        Optional<UserEntity> userEntity = userRepository.findByUserID(principal.getName());
+        Optional<UserEntity> userEntity = userRepository.findByName(principal.getName());
         Integer userID = (principal != null) ? userEntity.get().getId() : 4;
         List<SearchlogDTO> searchlogDTOList = searchlogService.findByUserID(userID);
         log.info("userID: {}", userID);
