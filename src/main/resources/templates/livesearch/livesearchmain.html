@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metadata :: metadata}">
+<body>
+<header th:replace="~{fragments/header :: header('livesearch', false)}"></header>
+
+<div class="flex gap-[15px] text-[#5d5d5d]">
+  <aside th:replace="~{livesearch/fragments/asidesearch :: asidesearch}"></aside>
+  <div class="w-[885px]">
+    <div
+            class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+      <div class="h-[34px] leading-[2]">
+        <span class="text-[#4e4d4d]">MS/MS ANALYSIS</span>
+      </div>
+      <div th:replace="~{fragments/tab_menu :: menu}"></div>
+    </div>
+    <div class="w-[650px] p-[2px]">
+      <ul style="padding-left: 20px;">
+        <li style="padding-bottom: 10px">
+          <div style="display: flex; align-items: center">
+            <img class="inline" th:src="@{/images/p_st1.GIF}" width="6">
+            <div style="padding-left: 6px; font-size: 16px; font-weight: bold; color: #0000FF">MODPlus</div>
+            <div style="padding-left: 5px;font-weight: bold">- advanced version of MODi</div>
+          </div>
+          <div style="padding-left: 5px">
+            Identification of multiple post-translational modifications
+          </div>
+        </li>
+        <li style="padding-bottom: 10px">
+          <div style="display: flex; align-items: center">
+            <img class="inline" th:src="@{/images/p_st1.GIF}" width="6">
+            <div style="padding-left: 6px; font-size: 16px; font-weight: bold; color: #0000FF">DBond</div>
+          </div>
+          <div style="padding-left: 5px">
+            Identification of intact disulfide linkages
+          </div>
+        </li>
+        <li style="padding-bottom: 10px">
+          <div style="display: flex; align-items: center">
+            <img class="inline" th:src="@{/images/p_st1.GIF}" width="6">
+            <div style="padding-left: 6px; font-size: 16px; font-weight: bold; color: #0000FF">ACTG</div>
+          </div>
+          <div style="padding-left: 5px">
+            Novel peptide mapping onto gene models
+          </div>
+        </li>
+        <li style="padding-bottom: 10px">
+          <div style="display: flex; align-items: center">
+            <img class="inline" th:src="@{/images/p_st1.GIF}" width="6">
+            <div style="padding-left: 6px; font-size: 16px; font-weight: bold; color: #0000FF">USE</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

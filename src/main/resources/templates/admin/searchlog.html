@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metadata :: metadata}">
+<body>
+<header th:replace="~{fragments/header :: header('header', false)}"></header>
+
+
+<div class="w-[990px] h-auto flex flex-col text-[#4e4d4d] pl-[25px]">
+    <div class="flex flex-col flex-start w-full h-[52px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+        <div style="display: flex; flex-direction: row; align-items: flex-start">
+            <div class="h-[34px] leading-[2.1]">ADMINISTRATION</div>
+            <div style="font-size: 11px; font-weight: normal; display: flex; width: 400px; margin-top: 10px">
+                <div class="container">
+                    <img src="/images/top_icon_01.gif" class="image"><a href="/admin/configuration">Configuration</a>
+                </div>
+                <div class="container">
+                    <img src="/images/top_icon_01.gif" class="image"><span class="underline">Search Log</span>
+                </div>
+                <div class="container">
+                    <img src="/images/top_icon_01.gif" class="image">Users
+                </div>
+                <div class="container">
+                    <img src="/images/top_icon_01.gif" class="image">Request Log
+                </div>
+            </div>
+        </div>
+        <div style="color: #0000FF; font-weight: normal; font-size: 11px">> Search Log</div>
+    </div>
+
+    <div class="w-full mx-auto leading-[130%] flex flex-col gap-[10px] p-[2px]">
+        <div class="flex flex-col gap-[18px] w-[1000px] h-auto">
+            <div class="w-full p-[1px]">
+                <div style="margin-bottom: 3px;">
+                    <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+                    <span class="font-bold">Database</span>
+                </div>
+                <form>
+                    <table class="database" id="searchlogTable" style="text-align: center; width: 100%">
+                        <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
+                            <td>Index</td>
+                            <td>User</td>
+                            <td>Date</td>
+                            <td>Title</td>
+                            <td>MS/MS data</td>
+                            <td>Database</td>
+                            <td>Engine</td>
+                        </tr>
+<!--                        searchlogList 출력-->
+                        <tbody th:if="${searchlogList != null}">
+                        <tr th:each="searchlog, id : ${searchlogList}">
+                            <td><div style="align-items: center; color: #0000FF; font-weight: bold" class="underline">
+                                <a th:href="@{${'/actg/adminResult'}(index=${searchlog.result})}" target="_blank" th:text="${id.index + 1}"></a>
+                            </div></td>
+                            <td><div style="align-items: center" th:text="${searchlog.userId}"></div></td>
+                            <td><div style="align-items: center" th:text="${searchlog.date}"></div></td>
+                            <td><div style="align-items: center" th:text="${searchlog.title}"></div></td>
+                            <td><div style="align-items: center" th:text="${searchlog.msfile}"></div></td>
+                            <td><div style="align-items: center" th:text="${searchlog.db}"></div></td>
+                            <td><div style="align-items: center" th:text="${searchlog.engine}"></div></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+    }
+    .image {
+        margin-right: 6px;
+        width: 2px;
+        height: 9px;
+    }
+    .database {
+        border-top: 2px solid #DADDDC;
+        border-bottom: 2px solid #DADDDC;
+    }
+    td {
+        padding: 4px;
+    }
+    tr {
+        border-bottom: 1px solid #DADDDC;
+    }
+    table {
+        margin-bottom: 20px;
+    }
+    textarea {
+        border: 1px solid #DADDDC;
+        padding: 2px;
+    }
+</style>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

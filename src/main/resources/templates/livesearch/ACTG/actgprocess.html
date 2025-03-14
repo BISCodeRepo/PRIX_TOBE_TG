@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metadata :: metadata}">
+<body>
+<header th:replace="~{fragments/header :: header('livesearch', false)}"></header>
+
+<div class="flex gap-[15px] text-[#5d5d5d]">
+  <aside th:replace="~{livesearch/fragments/asidesearch :: asidesearch}"></aside>
+  <table style="width: 95%; border: none; margin: auto; padding: 1px">
+    <tr th:if="${actgProcessDTO?.rate != null}">
+      <td style="font-size: 18px">Processing... <em th:text="${actgProcessDTO.rate}" style="color: #0000FF"></em></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td th:if="${actgProcessDTO != null and actgProcessDTO.output != null and actgProcessDTO.output != ''}">
+        <pre id="content-" th:text="${actgProcessDTO.output}"></pre>
+      </td>
+    </tr>
+  </table>
+
+  <script th:inline="javascript">
+    let timerID = null;
+
+    function initTimer() {
+      timerID = self.setTimeout(timeOut, 3000);
+    }
+
+    function timeOut() {
+      let fail = /*[[${actgProcessDTO.failed}]]*/ false;
+      let finish = /*[[${actgProcessDTO.finished}]]*/ false;
+
+      if (fail || finish) {
+        return;
+      }
+      clearTimeout(timerID);
+      let processName = /*[[${actgProcessDTO.processName}]]*/ '';
+      let title = /*[[${actgProcessDTO.title}]]*/ '';
+      window.location = /*[[@{/actg/actgprocess(execute='no', process=${actgProcessDTO.processName}, title=${actgProcessDTO.title})}]]*/'';
+    }
+
+    initTimer();
+  </script>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

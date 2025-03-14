@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metadata :: metadata}">
+<body>
+<header th:replace="~{fragments/header :: header('download', false)}"></header>
+
+<div class="flex gap-[15px] text-[#5d5d5d]">
+  <aside th:replace="~{download/fragments/asidetools :: asidetools}"></aside>
+  <div class="w-[885px]">
+    <div
+            class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+      <div class="h-[34px] leading-[2]">
+        <span class="text-[#4e4d4d]">deMix</span>
+        <span class="font-normal text-[12px] pl-[6px]"> - Decoding deuterated Distributions from heterogeneous protein states via HDX-MS</span>
+      </div>
+      <div th:replace="~{fragments/tab_menu :: menu}"></div>
+    </div>
+    <div class="w-[650px] p-[2px]">
+      <div class="leading-[130%] p-[1px]">
+        deMix deals directly with the deuterated isotopic distributions, but not considering their centroid masses and is designed
+        to be robust over random noises. In addition, unlike the existing approaches that can only determine a single state from
+        an isotopic distribution, deMix can also detect a bimodal deuterated distribution, arising from EX1 behavior or
+        heterogeneous peptides in conformational isomer proteins. Furthermore, deMix comes with visualization software to
+        facilitate validation and representation of the analysis results.
+      </div>
+      <div class="mt-[20px]">
+        <div th:replace="~{download/fragments/article :: articleHeader('Software')}"></div>
+        <ul class="list-disc pl-[40px] m-[2px]">
+          <li>
+            Requirement
+            <div class="pt-[15px] text-[#4189cf] leading-[130%]">
+              deMix was implemented using JAVA programming language, and requires Java Running Environment (JRE).
+              <br>
+              If JRE is not installed, please visit
+              <a
+                      th:replace="~{fragments/link :: linkA('http://www.oracle.com/technetwork/java/index.html', 'http://www.oracle.com/technetwork/java/index.html', true)}"></a>
+              <br>
+            </div>
+          </li>
+          <li class="pt-[14px]">
+            Release Note
+            <div class="pt-[15px] leading-[130%]">
+              - <a
+                    th:replace="~{fragments/link :: linkA('deMix_ReleaseNote.txt', 'Apr 7, 2019: version 1.01', false)}"></a> (
+              <a
+                      th:replace="~{fragments/link :: linkA('/request?software=deMix', 'Software download', false)}"></a> )
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="mt-[13px]">
+        <div th:replace="~{download/fragments/article :: articleHeader('Publication')}"></div>
+        <div class="w-full flex flex-col p-[3px] ml-[7px] leading-[130%]">
+          <span class="font-bold text-[#4e4d4d]">
+            deMix: Decoding Deuterated Distributions from Heterogeneous Protein States via HDX-MS.
+          </span>
+          <span class="italic">
+            Seungjin Na, Jae-Jin Lee, Jong Wha J. Joo, Kong-Joo Lee and Eunok Paek.
+          </span>
+          <span>
+            Scientific Reports, 2019, 9(1):3176.
+            <a
+                    th:replace="~{fragments/link :: linkA('https://pubmed.ncbi.nlm.nih.gov/30816214/', ' [ PMID: 30816214 ]', true)}"></a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metadata :: metadata}">
+<body>
+<header th:replace="~{fragments/header :: header('download', false)}"></header>
+
+<div class="flex gap-[15px] text-[#5d5d5d]">
+  <aside th:replace="~{download/fragments/asidetools :: asidetools}"></aside>
+  <div class="w-[885px]">
+    <div
+            class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+      <div class="h-[34px] leading-[2]">
+        <span class="text-[#4e4d4d]">DBond</span>
+        <span class="font-normal text-[12px] pl-[6px]"> - Identification of intact disulfide linkages</span>
+      </div>
+      <div th:replace="~{fragments/tab_menu :: menu}"></div>
+    </div>
+    <div class="w-[650px] p-[2px]">
+      <div class="leading-[130%] p-[1px]">
+        DBond assigns disulfide bond sites in a protein via analysis of MS/MS spectra of disulfide linked peptides from protein
+        digestion under non-reducing condition. A disulfide linked peptide produces multiple fragment ions from two peptides, and
+        therefore, its MS/MS spectrum shows complex patterns and includes many overlapping fragment ions. DBond was
+        designed to recognize diagnostic fragment ions resultant specifically from disulfide linkages.
+      </div>
+      <div class="mt-[20px]">
+        <div th:replace="~{download/fragments/article :: articleHeader('Software')}"></div>
+        <ul class="list-disc pl-[40px] m-[2px]">
+          <li>
+            Requirement
+            <div class="pt-[15px] text-[#4189cf] leading-[130%]">
+              DBond was implemented using JAVA programming language, and requires Java Running Environment (JRE).
+              <br>
+              If JRE is not installed, please visit
+              <a
+                      th:replace="~{fragments/link :: linkA('http://www.oracle.com/technetwork/java/index.html', 'http://www.oracle.com/technetwork/java/index.html', true)}"></a>
+              <br>
+            </div>
+          </li>
+          <li class="pt-[14px]">
+            Release Note
+            <div class="pt-[15px] leading-[130%]">
+              - <a
+                  th:replace="~{fragments/link :: linkA('release_note_ddp.txt', 'Jul 26, 2018: version 1.00', false)}"></a> (
+              <a
+                      th:replace="~{fragments/link :: linkA('/request?software=DDPSearch', 'Software download', false)}"></a> )
+            </div>
+          </li>
+          <li class="pt-[14px]">
+            Spectral Viewer
+            <div class="pt-[15px] leading-[130%]">
+              To help users inspect MS/MS spectra manually, a spectral viewer is provided. The input XML file to a viewer is
+              generated from DBond search. (*.bond.xml)
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="mt-[13px]">
+        <div th:replace="~{download/fragments/article :: articleHeader('Publication')}"></div>
+        <div class="w-full flex flex-col p-[3px] ml-[7px] leading-[130%]">
+          <span class="font-bold text-[#4e4d4d]">
+            New algorithm for the identification of intact disulfide linkages based on fragmentation characteristics
+              in tandem mass spectra.
+          </span>
+          <span class="italic">
+            Seonhwa Choi, Jaeho Jeong, Seungjin Na, Hyo Sun Lee, Hwa-Young Kim, Kong-Joo Lee, and Eunok Paek.
+          </span>
+          <span>
+            Journal of Proteome Research, 2010, 9, 626-635.
+            <a
+                    th:replace="~{fragments/link :: linkA('https://pubmed.ncbi.nlm.nih.gov/19902913/', '[ PMID: 19902913 ]', true)}"></a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

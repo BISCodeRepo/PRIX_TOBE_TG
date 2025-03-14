@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metadata :: metadata}">
+<body>
+<header th:replace="~{fragments/header :: header('introduction', false)}"></header>
+
+<div class="flex gap-[15px] h-[332px]">
+  <div class="flex w-[190px] justify-end">
+    <div class="bg-[url('../images/subimg01.gif')] w-[161px] h-[277px]"></div>
+  </div>
+  <div class="w-[785px] flex flex-col text-[#4e4d4d]">
+    <div
+      class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] pl-[15px] border-b-[1px] border-[#cfd3cf] text-[18px] font-bold">
+      <div class="h-[34px] leading-[1.9]">Welcome!</div>
+      <div th:replace="~{fragments/tab_menu :: menu}"></div>
+    </div>
+    <div class="w-[95%] mx-auto leading-[130%] flex flex-col gap-[10px]">
+      <div class="p-[3px] pt-[7px] ">
+        <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+        This site features <a th:replace="~{fragments/link :: linkA('/livesearch', 'MODPlus', false)}"></a>
+        <span
+          class="font-bold pr-[7px]">(advanced version of MOD<sup class="text-[10px]">i</sup>),</span> a powerful
+        modification search engine that uses mass spectrometry data to identify protein modifications. MODPlus
+        facilitates cutting-edge proteomics research by extensively searching through hundreds of potential
+        modifications efficiently. Among the existing search tools, MODPlus can take the most number of modifications as
+        its search parameter.
+      </div>
+      <div class="p-[3px] pt-[7px]">
+        <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+        <span class="font-bold">Special search engine for disulfide linkage analysis,
+          <a th:replace="~{fragments/link :: linkA('/livesearch', 'DBond', false)}"></a>.</span>
+        <div class="pt-[3px]">&nbsp;&nbsp;Certain post-translational modifications involve more than one peptide and
+          thus cannot be easily searched by conventional modification search algorithms. We provide specialized
+          software, DBond that can analyze intact disulfide linkage between two peptides. Disulfide linkages not only
+          contribute to the stability of a protein's structure, but it is known to regulate mediation of various
+          signaling pathways in a cell. It is of particular interest to biopharmaceutical industry as disulfide bridge
+          characterization is an important part of acceptance criteria for biological products.
+        </div>
+      </div>
+      <div class="p-[3px] pt-[7px]">
+        <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+        <span class="font-bold">Multi-blind unrestrictive modification search,
+          <a th:replace="~{fragments/link :: linkA('/download/moda', 'MODa', false)}"></a>.
+        </span>
+        <div class="pt-[3px]">&nbsp;&nbsp;We provide specialized software, MODa that can search spectra for all possible
+          modifications at once, in unrestrictive mode. MODa is the first practical multi-blind unrestrictive approach
+          for the identification of multiply modified peptides.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

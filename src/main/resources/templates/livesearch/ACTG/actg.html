@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metadata :: metadata}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<header th:replace="~{fragments/header :: header('livesearch', false)}"></header>
+
+<div class="flex gap-[15px] text-[#5d5d5d]">
+    <aside th:replace="~{livesearch/fragments/asidesearch :: asidesearch}"></aside>
+    <div class="w-[885px]">
+        <div
+                class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+            <div class="h-[34px] leading-[2]">
+                <span class="text-[#0000FF]">ACTG (Amino aCids To Genome)</span>
+                <span class="font-normal text-[12px] pl-[6px]">peptide mapping ( version 1.10 )</span>
+            </div>
+            <div th:replace="~{fragments/tab_menu :: menu}"></div>
+        </div>
+        <div style="width: 90%">
+            <form name="form" action="/actg/actgprocess" method="post" enctype="multipart/form-data" onsubmit="return submitForm()">
+                <input type="hidden" name="engine" value="ACTG">
+                <input type="hidden" name="msfile" value="0">
+                <input type="hidden" name="database" value="0">
+                <input type="hidden" name="result" value="0">
+                <table class="actgtable">
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#userName"> User Name</a>
+                        </td>
+                        <td class="tableright">
+                            <input name="userID"
+                                   th:value="${userID}"
+                                   type="username"
+                                   style="border: 1px solid; width: 90%; padding: 1px 3px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#mappingTitle"> Mapping Title </a>
+                        </td>
+                        <td class="tableright"><input name="title" type="mappingtitle" style="border: 1px solid; width: 90%; padding: 1px 3px"></td>
+                    </tr>
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold; text-align: center" colspan="2"> Mapping Environment</td>
+                    </tr>
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#peptideList"> Peptide List</a>
+                        </td>
+                        <td class="tableright"><input type="file" id="peptideFile"  name="peptideFile" style="border: 1px solid; margin-right: 6px;"> File size limit : 100KB</td>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                        <script>
+                            // Peptide list 파일용량 체크
+                            $(function(){
+                                $("#peptidelist").on("change", function(){
+                                    var maxSize = 100 * 1024; //100KB
+                                    var fileSize = this.files[0].size; //업로드한 파일용량
+
+                                    if(fileSize > maxSize){
+                                        alert("Peptide list is limited by 100 KB");
+                                        $(this).val(''); //업로드한 파일 제거
+                                        return;
+                                    }
+                                });
+                            });
+                        </script>
+
+                    </tr>
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#mappingMethod">
+                            Mapping Method <br> </a>
+                            <div style="font-weight: normal">
+                                PV: Protein DB filtering / Variant splice graph mapping <br>
+                                PS: Protein DB filtering / Six-frame translation mapping <br>
+                                VO: Mapping variant splice graph only <br>
+                                SO: Mapping six-frame translation only <br>
+                            </div>
+                        </td>
+                        <td class="tableright">
+                            <select name="method" style="border: 1px solid" id="mappingMethod" onchange="changeMethod()">
+                                <option value="PV">PV</option>
+                                <option value="PS">PS</option>
+                                <option value="VO">VO</option>
+                                <option value="SO">SO</option>
+                            </select>
+                        </td>
+
+                        <script>
+                            // mappingMethod 달라질 때마다 테이블 구성 변경
+                            function changeMethod(){
+                                var method = document.getElementById('mappingMethod').value;
+
+                                switch (method)	{
+                                    case "PV":
+                                        showID("methodProteinDatabase");
+                                        showID("methodVariantSpliceGraph");
+                                        hideID("methodSixFrameTranslation");
+                                        break;
+                                    case "PS":
+                                        showID("methodProteinDatabase");
+                                        showID("methodSixFrameTranslation");
+                                        hideID("methodVariantSpliceGraph");
+                                        break;
+                                    case "VO":
+                                        showID("methodVariantSpliceGraph");
+                                        hideID("methodProteinDatabase");
+                                        hideID("methodSixFrameTranslation");
+                                        break;
+                                    case "SO":
+                                        showID("methodSixFrameTranslation");
+                                        hideID("methodProteinDatabase");
+                                        hideID("methodVariantSpliceGraph");
+                                        break;
+                                }
+                            }
+
+                            function showID(ID){
+                                document.getElementById(ID).style.display = "table-row-group";
+                            }
+
+                            function hideID(ID){
+                                document.getElementById(ID).style.display = "none";
+                            }
+                        </script>
+
+                    </tr>
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#isoleucine"> Isoleucine is equivalent to leucine</a>
+                        </td>
+                        <td class="tableright">
+                            <div style="pointer-events: none; float: left">
+                                <input type="checkbox" style="pointer-events: auto; margin: 2px 3px" value="yes" name="IL">
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tbody id="methodProteinDatabase">
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold; text-align: center" colspan="2"> Protein DB Filtering</td>
+                    </tr>
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#proteinDB">Protein DB </a>
+                        </td>
+                        <td class="tableright">
+                            <select name="proteinDB" id="proteinDB" style="border: 1px solid">
+                                <option value="swissprot_2016_07.fasta">Swissprot 2016-07</option>
+                                <option value="uniprot_2016_07.fasta">Uniprot 2016-07</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#aaVariations">Filter out single AA variations </a>
+                        </td>
+                        <td class="tableright">
+                            <div style="pointer-events: none; float: left">
+                                <input type="checkbox" style="pointer-events: auto; margin: 2px 3px" value="yes" name="SAV">
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                    <tbody id="methodVariantSpliceGraph">
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold; text-align: center" colspan="2">Variant Splice Graph Mapping</td>
+                    </tr>
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#spliceGraph"> Variant Splice Graph </a>
+                        </td>
+                        <td class="tableright">
+                            <select name="variantSpliceGraphDB" id="variantSpliceGraphDB" style="border: 1px solid">
+                                <option value="GRCh38.Ensembl.83.ser">GRCh38, Ensembl Release 83</option>
+                                <option value="GRCh38.Ensembl.78.ser">GRCh38, Ensembl Release 78</option>
+                                <option value="GRCh37.Ensembl.75.ser">GRCh37, Ensembl Release 75</option>
+                                <option value="GRCh37.Ensembl.71.ser">GRCh37, Ensembl Release 71</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#mutations"> Mutations (VCF) </a>
+                        </td>
+                        <td class="tableright">
+                            <div style="pointer-events: none; float: left">
+                                <input type="checkbox" id="mutationFilecheckbox" name="mutation" value="yes" style="pointer-events: auto; margin: 2px 3px">
+                            </div>
+                            <div id="mutationFileInputContainer"></div>
+                        </td>
+
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                        <script>
+                            //VCF 파일 체크박스를 체크했을 때 mutation 파일 업로드 input을 생성
+                            document.getElementById('mutationFilecheckbox').addEventListener('change', function() {
+                                var fileInputContainer = document.getElementById('mutationFileInputContainer');
+                                if (this.checked) {
+                                    var fileInput = document.createElement('input');
+                                    fileInput.type = 'file';
+                                    fileInput.id = 'mutationFile';
+                                    fileInput.name = 'mutationFile';
+                                    fileInput.style.display = 'inline-block';
+                                    fileInput.style.border = '1px solid';
+                                    fileInput.style.marginRight = '6px';
+                                    fileInputContainer.appendChild(fileInput);
+
+                                    var fileSizeLimit = document.createElement('div');
+                                    fileSizeLimit.textContent = 'File size limit : 20MB';
+                                    fileSizeLimit.style.display = 'inline-block';
+                                    fileInputContainer.appendChild(fileSizeLimit);
+                                } else {
+                                    while (fileInputContainer.firstChild) {
+                                        fileInputContainer.removeChild(fileInputContainer.firstChild);
+                                    }
+                                }
+                            });
+
+                            //mutation 파일을 선택했을 때 파일용량 체크
+                            $(document).on("change", "#mutationFile", function(){
+                                var maxSize = 20 * 1024 * 1024; //20MB
+                                var fileSize = this.files[0].size; //업로드한 파일용량
+
+                                if(fileSize > maxSize){
+                                    alert("VCF file is limited by 20 MB");
+                                    $(this).val(''); //업로드한 파일 제거
+                                    return;
+                                }
+                            });
+                        </script>
+                    </tr>
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#exonSkipping"> Exon Skipping </a>
+                        </td>
+                        <td class="tableright">
+                            <div style="pointer-events: none; float: left">
+                                <input type="checkbox" name="exonSkipping" value="yes" style="pointer-events: auto; margin: 2px 3px">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#acceptorDonor"> Alternative Acceptor & Donor </a>
+                        </td>
+                        <td class="tableright">
+                            <div style="pointer-events: none; float: left">
+                                <input type="checkbox" name="altAD" value="yes" style="pointer-events: auto; margin: 2px 3px">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#intronRetention"> Intron retention </a>
+                        </td>
+                        <td class="tableright">
+                            <div style="pointer-events: none; float: left">
+                                <input type="checkbox" name="intron" value="yes" style="pointer-events: auto; margin: 2px 3px">
+                                (it takes about 10 minutes)
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                    <tbody id="methodSixFrameTranslation">
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold; text-align: center" colspan="2">Six-frame Translation Mapping</td>
+                    </tr>
+                    <tr>
+                        <td class="tableleft" style="font-weight: bold">
+                            <a href="/actghelp#referenceGenome">Reference genome</a>
+                        </td>
+                        <td class="tableright">
+                            <select name="referenceGenome" style="border: 1px solid">
+                                <option>GRCh38</option>
+                                <option>GRCh37</option>
+                            </select>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+                <div>
+                    <a href="/sampledata/ACTG_test_data.zip" download="ACTG_test_data.zip" style="color: brown">Download sample data</a>
+                    <div style="float: right">
+                        <input type="reset" value="Reset" class="button">
+                        <input type="submit" value="Submit" class="button">
+                        <script th:inline="javascript">
+                            //reset 버튼을 눌렀을 때 VCF 파일 업로드 input을 초기화
+                            document.querySelector('input[type="reset"]').addEventListener('click', function() {
+                                var checkbox = document.getElementById('VCFcheckbox');
+                                if (checkbox.checked) {
+                                    checkbox.checked = false;
+                                    var event = new Event('change');
+                                    checkbox.dispatchEvent(event);
+                                }
+                                var fileInputContainer = document.getElementById('VCFfileInputContainer');
+                                while (fileInputContainer.firstChild) {
+                                    fileInputContainer.removeChild(fileInputContainer.firstChild);
+                                }
+                            });
+
+                            //Submit 버튼을 눌렀을 때
+                            function submitForm() {
+                                // peptideList는 필수 업로드 요소
+                                var peptideList = document.getElementById('peptideFile');
+                                if (peptideList.files.length === 0) {
+                                    alert('Please upload a peptide list.');
+                                    return false;
+                                }
+                                return true;
+                            }
+                        </script>
+
+
+                        <div th:replace="~{fragments/button :: button}"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <style>
+        .actgtable {
+            border-width: 3px 0 3px 0;
+            border-style:solid none solid none;
+            border-color: #DADDDC;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        .tableleft {
+            background-color: #f2f2f2;
+            text-align: right;
+            width: 40%;
+            padding: 4px 3px;
+            border-width: 0 0 2px;
+        }
+        .tableright {
+            text-align: left;
+            padding: 4px 3px;
+            border-width: 0 0 2px;
+        }
+    </style>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

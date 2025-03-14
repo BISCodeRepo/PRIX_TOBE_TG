@@ -1,0 +1,133 @@
+<header class="flex flex-col mb-[10px]" th:fragment="header(menu, isLoggedIn)" xmlns:sec="http://www.w3.org/1999/xhtml">
+  <div class="flex bg-[url('../../images/menu_bg.gif')]">
+    <div class="h-[88px] w-[203px]">
+      <a href="/"><img alt="logo" height="88" th:src="@{/images/ci.gif}" width="196"></a>
+    </div>
+    <div class="flex flex-col w-[787px]">
+      <div class="flex self-end pt-[3px]">
+        <div class="flex flex-col h-[32px] w-[62px]" sec:authorize="isAnonymous()">
+          <div class="h-[15px] bg-[url('../../images/top_dot_01.gif')] bg-no-repeat"></div>
+          <div class="flex font-normal text-[11px]">
+            <img alt="logo" class="w-[2px] h-[9px] mt-[3px]" th:src="@{/images/top_icon_01.gif}">
+            <a class="pl-[7px] text-[#919090] hover:text-[#4e4d4d] no-underline" href="/user/login">LOG&nbsp;&nbsp;I N</a>
+          </div>
+        </div>
+        <div class="flex flex-col h-[32px] w-[62px]" sec:authorize="isAuthenticated()">
+          <div class="h-[15px] bg-[url('../../images/top_dot_01.gif')] bg-no-repeat"></div>
+          <div class="flex font-normal text-[11px]">
+            <img alt="logo" class="w-[2px] h-[9px] mt-[3px]" th:src="@{/images/top_icon_01.gif}">
+            <a class="pl-[7px] text-[#919090] hover:text-[#4e4d4d] no-underline" href="/user/logout">LOGOUT</a>
+          </div>
+        </div>
+        <form class="flex flex-col h-[32px] w-[115px]" sec:authorize="isAuthenticated()" th:action="@{/user/withdrawl}" method="post">
+          <div class="h-[15px] bg-[url('../../images/top_dot_01.gif')] bg-no-repeat"></div>
+          <div class="flex font-normal text-[11px]">
+            <img alt="logo" class="w-[2px] h-[9px] mt-[3px]" th:src="@{/images/top_icon_01.gif}">
+            <input class="pl-[7px] text-[#919090] hover:text-[#4e4d4d] no-underline" type="submit" value="DELETE ACCOUNT">
+          </div>
+        </form>
+        <div class="flex flex-col h-[32px] w-[45px]">
+          <div class="h-[15px] bg-[url('../../images/top_dot_01.gif')] bg-no-repeat"></div>
+          <div class="flex font-normal text-[11px]">
+            <img alt="logo" class="w-[2px] h-[9px] mt-[3px]" th:src="@{/images/top_icon_01.gif}">
+            <a class="pl-[7px] text-[#919090] hover:text-[#4e4d4d] no-underline" href="/header/help">HELP</a>
+          </div>
+        </div>
+        <div class="flex flex-col h-[32px] w-[68px]">
+          <div class="h-[15px] bg-[url('../../images/top_dot_01.gif')] bg-no-repeat"></div>
+          <div class="flex font-normal text-[11px]">
+            <img alt="logo" class="w-[2px] h-[9px] mt-[3px]" th:src="@{/images/top_icon_01.gif}">
+            <a class="pl-[7px] text-[#919090] hover:text-[#4e4d4d] no-underline" href="/header/contact">CONTACT</a>
+          </div>
+        </div>
+        <div sec:authorize="hasRole('ADMIN')" class="flex flex-col h-[32px] w-[50px]">
+          <div class="h-[15px] bg-[url('../../images/top_dot_01.gif')] bg-no-repeat"></div>
+          <div class="flex font-normal text-[11px]">
+            <img alt="logo" class="w-[2px] h-[9px] mt-[3px]" th:src="@{/images/top_icon_01.gif}">
+            <a class="pl-[7px] text-[#919090] hover:text-[#4e4d4d] no-underline" href="/admin/configuration">ADMIN</a>
+          </div>
+        </div>
+        <div sec:authorize="!hasRole('ADMIN')" class="flex flex-col h-[32px] w-[50px]">
+          <div class="h-[15px] bg-[url('../../images/top_dot_01.gif')] bg-no-repeat"></div>
+          <div class="flex font-normal text-[11px]">
+            <img alt="logo" class="w-[2px] h-[9px] mt-[3px]" th:src="@{/images/top_icon_01.gif}">
+            <a class="pl-[7px] text-[#919090] hover:text-[#4e4d4d] no-underline" href="/header/adminLogin">ADMIN</a>
+          </div>
+        </div>
+        <div class="flex flex-col h-[32px] w-[60px]">
+          <div class="h-[15px] bg-[url('../../images/top_dot_01.gif')] bg-no-repeat"></div>
+        </div>
+      </div>
+      <div class="flex flex-grow items-end">
+        <a class="flex" href="/" th:if="${menu eq 'introduction'}"><img alt="menu" height="29"
+                                                                        th:src="@{/images/menu01_01.gif}"
+                                                                        width="142"></a>
+        <a class="flex" href="/" th:if="${menu eq 'livesearch'}"><img alt="menu" height="29"
+                                                                      th:src="@{/images/menu02_01.gif}" width="142"></a>
+        <a class="flex" href="/" th:if="${menu eq 'download'}"><img alt="menu" height="29"
+                                                                    th:src="@{/images/menu03_01.gif}" width="142"></a>
+        <a class="flex" href="/" th:if="${menu eq 'publications'}"><img alt="menu" height="29"
+                                                                        th:src="@{/images/menu04_01.gif}"
+                                                                        width="142"></a>
+
+        <a class="flex" href="/livesearch" th:if="${menu eq 'introduction'}"><img alt="menu" height="29"
+                                                                                  th:src="@{/images/menu01_02.gif}"
+                                                                                  width="135"></a>
+        <a class="flex" href="/livesearch" th:if="${menu eq 'livesearch'}"><img alt="menu" height="29"
+                                                                                th:src="@{/images/menu02_02.gif}"
+                                                                                width="135"></a>
+        <a class="flex" href="/livesearch" th:if="${menu eq 'download'}"><img alt="menu" height="29"
+                                                                              th:src="@{/images/menu03_02.gif}"
+                                                                              width="135"></a>
+        <a class="flex" href="/livesearch" th:if="${menu eq 'publications'}"><img alt="menu" height="29"
+                                                                                  th:src="@{/images/menu04_02.gif}"
+                                                                                  width="135"></a>
+
+        <a class="flex" href="/download" th:if="${menu eq 'introduction'}"><img alt="menu" height="29"
+                                                                                th:src="@{/images/menu01_03.gif}"
+                                                                                width="133"></a>
+        <a class="flex" href="/download" th:if="${menu eq 'livesearch'}"><img alt="menu" height="29"
+                                                                              th:src="@{/images/menu02_03.gif}"
+                                                                              width="133"></a>
+        <a class="flex" href="/download" th:if="${menu eq 'download'}"><img alt="menu" height="29"
+                                                                            th:src="@{/images/menu03_03.gif}"
+                                                                            width="133"></a>
+        <a class="flex" href="/download" th:if="${menu eq 'publications'}"><img alt="menu" height="29"
+                                                                                th:src="@{/images/menu04_03.gif}"
+                                                                                width="133"></a>
+
+        <a class="flex" href="/publications" th:if="${menu eq 'introduction'}"><img alt="menu" height="29"
+                                                                                    th:src="@{/images/menu01_04.gif}"
+                                                                                    width="157"></a>
+        <a class="flex" href="/publications" th:if="${menu eq 'livesearch'}"><img alt="menu" height="29"
+                                                                                  th:src="@{/images/menu02_04.gif}"
+                                                                                  width="157"></a>
+        <a class="flex" href="/publications" th:if="${menu eq 'download'}"><img alt="menu" height="29"
+                                                                                th:src="@{/images/menu03_04.gif}"
+                                                                                width="157"></a>
+        <a class="flex" href="/publications" th:if="${menu eq 'publications'}"><img alt="menu" height="29"
+                                                                                    th:src="@{/images/menu04_04.gif}"
+                                                                                    width="157"></a>
+
+        <a class="flex" href="/" th:if="${menu eq 'header'}">
+          <img alt="menu" height="29" th:src="@{/images/menu04_01.gif}" width="142">
+        </a>
+        <a class="flex" href="/livesearch" th:if="${menu eq 'header'}">
+          <img alt="menu" height="29" th:src="@{/images/menu04_02.gif}" width="135">
+        </a>
+        <a class="flex" href="/download" th:if="${menu eq 'header'}">
+          <img alt="menu" height="29" th:src="@{/images/menu01_03.gif}" width="133">
+        </a>
+        <a class="flex" href="/publications" th:if="${menu eq 'header'}">
+          <img alt="menu" height="29" th:src="@{/images/menu01_04.gif}" width="157">
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="flex justify-end h-[25px] bg-[url('../../images/menu_bg2.gif')]">
+    <img alt="background" height="25" th:src="@{/images/menu_bg3.gif}" width="276">
+  </div>
+  <img alt="background" class="h-[6px]" th:src="@{/images/menu_bg4.gif}">
+</header>

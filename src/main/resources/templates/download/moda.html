@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/metadata :: metadata}"></head>
+<meta content="5; url=modplus" http-equiv="refresh">
+<body>
+
+<header th:replace="~{fragments/header :: header('download', false)}"></header>
+
+<div class="flex gap-[15px] text-[#5d5d5d]">
+  <aside th:replace="~{download/fragments/asidetools :: asidetools}"></aside>
+  <div class="w-[885px]">
+    <div
+      class="flex items-end justify-between w-full h-[49px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[12px] leading-[130%]">
+      <div class="h-[48px]">
+        <span class="text-[#ff4f64]">
+          This service is currently stopped.
+          <br>
+          Please use MODplus instead. Automatically moving to modplus download page after 5 seconds.
+        </span>
+        <br>
+        <span class="text-[#4e4d4d] text-[16px] font-bold">MODa</span>
+        <span class="pl-[6px]">- Multi-blind modification search</span>
+      </div>
+      <div th:replace="~{fragments/tab_menu :: menu}"></div>
+    </div>
+    <div class="w-[650px] p-[2px]">
+      <div class="leading-[130%] p-[1px]">
+        With great biological interest in post-translational modifications (PTMs), various approaches have been
+        introduced to identify PTMs using MS/MS. MODa is a novel "multi-blind" spectral alignment algorithm that allows
+        for fast unrestrictive PTM searches with no limitation on the number of modifications per peptide while
+        featuring over an order of magnitude speedup in relation to existing approaches.
+      </div>
+      <div class="mt-[20px]">
+        <div th:replace="~{download/fragments/article :: articleHeader('Software')}"></div>
+        <ul class="list-disc pl-[40px] m-[2px]">
+          <li>
+            Requirement
+            <div class="pt-[15px] text-[#4189cf] leading-[130%]">
+              MODa was implemented using JAVA programming language, and requires Java Running Environment (JRE).
+              <br>
+              If JRE is not installed, please visit
+              <a
+                th:replace="~{fragments/link :: linkA('http://www.oracle.com/technetwork/java/index.html', 'http://www.oracle.com/technetwork/java/index.html', true)}"></a>
+            </div>
+          </li>
+          <li class="pt-[14px] leading-[130%]">
+            Release Note
+            <div class="pt-[15px]">- Jun 12, 2019: version 1.62</div>
+            <div>- Jun 15, 2018: version 1.61</div>
+            <div>- Mar 9, 2018: version 1.60</div>
+            <div>- Feb 15, 2016: version 1.51</div>
+            <div>- Jan 22, 2016: version 1.50</div>
+            <div>- May 28, 2014: version 1.23</div>
+            <div>- May 9, 2014: version 1.22</div>
+            <div>- March 27, 2014: version 1.21</div>
+            <div>- March 03, 2014: version 1.20</div>
+          </li>
+        </ul>
+      </div>
+      <div class="mt-[13px]">
+        <div th:replace="~{download/fragments/article :: articleHeader('Publication')}"></div>
+        <div class="w-[500px] flex flex-col p-[3px] ml-[7px] leading-[130%]">
+          <span class="font-bold text-[#4e4d4d]">
+            Fast multi-blind modification search through tandem mass spectrometry.
+          </span>
+          <span class="italic">
+            Seungjin Na, Nuno Bandeira, and Eunok Paek.
+          </span>
+          <span>
+            Molecular and Cellular Proteomics, 2012, 11, M111.010199.
+            <a
+              th:replace="~{fragments/link :: linkA('https://pubmed.ncbi.nlm.nih.gov/22186716/', '[ PMID: 22186716 ]', true)}"></a>
+          </span>
+        </div>
+      </div>
+      <a href="https://omictools.com/modification-via-alignment-tool">
+        <img alt="omictoolslogo" height="40px" th:src="@{/images/omictoolslogo.JPG}" width="120px">
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+
+</html>

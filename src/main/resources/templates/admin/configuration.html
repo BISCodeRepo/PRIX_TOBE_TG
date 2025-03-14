@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metadata :: metadata}">
+<body>
+<header th:replace="~{fragments/header :: header('header', false)}"></header>
+
+
+<div class="w-[990px] h-auto flex flex-col text-[#4e4d4d] pl-[25px]">
+    <div class="flex flex-col flex-start w-full h-[52px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+        <div style="display: flex; flex-direction: row; align-items: flex-start">
+            <div class="h-[34px] leading-[2.1]">ADMINISTRATION</div>
+            <div style="font-size: 11px; font-weight: normal; display: flex; width: 400px; margin-top: 10px">
+                <div class="container">
+                    <img src="/images/top_icon_01.gif" class="image"><span class="underline">Configuration</span>
+                </div>
+                <div class="container">
+                    <img src="/images/top_icon_01.gif" class="image"><a href="/admin/searchlog">Search Log</a>
+                </div>
+                <div class="container">
+                    <img src="/images/top_icon_01.gif" class="image">Users
+                </div>
+                <div class="container">
+                    <img src="/images/top_icon_01.gif" class="image">Request Log
+                </div>
+            </div>
+        </div>
+        <div style="color: #0000FF; font-weight: normal; font-size: 11px">> Configuration</div>
+    </div>
+
+
+    <div class="w-full mx-auto leading-[130%] flex flex-col gap-[10px] p-[2px]">
+        <div class="flex flex-col gap-[18px] w-[750px] h-auto">
+            <div class="w-full p-[1px]">
+                <div style="margin-bottom: 3px;">
+                    <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+                    <span class="font-bold">Database</span>
+                </div>
+                <table class="database">
+                    <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
+                        <td style="padding-left: 7px;" class="tableleft">Name</td>
+                        <td style="padding-left: 7px;">File</td>
+                        <td></td>
+                    </tr>
+                    <tbody th:if="${databaseList != null}">
+                    <tr th:each="database : ${databaseList}">
+                        <form th:action="@{/admin/configuration/databaseControl}" method="post">
+                            <input type="hidden" name="id" th:value="${database.id}">
+                            <td>
+                                <input style="border: 1px solid;" type="text" id="DBnameInput" name="name" size="40" th:value="${database.name}">
+                            </td>
+                            <td th:text="${database.fileName}"></td>
+                            <td>
+                                <div style="display: flex; justify-content: flex-end;">
+                                    <input type="submit" name="databaseControl" class="button" value="edit" />
+                                    <input type="submit" name="databaseControl" class="button" value="unlink" />
+                                </div>
+                            </td>
+                        </form>
+                    </tr>
+                    </tbody>
+                    <tr>
+                        <form method="post" action="/configuration/post" enctype="multipart/form-data">
+                            <input type="hidden" name="table" value="database">
+                            <input type="hidden" name="data_id" value="-1">
+                            <td><input style="border: 1px solid" name="name" type="text" size="40" /></td>
+                            <td><input style="border: 1px solid" name="file" type="file" size="40" /></td>
+                            <td>
+                                <div style="display: flex; justify-content: flex-end;">
+                                    <input name="DBUpload" type="submit" class="button" value="upload">
+                                </div>
+                            </td>
+                        </form>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="w-full p-[1px]">
+                <div style="margin-bottom: 3px;">
+                    <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+                    <span class="font-bold">Enzymes</span>
+                </div>
+                <table class="enzyme">
+                    <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2;">
+                        <td style="padding-left: 7px; width: 210px;">Name</td>
+                        <td style="padding-left: 7px; width: 210px;">At Nterm</td>
+                        <td style="padding-left: 7px; width: 210px;">At Cterm</td>
+                        <td style="width: 120px;"></td>
+                    </tr>
+                    <tbody th:if="${enzymeList != null}">
+                    <tr th:each="enzyme : ${enzymeList}">
+                        <form th:action="@{/admin/configuration/enzymeControl}" method="post">
+                            <input type="hidden" name="id" th:value="${enzyme.id}">
+                            <td><input style="border: 1px solid; width: 150px" id="enzymeNameinput" name="name" th:value="${enzyme.name}" type="text" size="40"/></td>
+                            <td><input style="border: 1px solid; width: 150px" id="enzymeNterminput" name="ct_cleave" th:value="${enzyme.ct_cleave}" type="text" size="25"/></td>
+                            <td><input style="border: 1px solid; width: 150px" id="enzymeCterminput" name="nt_cleave" th:value="${enzyme.nt_cleave}" type="text" size="25"/></td>
+                            <td>
+                                <div style="display: flex; justify-content: flex-end;">
+                                    <input type="submit" name="enzymeControl" class="button" value="edit" />
+                                    <input type="submit" name="enzymeControl" class="button" value="delete" />
+                                </div>
+                            </td>
+                        </form>
+                    </tr>
+                    </tbody>
+                    <tr>
+                        <form method="post" action="/configuration/post">
+                            <input type="hidden" name="userID" value="0">
+                            <input type="hidden" name="table" value="enzyme">
+                            <td><input style="border: 1px solid; width: 150px" name="name" type="text" size="40" /></td>
+                            <td><input style="border: 1px solid; width: 150px" name="ct_cleave" type="text" size="40" /></td>
+                            <td><input style="border: 1px solid; width: 150px" name="nt_cleave" type="text" size="40" /></td>
+                            <td>
+                                <div style="display: flex; justify-content: flex-end;">
+                                    <input name="EnzymeUpload" type="submit" class="button" value="upload">
+                                </div>
+                            </td>
+                        </form>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="w-full p-[1px]">
+                <div style="margin-bottom: 3px;">
+                    <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+                    <span class="font-bold">Modifications</span>
+                </div>
+                <table class="modification">
+                    <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
+                        <td style="padding-left: 7px; width: 160px">Date</td>
+                        <td style="padding-left: 7px; width: 200px;">Version</td>
+                        <td style="padding-left: 7px; width: 330px;">File</td>
+                        <td></td>
+                    </tr>
+                    <tbody th:if="${modificationLogList != null}">
+                    <tr th:each="modificationLog : ${modificationLogList}">
+                        <input type="hidden" name="id" th:value="${modificationLog.id}">
+                        <td>
+                            <div type="text" name="date" size="40" th:text="${#dates.format(modificationLog.date, 'yyyy-MM-dd')}"></div>
+                        </td>
+                        <td>
+                            <div type="text" name="version" size="40" th:text="${modificationLog.version}"></div>
+                        </td>
+                        <td th:text="${modificationLog.fileName}"></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                    <tr>
+                        <form method="post" action="/configuration/post" enctype="multipart/form-data">
+                            <input type="hidden" name="table" value="modification">
+                            <td><input style="border: 1px solid" name="date" type="date" size="20" /></td>
+                            <td><input style="border: 1px solid" name="version" type="text" size="20" /></td>
+                            <td><input style="border: 1px solid" name="file" type="file" size="50" /></td>
+                            <td>
+                                <div style="display: flex; justify-content: flex-end;">
+                                    <input name="ModificationUpload" type="submit" class="button" value="upload">
+                                </div>
+                            </td>
+                        </form>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="w-full p-[1px]">
+                <div style="margin-bottom: 3px;">
+                    <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+                    <span class="font-bold">Software</span>
+                </div>
+                <table class="software_log">
+                    <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
+                        <td style="padding-left: 7px; width: 140px;">Name</td>
+                        <td style="padding-left: 7px; width: 140px;">Release Date</td>
+                        <td style="padding-left: 7px; width: 160px;">Version</td>
+                        <td style="padding-left: 7px; width: 320px;">File</td>
+                        <td></td>
+                    </tr>
+                    <tbody th:if="${softwareLogList != null}">
+                    <tr th:each="softwareLog : ${softwareLogList}">
+                        <input type="hidden" name="id" th:value="${softwareLog.id}" />
+                        <td>
+                            <div type="text" name="name" size="40" th:text="${softwareLog.name}"></div>
+                        </td>
+                        <td>
+                            <div type="text" name="date" size="25" th:text="${#dates.format(softwareLog.date, 'yyyy-MM-dd')}"></div>
+                        </td>
+                        <td>
+                            <div type="text" name="version" size="25" th:text="${softwareLog.version}"></div>
+                        </td>
+                        <td>
+                            <div type="text" name="file" size="25" th:text="${softwareLog.fileName}"></div>
+                        </td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                    <tr>
+                        <form method="post" action="/configuration/post" enctype="multipart/form-data">
+                            <input type="hidden" name="table" value="software_log">
+                            <td><select style="border: 1px solid" name="name">
+                                <option value="">Select --</option>
+                                <option value="MODa">MODa</option>
+                                <option value="DBond">DBond</option>
+                                <option value="NextSearch">NextSearch</option>
+                            </select></td>
+                            <td><div><input style="border: 1px solid" name="date" type="date" size="15" /></div></td>
+                            <td><div><input style="border: 1px solid" name="version" type="text" size="10" /></div></td>
+                            <td><div><input style="border: 1px solid" name="file" type="file" size="50"/></div></td>
+                            <td><div><input style="border: 1px solid" name="softwareUpdate" type="submit" class="button" value="update"/></div></td>
+                        </form>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="w-full p-[1px]">
+                <form method="post" action="/admin/configuration/softwareMsgControl">
+                    <table class="software_msg">
+                        <tr style="border-bottom: 2px solid #DADDDC; background-color: #f2f2f2">
+                            <td width="10%" style="text-align: center;">
+                                <input style="background-color: coral; color: white; padding: 2px 6px" value="update" type="submit"/>
+                            </td>
+                            <td>Email message to a recipient</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; vertical-align: top">MODa</td>
+                            <td><textarea cols="100" rows="6" name="modaMessage" th:text="${modaMessage}">moda description + moda download link</textarea></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; vertical-align: top">DBond</td>
+                            <td><textarea cols="100" rows="6" name="dbondMessage" th:text="${dbondMessage}">dbond description + dbond download link</textarea></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; vertical-align: top">NextSearch</td>
+                            <td><textarea cols="100" rows="6" name="searchMessage" th:text="${searchMessage}">nextsearch description + nextsearch download link</textarea></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; vertical-align: top">Signature</td>
+                            <td><textarea cols="100" rows="6" name="signMessage" th:text="${signMessage}">Prix Hanyang (Bioinformatics & Intelligent Systems Lab, Hanyang University)</textarea></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+    }
+    .image {
+        margin-right: 6px;
+        width: 2px;
+        height: 9px;
+    }
+    .database {
+        width: 100%;
+        border-top: 2px solid #DADDDC;
+        border-bottom: 2px solid #DADDDC;
+    }
+    td {
+        padding: 4px;
+    }
+    tr {
+        border-bottom: 1px solid #DADDDC;
+    }
+    .button {
+        display: inline-block;
+        padding: 3px 8px;
+        background-color: #E9E9E9;
+        color: #6D6D6D;
+        border: 1px solid #AAAAAA;
+        text-decoration: none;
+        cursor: pointer;
+     }
+    .databaseTable1 {
+        width: 45%;
+    }
+    table {
+        margin-bottom: 20px;
+    }
+    textarea {
+        border: 1px solid #DADDDC;
+        padding: 2px;
+    }
+</style>
+
+<script>
+
+</script>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

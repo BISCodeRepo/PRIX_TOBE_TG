@@ -1,0 +1,506 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metadata :: metadata}">
+<body>
+<header th:replace="~{fragments/header :: header('header', false)}"></header>
+
+
+<div class="w-[1200px] flex flex-col text-[#4e4d4d] pl-[25px]">
+  <div
+          class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+    <div class="h-[34px] leading-[2.1]">HELP</div>
+    <div th:replace="~{fragments/tab_menu :: menu}"></div>
+  </div>
+  <div class="w-full mx-auto leading-[130%] flex flex-col gap-[10px] p-[2px]">
+    <div class="flex flex-col gap-[18px] w-[750px] h-[3000px]">
+
+
+      <div class="w-full p-[1px]">
+        <div>
+          <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+          <span class="font-bold">
+            Search Parameters
+          </span>
+          <ul class="list-disc pl-[11px]  m-[2px]">
+            <br>
+            <li> <span class="font-bold" >
+              User Name
+            </span>
+              <br>
+              <div>
+                Put your name or id.
+              </div>
+            <br>
+
+            <li> <span class="font-bold">
+              Search Title
+            </span>
+              <div>
+                Put title for the search. It will be printed at the top of result page.
+                If the title is left blank, it will be named automatically.
+              </div>
+            <br>
+
+            <li> <span class="font-bold">
+              MS/MS Data
+            </span>
+              <div>
+                Select the spectra file to be searched. The size of upload file is allowed <span style="color: red; ">up to 500MB</span>.
+              </div>
+            <br>
+
+            <li> <span class="font-bold">
+              Data Format
+            </span>
+              <div>
+                Supported MS/MS formats are
+              </div>
+            <br>
+
+            <div style="color: brown; margin-left: 3px">
+              <a href="/header/help#Sequest">Sequest (*.dta) </a> <br>
+              <a href="/header/help#Micromass">Micromass (*.pkl) </a> <br>
+              <a href="/header/help#Mascot">Mascot Generic Format (*.mgf) </a> <br> <br>
+            </div>
+
+            <table style="border-style: solid none solid none; border-width: 1px; border-color: #DADDDC; margin-bottom: 2px">
+              <tr>
+                <td class="formatTable"><a  id="Sequest">Sequest (*.dta)</a></td>
+                <td class="formatTable" style="width: 130px">Example</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: top; padding: 7px; width: 650px">
+                  M+H   CHARGE (precursor ion 1) <br>
+                  m/z   intensity (fragment ion) [1..*] <br> <br>
+                  M+H   CHARGE (precursor ion 2) <br>
+                  m/z   intensity (fragment ion) [1..*] <br> <br>
+                  The first line represents M+H and charge state of
+                  precursor ion from an MS scan. From the second line, <br>
+                  m/z and intensity values of fragment ions are recorded.
+                  For multiple MS/MS scans, at least one blank <br>
+                  line must be between each MS/MS scan.
+                </td>
+                <td style="padding: 7px; width: 150px">
+                  1511.44   2 <br>
+                  339.2520   191 <br>
+                  343.2500   1 <br>
+                  344.6134   138 <br>
+                  345.3719   15 <br>
+                  346.2221   9 <br> <br>
+                  2568.16   3 <br>
+                  730.2723   85 <br>
+                  731.3793   83 <br>
+                  742.3622   62 <br>
+                  748.2934   159 <br>
+                  749.3618   56 <br>
+                  760.2417   257 <br>
+                </td>
+              </tr>
+            </table>
+
+            <table style="border-style: solid none solid none; border-width: 1px; border-color: #DADDDC; margin-bottom: 2px">
+              <tr>
+                <td class="formatTable"><a id="Micromass">Micromass (*.pkl)</a></td>
+                <td class="formatTable" style="width: 130px">Example</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: top; padding: 7px; width: 650px">
+                  M/Z   INTENSITY   CHARGE (precursor ion 1) <br>
+                  m/z   intensity (fragment ion) [1..*] <br> <br>
+                  M/Z   INTENSITY   CHARGE (precursor ion 2) <br>
+                  m/z   intensity (fragment ion) [1..*] <br> <br>
+                  The first line represents m/z, intetnsity and
+                  charge state of precursor ion from an MS scan. From the <br>
+                  second line, m/z and intensity values of fragment ions
+                  are recorded.
+                </td>
+                <td style="padding: 7px; width: 150px">
+                  756.22   32457   2 <br>
+                  339.2520   191 <br>
+                  343.2500   1 <br>
+                  344.6134   138 <br>
+                  345.3719   15 <br>
+                  346.2221   9 <br> <br>
+                  856.72   125341   3 <br>
+                  730.2723   85 <br>
+                  731.3793   83 <br>
+                  742.3622   62 <br>
+                  748.2934   159 <br>
+                  749.3618   56 <br>
+                  760.2417   257 <br>
+                </td>
+              </tr>
+            </table>
+
+            <table style="border-style: solid none solid none; border-width: 1px; border-color: #DADDDC; margin-bottom: 2px">
+              <tr>
+                <td class="formatTable"><a id="Mascot">Mascot Generic Format (*.mgf)</a></td>
+                <td class="formatTable" style="width: 130px">Example</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: top; padding: 7px; width: 100%">
+                  BEGIN IONS <br>
+                  TITLE=Spectrum 1 name <br>
+                  PEPMASS=precursor ion M/Z <br>
+                  CHARGE=Charge <br>
+                  m/z   intensity (fragment ion) [1..*] <br>
+                  END IONS <br> <br>
+                  BEGIN IONS <br>
+                  TITLE=Spectrum 2 name <br>
+                  PEPMASS=precursor ion M/Z <br>
+                  CHARGE=Charge <br>
+                  m/z   intensity (fragment ion) [1..*] <br>
+                  END IONS <br> <br>
+                  An MS/MS scan delimited by a pair of statements: BEGIN IONS and END IONS. <br>
+                </td>
+                <td style="padding: 7px; width: 150px">
+                  BEGIN IONS <br>
+                  TITLE=my_sample_1.2 <br>
+                  PEPMASS=756.22 <br>
+                  CHARGE=2+ <br>
+                  339.2520   191 <br>
+                  343.2500   1 <br>
+                  344.6134   138 <br>
+                  345.3719   15 <br>
+                  346.2221   9 <br>
+                  END IONS <br> <br>
+                  BEGIN IONS <br>
+                  TITLE=my_sample_2.3 <br>
+                  PEPMASS=856.72 <br>
+                  CHARGE=3+ <br>
+                  730.2723   85 <br>
+                  731.3793   83 <br>
+                  742.3622   62 <br>
+                  748.2934   159 <br>
+                  749.3618   56 <br>
+                  760.2417   257 <br>
+                  END IONS <br>
+                </td>
+              </tr>
+            </table>
+            <br>
+
+
+            <li> <span class="font-bold">
+              Instrument
+            </span>
+              <div>
+                Select instrument type used for MS/MS.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Database
+            </span>
+              <div>
+                Select a protein sequence database to be searched or upload the FASTA file including the protein sequences.
+                The size of upload file is allowed <span style="color: red; ">up to 100MB</span>.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Target-Dccoy Search
+            </span>
+              <div>
+                Check for target-decoy search. Then, the ms/ms search will be conducted against the normal proteins
+                (selected or uploaded) database <span style="color: red">appended with their reverse sequences</span>.
+                This target-decoy search assumes that the distribution of incorrect peptide-spectrum matches (PSMs)
+                from the target database is similar to that of PSMs from the decoy database. With this assumption,
+                an optimized score cut-off for the corresponding <span style="color: red">false discovery rate (FDR)</span>
+                is calculated. FDR was calculated as FDR = D/T, where D and T are the numbers of the decoy hits and
+                the target hits above the given score threshold, respectively. T is reported to search summary.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Enzyme
+            </span>
+              <div>
+                Select enzyme used for protein digestion. Users can also add new enzyme rules to their own list,
+                and can use them (Login required).
+              </div>
+              <br>
+            <div style="color: red">
+              Predefined Enzymes
+            </div>
+            <table style="border-style: none none solid none; border-width: 2px; border-color: #DADDDC; margin-bottom: 2px">
+              <tr>
+                <td class="enzymeTable" style="width: 90px">Name</td>
+                <td class="enzymeTable" style="width: 90px; text-align: center">Cleavage</td>
+                <td class="enzymeTable" style="width: 60px; text-align: center">Term</td>
+              </tr>
+              <tr>
+                <td style="padding: 2px">Trypsin</td>
+                <td style="text-align: center">KR</td>
+                <td style="text-align: center">Cterm</td>
+              </tr>
+              <tr>
+                <td style="padding: 2px">Arg-C</td>
+                <td style="text-align: center">R</td>
+                <td style="text-align: center">Cterm</td>
+              </tr>
+              <tr>
+                <td style="padding: 2px">Lys-C</td>
+                <td style="text-align: center">K</td>
+                <td style="text-align: center">Cterm</td>
+              </tr>
+              <tr>
+                <td style="padding: 2px">Glu-C</td>
+                <td style="text-align: center">E</td>
+                <td style="text-align: center">Cterm</td>
+              </tr>
+              <tr>
+                <td style="padding: 2px">Chymotrypsin</td>
+                <td style="text-align: center">FYWL</td>
+                <td style="text-align: center">Cterm</td>
+              </tr>
+              <tr>
+                <td style="padding: 2px">PepsinA</td>
+                <td style="text-align: center">FL</td>
+                <td style="text-align: center">Cterm</td>
+              </tr>
+            </table>
+            <br>
+
+            <li> <span class="font-bold">
+              Max No. of Missed Cleavages
+            </span>
+              <div>
+                Select the maximum number of missed cleavages permitted in a peptide. If this is set to 2,
+                a peptide can have zero, one or two cleavage residues at other positions than the last position
+                of the peptide in case that cleavage Term of used enzyme is Cterm.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Min No. of Enzyme Termini
+            </span>
+              <div>
+                Select minimum number of termini fragmented by the selected enzyme rule. When Trypsin is selected,
+                set 2 to only consider fully tryptic peptides and set 1 to include partially tryptic peptides.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Peptide Tolerance
+            </span>
+              <div>
+                Specify the error tolerance on experimental peptide mass values. Peptides would be found within the
+                specified tolerance range to either side of the theoretical mass. The peptide mass tolerance is
+                specified in dalton or in ppm.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+            #<sup>13</sup>C (Isotope error)
+            </span>
+              <div>
+                Specify the isotope error of precursors. Sometimes, the <sup>13</sup>C peak is selected for fragmentation
+                rather than the <sup>12</sup>C even though you are using a high accuracy-instrument. In extreme cases,
+                the <sup>13</sup>C<sub>2</sub> peak may be selected. This option is effective if you are using a high-accuracy instrument
+                (that is you're using ppm-tolerance for Peptide Tolerance). If you're using a low-accuracy instrument,
+                use quite wide dalton-tolerance (e.g. 3 Da) for Peptide Tolerance
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Fragment Ion Tolarance
+            </span>
+              <div>
+                Specify the error tolerance on experimental fragment ion mass values. Experimental fragment ions
+                would be found within the specified tolerance range to either side of the theoretical position.
+                The fragment ion mass tolerance is specified in dalton.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Modified Mass
+            </span>
+              <div>
+                Specify minimum and maximum masses of peptides to be modified.
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Fixed Modifications
+            </span>
+              <div>
+                Fixed modifications are applied to every amino acid specified. For example, if Carbamidomethyl
+                (+57 Da) is fixed to 'Cys', the mass of all the 'Cys' in a peptide is changed to 160 Da.
+                In a result page, fixed modified amino acids are not explicitly labeled as modified.
+                Fixed modifications are restricted to amino acids, and single fixed modification per amino acid is allowed.
+                Variable modifications are not allowed on fixed modified amino acids. PRIX ms/ms search provides
+                the modification list from
+                <a href="https://www.unimod.org/login.php?message=expired" target="_blank" style="color: brown">
+                  Unimod (www.unimod.org).
+                </a>
+                Additionally, users can add new modifications to their own list, and use them (Login required).
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              Variable Modifications
+            </span>
+              <div>
+                Variable modifications may or may not be present in a peptide, and thus, would enlarge search space
+                exponentially by enumeration of all possible modifications.
+                <span style="color: red">
+                  MODPlus has no limitation on the number of modifications to be selected, and hundreds of
+                  modifications can be taken as input. DBond allows up to 20 variable modifications to be selected.
+                </span>
+                PRIX ms/ms search provides the modification list from
+                <a href="https://www.unimod.org/modifications_list.php" target="_blank" style="color: brown">
+                  Unimod (www.unimod.org).
+                </a>
+                Default list consists of modifications from Post-, Co-, and Pre-translational, Chemical derivative,
+                Artefact, Multiple, and Other classifications (All: default list + modifications from N-linked,
+                O-linked, and Other glycosylation, Synth. pep. protect. gp., Isotopic label, Non-standard residue,
+                and AA substitution classifications). Additionally, users can add new modifications to their
+                own list, and can use them (Login required).
+              </div>
+              <br>
+
+            <li> <span class="font-bold">
+              MODmap
+            </span>
+              <div>
+                Blind search predicts new delta masses, from MS/MS spectra, other than modifications in your search list.
+                Predicted delta masses could be modifications present in the sample. User can re-submit ms/ms search with
+                abundant ones of predicted delta masses. Notably, if you used all the modifications in search, they may be
+                novel modification candidates.
+              </div>
+              <br>
+            <div style="color: red">
+              PTM Frequency Matrix
+            </div>
+
+            <table style="width: 100%; text-align: center; border-style: none none solid none; border-width: 2px; border-color: #DADDDC">
+              <tr class="enzymeTable">
+                <td>Delta</td>
+                <td>Nterm</td>
+                <td>A</td>
+                <td>C</td>
+                <td>D</td>
+                <td>E</td>
+                <td>F</td>
+                <td>G</td>
+                <td>H</td>
+                <td>I</td>
+                <td>K</td>
+                <td>L</td>
+                <td>M</td>
+                <td>N</td>
+                <td>P</td>
+                <td>Q</td>
+                <td>R</td>
+                <td>S</td>
+                <td>T</td>
+                <td>V</td>
+                <td>W</td>
+                <td>Y</td>
+              </tr>
+              <tbody id="matrixTable"> </tbody>
+              <tr>
+                <script> // enzyme 테이블 생성
+                  const values = [
+                    [-28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0],
+                    [-17, 22, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 4, 0, 20, 0, 0, 0, 0, 0, 0],
+                    [-1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+                    [1, 5, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+                    [4, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0],
+                    [12, 27, 0, 0, 3, 0, 0, 4, 0, 0, 2, 0, 0, 0, 12, 0, 0, 3, 2, 0, 8, 0],
+                    [16, 0, 0, 13, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0],
+                    [43, 21, 4, 0, 2, 2, 0, 3, 0, 0, 2, 0, 0, 0, 0, 3, 0, 0, 4, 5, 0, 0],
+                    [73, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0, 0],
+                    [96, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 0, 0, 0],
+                    [166, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0]
+                  ];
+
+                  const rows = 12;
+                  const cols = 22;
+                  const matrixTable = document.getElementById('matrixTable');
+
+                  for (let i = 0; i < rows; i++) {
+                    const tr = document.createElement('tr');
+                    for (let j = 0; j < cols; j++) {
+                      const td = document.createElement('td');
+                      td.textContent = values[i][j]; // 각 셀에 개별적인 값 할당
+                      td.style.padding = '2px';
+                      if (j === 0) { // 첫 번째 행만 bold 처리
+                        td.style.fontWeight = 'bold';
+                      } else if (values[i][j] > 2) { // 3 이상인 값만 red, bold 처리
+                        td.style.color = 'red';
+                        td.style.fontWeight = 'bold';
+                      }
+                      if (j >= 2) {
+                        td.style.width = '30px';
+                      }
+                      tr.appendChild(td);
+                    }
+                    matrixTable.appendChild(tr);
+                  }
+
+                </script>
+              </tr>
+            </table>
+            <br>
+
+            <div>
+              A MODmap result is shown as PTM Frequency Matrix. Each entry of the matrix represents the number of the
+              corresponding modifications predicted in a sample. For example, in above matrix, the mass shift of +12
+              Da on Nterm was observed 27 times during the ms/ms search. Cells with abundant number (shown in
+              <span style="color: red; font-weight: bold">Bold Red</span>)
+              can be defined as candidate modifications allowing 'delta' for 'AA'.
+            </div>
+          </ul>
+        </div>
+        <br> <br>
+        <div>
+          <img class="inline pb-[3px]" height="9" th:src="@{/images/p_st1.GIF}" width="4">
+          <span class="font-bold">
+            MISC
+          </span>
+          <ul class="list-disc pl-[11px]  m-[2px]">
+            <br>
+            <li> <span class="font-bold" >
+              DBond Viewer Fragment Ion Annotation
+            </span>
+              <br>
+              <div>
+                'P*', one strand (top) of a dipeptide; 'p<sup>*</sup>', the other strand (bottom) of a dipeptide;
+                'capital letters', fragment ions from peptide P<sup>*</sup>; 'small letters', fragment ions from peptide
+                p<sup>*</sup>; 'C-34', dehydroalanine ion; 'C+32', persulfide ion (formed by S-S or C-S bond cleavage
+                reactions); 'AA<sup>*</sup>' represents immonium ion of the amino acid AA. Matched peaks are shown in red.
+                The ion types of matched peaks were written in red for b- and y-ions, blue for ions from C-S and S-S bonds,
+                and green for bond-specific ions.
+              </div>
+              <br>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    .formatTable {
+      color: red;
+      font-style: normal;
+      background-color: #f2f2f2;
+      border-width: 2px;
+      border-style: none none solid none;
+      border-color: #DADDDC;
+      padding: 5px;
+    }
+    .enzymeTable {
+      background-color: #f2f2f2;
+      border-width: 2px;
+      border-style: solid;
+      border-color: #DADDDC #ffffff #DADDDC #ffffff;
+      padding: 3px;
+    }
+  </style>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

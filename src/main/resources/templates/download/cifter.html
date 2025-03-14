@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metadata :: metadata}">
+<body>
+<header th:replace="~{fragments/header :: header('download', false)}"></header>
+
+<div class="flex gap-[15px] text-[#5d5d5d]">
+  <aside th:replace="~{download/fragments/asidetools :: asidetools}"></aside>
+  <div class="w-[885px]">
+    <div
+            class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+      <div class="h-[34px] leading-[2]">
+        <span class="text-[#4e4d4d]">CIFTER</span>
+        <span class="font-normal text-[12px] pl-[6px]">- Charge State Determination</span>
+      </div>
+      <div th:replace="~{fragments/tab_menu :: menu}"></div>
+    </div>
+    <div class="w-[650px] p-[2px]">
+      <div class="leading-[130%] p-[1px]">
+        Low-resolution mass spectrometers cannot completely resolve isotopes of multiply-charged peptides and therefore
+        cannot reliably determine their charge states and masses. Instead, every possible charge state, commonly +2 and +3, is
+        assumed to calculate its mass and repetitive database searches are required for each hypothetical mass. This greatly
+        increases the overall time needed for searching candidate peptides, and also requires additional efforts to differentiate
+        the correct match from false positives. To alleviate these problems, CIFTER is proposed to differentiate charge states of
+        peptides obtained from low-resolution mass spectrometers.
+      </div>
+      <div class="mt-[20px]">
+        <div th:replace="~{download/fragments/article :: articleHeader('USAGE')}"></div>
+        <ul class="list-disc pl-[40px] m-[2px]">
+          <li>
+            Requirement
+            <div class="pt-[15px] text-[#4189cf] leading-[130%]">
+              CIFTER was implemented using JAVA programming language, and requires Java Running Environment (JRE). If
+              <br>
+              JRE is not installed, please visit
+              <a
+                      th:replace="~{fragments/link :: linkA('http://www.oracle.com/technetwork/java/index.html', 'http://www.oracle.com/technetwork/java/index.html', true)}"></a>
+              <br>
+            </div>
+          </li>
+          <li class="pt-[14px]">
+            Input and Output
+            <div class="pt-[15px] text-[#4189cf] leading-[130%]">
+              As input, CIFTER takes only a centroided mzXML file.
+              <br>
+              As output, *.csd.txt file is automatically generated,
+              <br>&nbsp;&nbsp;
+              where each MS/MS scan is given its charge state.
+              <br>
+              Body of output consists of three columns: [Scan No] [Estimated value] [Group]
+              <br>
+              - Scan No: scan number in mzXML
+              <br>
+              - Estimated value: a positive value represents that a precursor ion is doubly charged and
+              <br>&nbsp;&nbsp;
+              a negative value represents that a precursor ion is triply charged.
+              <br>
+              - Group: three groups, 2, 3, 2OR3
+              <br><br>
+              As output, an MGF file can be optionally generated,
+              <br>&nbsp;&nbsp;
+              where charge states of MS/MS spectra are predicted by CIFTER.
+            </div>
+          </li>
+          <li class="pt-[14px]">
+            Command line
+            <div class="pt-[15px] text-[#4189cf] leading-[130%]">
+              java -jar cifter.jar -i foo.mzXML [option]
+              <br><br>
+              option ' -mgf ' can be used to make MGF file (Its name would be foo.mgf).
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="mt-[13px]">
+        <div th:replace="~{download/fragments/article :: articleHeader('Publication')}"></div>
+        <div class="w-full flex flex-col p-[3px] ml-[7px] leading-[130%]">
+          <span class="font-bold text-[#4e4d4d]">
+              CIFTER: automated charge state determination for peptide tandem mass spectra.
+          </span>
+          <span class="italic">
+            Seungjin Na, Eunok Paek, and Cheolju Lee.
+          </span>
+          <span>
+             Analytical Chemistry, 2008, 80, 1520-1528.
+            <a
+                    th:replace="~{fragments/link :: linkA('https://pubmed.ncbi.nlm.nih.gov/22186716/', '[ PMID: 18247484 ]', true)}"></a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

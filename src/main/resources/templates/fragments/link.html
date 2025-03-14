@@ -1,0 +1,5 @@
+<a class="font-normal text-[#990000] hover:underline" th:fragment="linkA(href, text, newTab)" th:href="${href}"
+   th:target="${newTab} ? '_blank' : '_self'" th:text="${text}"></a>
+
+<a class="text-[#4e4d4d] hover:text-[#990000] no-underline" th:fragment="linkB(href, text, newTab)"
+   th:href="${href}" th:target="${newTab} ? '_blank' : '_self'" th:text="${text}">History</a>

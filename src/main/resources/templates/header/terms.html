@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/metadata :: metadata}">
+<body>
+<header th:replace="~{fragments/header :: header('header', false)}"></header>
+
+<div class="w-[1200px] flex flex-col text-[#4e4d4d] pl-[25px]">
+  <div
+          class="flex items-end justify-between w-full h-[35px] mt-[18px] mb-[20px] border-b-[1px] border-[#cfd3cf] text-[16px] font-bold">
+    <div class="h-[34px] leading-[2.1]">REGISTRATION</div>
+    <div th:replace="~{fragments/tab_menu :: menu}"></div>
+  </div>
+  <img src="/images/tit_join.gif" alt="Login" style="display: block; margin: auto;">
+  <div class="login-box">
+    <form>
+      <div style="font-weight: bold; float: left; font-size: 20px"> Personal Information Policy </div>
+      <br>
+      <div style="font-weight: bold; float: left; font-size: 14px">In accordance with the Personal Information
+        Protection Act, we will inform you of the purpose of collecting and using the following personal information. </div>
+      <br>
+      <div style="font-weight: bold; float: left"> 1. Purpose of collecting personal information </div>
+      The PRIX service is provided through the account and we collect ID and password to create these accounts.
+      <br> <br>
+      <div style="font-weight: bold; float: left"> 2. Personal information items to collect </div>
+      ID and Password
+      <br> <br>
+      <div style="font-weight: bold; float: left"> 3. Personal Information Retention and Use Period </div>
+      We will permanently retain your ID and password unless you opt out of PRIX.
+      <br> <br>
+      <div style="font-weight: bold; float: left"> 4. You may refuse to consent to the collection, use, or provision
+        of personal information, but you may be restricted from using the website.</div>
+      <br>
+      <div style="margin: auto">
+        <a href="/user/login" class="button">Decline</a>
+        <a href="/user/registration" class="button">Accept</a>
+
+        <style>
+          .button {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #E9E9E9;
+            font-weight: bold;
+            color: #6D6D6D;
+            border: 1px solid #AAAAAA;
+            text-decoration: none;
+            cursor: pointer;
+            margin-left: 5px;
+          }
+        </style>
+      </div>
+    </form>
+  </div>
+
+  <style>
+    .login-box {
+      width: 1000px;
+      padding: 10px;
+      background-color: #ffffff;
+      margin: 0 auto;
+      border: 1px solid #cfd3cf;
+      border-radius: 5px;
+    }
+    .login-box form {
+      display: flex;
+      flex-direction: column;
+    }
+    .login-box label {
+      margin-bottom: 10px;
+    }
+    .login-box input[type="id"], .login-box input[type="password"], .login-box input[type="password(confirm)"] {
+      padding: 3px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      width: 95%;
+      border: 1px solid #AAAAAA;
+    }
+    .login-box form div {
+      display: flex;
+    }
+  </style>
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>
