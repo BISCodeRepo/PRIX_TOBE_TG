@@ -34,7 +34,7 @@
 
 ### 🔽 아키텍처 구성도
 
-![서비스 아키텍처](.src/main/resources/static/images/service_architecture.png)
+![서비스 아키텍처](./src/main/resources/static/images/service_architecture.png)
 
 ---
 
@@ -46,7 +46,7 @@
 
 ### 🔽 실행 화면
 
-> ![실행화면](.src/main/resources/static/images/prix_startpage.png)
+> ![실행화면](./src/main/resources/static/images/prix_startpage.png)
 
 ---
 
