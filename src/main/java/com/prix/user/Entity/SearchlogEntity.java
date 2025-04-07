@@ -34,11 +34,13 @@ public class SearchlogEntity {
 
     private String engine;
 
-    private String result;
+    private Integer result;
+
+    private String actg;
 
     @Builder
-    public SearchlogEntity(int id, Integer userId, String title, Integer  msfile,
-                           Integer db,String engine, String result){
+    public SearchlogEntity(int id, Integer userId, String title, Integer msfile,
+                           Integer db, String engine, Integer result, String actg){
         this.id = id;
         this.userId = userId;
         this.title = title;
@@ -46,5 +48,6 @@ public class SearchlogEntity {
         this.db = db;
         this.engine = engine;
         this.result = result;
+        this.actg = actg;
     }
 }

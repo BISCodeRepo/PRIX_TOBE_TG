@@ -254,9 +254,9 @@ public class ActgProcService {
                 // jar 파일은 logDir에 있는 xml 파일과 프로세스 파일을 인수로 받아 작업 수행
                 // -Xss2M로 각 스레드 스택 크기 2mb로 설정, -Xmx8G로 힙 메모리 최대 크기 8GB로 설정
                 // window용 command
-//                String[] command = {"cmd.exe", "/c", "java -Xss2M -Xmx8G -jar " + jarPath + " " + xmlPath + " " + logDir + processPath};
+                String[] command = {"cmd.exe", "/c", "java -Xss2M -Xmx8G -jar " + jarPath + " " + xmlPath + " " + logDir + processPath};
                 // linux용 command
-                String[] command = {"/bin/sh", "-c", "java -Xss2M -Xmx8G -jar " + jarPath + " " + xmlPath + " " + logDir + processPath};
+//                String[] command = {"/bin/sh", "-c", "java -Xss2M -Xmx8G -jar " + jarPath + " " + xmlPath + " " + logDir + processPath};
                 logger.info("Executing command: {}", String.join(" ", command));
 
                 try {
@@ -331,7 +331,7 @@ public class ActgProcService {
                 prixIndex = prixIndex.replace(".proc", "");
 
                 searchlogRepository.insert(
-                        id, title.replace("'", "\\'"), 0, 0, prixIndex, "ACTG");
+                        id, title.replace("'", "\\'"), 0, 0, 0, prixIndex,"ACTG");
 
                 ActgProcessDTO processDTO = ActgProcessDTO.builder().failed(failed).finished(finished).output(output)
                         .processName(processName).prixIndex(prixIndex).rate((rate)).title(title).build();

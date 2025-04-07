@@ -16,9 +16,9 @@ public interface SearchlogService {
 
     List<SearchlogDTO> findByUserID(Integer userId);
 
-    Integer getUserIDByResult(String result);
+    Integer getUserIDByActg(String actg);
 
-    LocalDate getDateByResult(String result);
+    LocalDate getDateByActg(String actg);
 
-    String getTitleByResult(String result);
+    String getTitleByActg(String actg);
 }

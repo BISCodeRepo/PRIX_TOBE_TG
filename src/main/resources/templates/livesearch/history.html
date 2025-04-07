@@ -28,7 +28,7 @@
                     <tbody th:if="${searchlogList != null}">
                     <tr th:each="searchlog, id : ${searchlogList}">
                         <td><div style="align-items: center; color: #0000FF; font-weight: bold" class="underline">
-                            <a th:href="@{${'/actg/result'}(index=${searchlog.result})}" target="_blank" th:text="${id.index + 1}"></a>
+                            <a th:href="@{${'/actg/result'}(index=${searchlog.actg})}" target="_blank" th:text="${id.index + 1}"></a>
                         </div></td>
                         <td><div style="align-items: center" th:text="${searchlog.date}"></div></td>
                         <td><div style="align-items: center" th:text="${searchlog.title}"></div></td>

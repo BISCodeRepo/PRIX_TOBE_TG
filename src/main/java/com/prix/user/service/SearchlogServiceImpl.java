@@ -45,6 +45,7 @@ public class SearchlogServiceImpl implements SearchlogService{
                     .db(searchlogEntity.getDb())
                     .result(searchlogEntity.getResult())
                     .engine(searchlogEntity.getEngine())
+                    .actg(searchlogEntity.getActg())
                     .build();
             searchlogDtoList.add(searchlogDTO);
         }
@@ -66,21 +67,22 @@ public class SearchlogServiceImpl implements SearchlogService{
                     .db(searchlogEntity.getDb())
                     .result(searchlogEntity.getResult())
                     .engine(searchlogEntity.getEngine())
+                    .actg(searchlogEntity.getActg())
                     .build();
             searchlogDtoList.add(searchlogDTO);
         }
         return searchlogDtoList;
     }
 
-    public Integer getUserIDByResult(String result) {
-        return searchlogRepository.findUserIDByResult(result);
+    public Integer getUserIDByActg(String actg) {
+        return searchlogRepository.findUserIDByActg(actg);
     }
 
-    public LocalDate getDateByResult(String result) {
-        return searchlogRepository.findDateByResult(result);
+    public LocalDate getDateByActg(String actg) {
+        return searchlogRepository.findDateByActg(actg);
     }
 
-    public String getTitleByResult(String result) {
-        return searchlogRepository.findTitleByResult(result);
+    public String getTitleByActg(String actg) {
+        return searchlogRepository.findTitleByActg(actg);
     }
 }

@@ -25,7 +25,9 @@ public class SearchlogDTO {
 
     private String engine;
 
-    private String result;
+    private Integer result;
+
+    private String actg;
 
     public SearchlogEntity toEntity(){
         SearchlogEntity build = SearchlogEntity.builder()
@@ -35,13 +37,14 @@ public class SearchlogDTO {
                 .db(db)
                 .engine(engine)
                 .result(result)
+                .actg(actg)
                 .build();
         return build;
     }
 
     @Builder
     public SearchlogDTO(Integer userId, LocalDate date, String title,
-                        Integer msfile, Integer db, String engine, String result){
+                        Integer msfile, Integer db, String engine, Integer result, String actg){
         this.userId = userId;
         this.date = date;
         this.title = title;
@@ -49,5 +52,6 @@ public class SearchlogDTO {
         this.db = db;
         this.engine = engine;
         this.result = result;
+        this.actg = actg;
     }
 }

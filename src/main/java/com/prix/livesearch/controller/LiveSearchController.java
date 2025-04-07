@@ -60,18 +60,18 @@ public class LiveSearchController {
 
     // admin search log에서 index 눌렀을 때
     @GetMapping("/actg/adminResult")
-    public String adminResultPage(Principal principal, Model model, HttpServletRequest request, HttpSession session, @RequestParam("index") String index) {
+    public String adminResultPage(Principal principal, Model model, HttpServletRequest request, HttpSession session, @RequestParam("actg") String actg) {
         // id, date, title은 이미 searchlogEntity에 저장되어 있기 때문에 searchlogService에서 값을 가져오기
-        Integer id = searchlogService.getUserIDByResult(index);
-        LocalDate date = searchlogService.getDateByResult(index);
-        String title = searchlogService.getTitleByResult(index);
+        Integer id = searchlogService.getUserIDByActg(actg);
+        LocalDate date = searchlogService.getDateByActg(actg);
+        String title = searchlogService.getTitleByActg(actg);
 
         // model에서 값을 읽어오지 않고 저장되어 있는 .proc 파일에서 값을 읽어와서 출력하기 위함
         ActgResultDTO actgResultDTO = actgAdminService.processResultAdmin(id, request);
         actgResultDTO.setDate(date);
         actgResultDTO.setTitle(title);
 
-        String resultFileDownloadPath = "/actg/download?index=" + index;
+        String resultFileDownloadPath = "/actg/download?index=" + actg;
 
         model.addAttribute("resultFileDownloadPath", resultFileDownloadPath);
         model.addAttribute("actgResultDTO", actgResultDTO);
