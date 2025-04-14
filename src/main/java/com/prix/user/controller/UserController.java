@@ -2,7 +2,6 @@ package com.prix.user.controller;
 
 import com.prix.user.DTO.UserDTO;
 import com.prix.user.service.UserService;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/user")
@@ -85,22 +82,5 @@ public class UserController {
     @GetMapping("/adminLogin")
     public String adminLogin() {
         return "header/adminLogin";
-    }
-
-    // 로그인 처리
-    @PostMapping("/adminLogin")
-    public String adminLoginProcess(@RequestParam("email") String email,
-                                    @RequestParam("password") String password,
-                                    HttpServletRequest request) {
-        try {
-            request.login(email, password);
-            return "redirect:/admin/configuration";
-        } catch (ServletException e) {
-            // 로그인 실패 시 SecurityContext 초기화
-            SecurityContextHolder.clearContext();
-//            e.printStackTrace();
-            logger.error("Login failed for user: {}", email, e);
-            return "redirect:/header/adminLogin?error=true";
-        }
     }
 }

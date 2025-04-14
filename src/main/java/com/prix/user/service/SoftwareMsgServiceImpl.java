@@ -5,6 +5,7 @@ import com.prix.user.Entity.SoftwareMsgEntity;
 import com.prix.user.Repository.SoftwareMsgRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,23 +47,39 @@ public class SoftwareMsgServiceImpl implements SoftwareMsgService{
     }
 
     public String returnModaMessage(){
-        String sql = "SELECT message FROM px_software_msg WHERE id = 'mode'";
-        return jdbcTemplate.queryForObject(sql, String.class);
+        try {
+            String sql = "SELECT message FROM px_software_msg WHERE id = 'moda'";
+            return jdbcTemplate.queryForObject(sql, String.class);
+        } catch (EmptyResultDataAccessException e) {
+            return "";
+        }
     }
 
     public String returnDbondMessage(){
-        String sql = "SELECT message FROM px_software_msg WHERE id = 'dbond'";
-        return jdbcTemplate.queryForObject(sql, String.class);
+        try {
+            String sql = "SELECT message FROM px_software_msg WHERE id = 'dbond'";
+            return jdbcTemplate.queryForObject(sql, String.class);
+        } catch (EmptyResultDataAccessException e) {
+            return "";
+        }
     }
 
     public String returnSearchMessage(){
-        String sql = "SELECT message FROM px_software_msg WHERE id = 'nextsearch'";
-        return jdbcTemplate.queryForObject(sql, String.class);
+        try {
+            String sql = "SELECT message FROM px_software_msg WHERE id = 'nextsearch'";
+            return jdbcTemplate.queryForObject(sql, String.class);
+        } catch (EmptyResultDataAccessException e) {
+            return "";
+        }
     }
 
     public String returnSignMessage(){
-        String sql = "SELECT message FROM px_software_msg WHERE id = 'signature'";
-        return jdbcTemplate.queryForObject(sql, String.class);
+        try {
+            String sql = "SELECT message FROM px_software_msg WHERE id = 'signature'";
+            return jdbcTemplate.queryForObject(sql, String.class);
+        } catch (EmptyResultDataAccessException e) {
+            return "";
+        }
     }
 
     public String saveSoftwareMsg(SoftwareMsgEntity softwareMsgEntity) {

@@ -60,7 +60,7 @@ public class LiveSearchController {
 
     // admin search log에서 index 눌렀을 때
     @GetMapping("/actg/adminResult")
-    public String adminResultPage(Principal principal, Model model, HttpServletRequest request, HttpSession session, @RequestParam("actg") String actg) {
+    public String adminResultPage(Principal principal, Model model, HttpServletRequest request, HttpSession session, @RequestParam("index") String actg) {
         // id, date, title은 이미 searchlogEntity에 저장되어 있기 때문에 searchlogService에서 값을 가져오기
         Integer id = searchlogService.getUserIDByActg(actg);
         LocalDate date = searchlogService.getDateByActg(actg);

@@ -1,4 +1,6 @@
 <!--    로그인 시 표시-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <div class="flex gap-[13px] pr-[18px]" th:fragment="menu" xmlns:sec="http://www.w3.org/1999/xhtml" sec:authorize="isAuthenticated()">
   <div class="flex gap-[7px] font-normal text-[12px] leading-[130%]">
     <img alt="logo" class="w-[2px] h-[9px] mt-[3px]" th:src="@{/images/top_icon_01.gif}">

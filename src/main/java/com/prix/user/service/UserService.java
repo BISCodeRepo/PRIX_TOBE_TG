@@ -8,6 +8,4 @@ public interface UserService {
     UserEntity register(UserDTO userDTO);
 
     boolean withdrawl(String userID);
-
-    boolean checkAdminLogin(String email, String password);
 }

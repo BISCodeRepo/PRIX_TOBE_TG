@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/metadata :: metadata}">
 <body>
 <header th:replace="~{fragments/header :: header('header', false)}"></header>
@@ -49,7 +50,7 @@
                         <tbody th:if="${searchlogList != null}">
                         <tr th:each="searchlog, id : ${searchlogList}">
                             <td><div style="align-items: center; color: #0000FF; font-weight: bold" class="underline">
-                                <a th:href="@{${'/actg/adminResult'}(index=${searchlog.result})}" target="_blank" th:text="${id.index + 1}"></a>
+                                <a th:href="@{${'/actg/adminResult'}(index=${searchlog.actg})}" target="_blank" th:text="${id.index + 1}"></a>
                             </div></td>
                             <td><div style="align-items: center" th:text="${searchlog.userId}"></div></td>
                             <td><div style="align-items: center" th:text="${searchlog.date}"></div></td>
